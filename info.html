@@ -1,0 +1,302 @@
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>info</title>
+    <link rel="stylesheet" href="login.css">
+</head> 
+<body> 
+  <header class="site-header">  
+      <div class="displayGrid">  
+        <div class="LeftDis">    
+          <div class="calender"></div>      
+          <div id="date"></div>     
+          <div class="clock"></div>
+          <div id="hour"></div> 
+        </div> 
+
+        <div class="RightDis">     
+          <p class="p">Mode</p>       
+          <div id="mode" class="mode"></div>
+          <a href="login.html">AbaheerHotspot</a>
+          <div class="wifi" id="wifi"></div>
+        </div>
+      </div>   
+  </header>
+  <div class="sunCon">
+    <div class="sun"></div>
+  </div>
+  <div class="starCon"></div>
+  <div class="cloudCon"></div>
+
+  <div class="mainCon">
+    <div id="greet"></div>    
+    <h2 style="color: var(--font); margin: 10px 0; font-size: 3em;">Price List</h2>  
+    <div class="infoContainer">    
+      <div class="infoOption">
+          <div class="opsi1"><h3>Voucher</h3></div>
+          <div class="opsi2"><h3>Member</h3></div>
+          <div class="opsi3">News</div>    
+      </div>
+      <div class="infoContent"></div> 
+  </div>
+  </div>
+    <div class="paralax-con">
+    <div class="paralax-back"></div>
+    <div class="paralax1-back"></div>
+    <div class="paralax2-back"></div>  
+  </div>
+  <footer class="footer">
+    <div class="copyright">
+      <p style="font-weight: 700;">copyright &copy; 2025 - Abuhurairah Forever V1</p>   
+    </div>
+  </footer>
+  <script>
+    // ===== CLOCK & DATE & MODE FUNCTIONS (dipindah dari login.html) =====
+    const currentMode = document.getElementById('mode');
+    const greet = document.getElementById("greet");
+    
+    let currState = localStorage.getItem('themeIsBright');
+    let isBright;  
+
+    // Ambil dari storage jika ada 
+    if (currState !== null) { 
+      isBright = currState === 'true';
+    } else {
+      // Default: ikut system
+      isBright = !(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    }
+
+      const updateStars = () => {
+        if (!isBright) {
+          createStar()
+        } else {
+          starCon.innerHTML = '';
+        }
+      };
+
+    const updateClouds = () => {
+      clouds.forEach(cloud => {
+        cloud.style.filter = isBright ? 'brightness(50%)' : 'brightness(100%)';
+      });
+    };
+
+    // Apply state awal
+    document.documentElement.classList.toggle("dark", !isBright);
+    currentMode.style.backgroundImage = isBright
+      ? 'url("img/sun-dim.png")'
+      : 'url("img/moon.png")';
+
+    // Ketika tombol ditekan
+    currentMode.addEventListener('click', () => {
+      isBright = !isBright;
+      localStorage.setItem('themeIsBright', isBright ? 'true' : 'false');
+      document.documentElement.classList.toggle("dark", !isBright);
+      currentMode.style.backgroundImage = isBright
+        ? 'url("img/sun-dim.png")'
+        : 'url("img/moon.png")';
+    });
+
+    function updateClock() {  
+      const now = new Date() 
+      //jam
+      const hh = String(now.getHours()).padStart(2, "0");
+      const mm = String(now.getMinutes()).padStart(2, "0");
+      const ss = String(now.getSeconds()).padStart(2, "0");
+      //tanggal
+      const dd = String(now.getDate()).padStart(2, "0");
+      const MM = String(now.getMonth() + 1).padStart(2, "0");
+      const yyyy = String(now.getFullYear()).padStart(4, "0");
+      const day = [
+        "SUNDAY",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY", 
+        "SATURDAY"
+      ][now.getDay()];
+
+      const greeting = { 
+        "05" : "SELAMAT PAGI SAHABAT!",
+        "12" : "SELAMAT SIANG SAHABAT!",
+        "15" : "SELAMAT SORE SAHABAT!",
+        "21" : "SELAMAT MALAM SAHABAT!",
+        "00" : "SAHABAT?🤨"
+      }
+
+      const timeSignal = {
+        "MT" : "05",
+        "NT" : "12",
+        "AFT" : "15",
+        "NgT" : "21",
+        "MNT" : "0"
+      }
+
+      const calender = document.getElementById("date");
+      calender.innerHTML = `${day}, ${dd}-${MM}-${yyyy}`;
+      const T = document.getElementById("hour");
+      T.innerHTML = `(${hh}:${mm}:${ss})`;
+
+      const time = T.textContent.match(/\((.*?)\)/)[1];
+      const hour = +time.split(":")[0];
+
+      const value = Object.values(timeSignal).map(Number);
+      if (value) {
+        const closestH = value
+          .filter(v => v <= hour)
+          .sort((a, b) => b - a)[0] || 0;
+
+        const key = closestH.toString().padStart(2, "0");
+        greet.textContent = `${greeting[key]}`
+      }
+      
+      const nextTick = 1000 - now.getMilliseconds();
+      setTimeout(updateClock, nextTick);
+    }
+    updateClock();
+
+      const cloudCon = document.querySelector(".cloudCon")
+      const starCon = document.querySelector(".starCon")
+
+      const img = [
+        'img/cloud1.avif',
+        'img/cloud2.avif',
+        'img/cloud3.avif',
+        'img/cloud4.avif',  
+        'img/cloud5.avif'
+      ]; 
+
+      const starImg = [ 
+        'img/star1.png',
+        'img/star2.png',
+        'img/star3.png',
+      ] 
+
+      let starAv = 5;
+      let cloudAv = 30;
+      let stars = [];
+      let clouds = [];
+      function random(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      function createStar() {
+        for (let i = 0; i < starAv; i++) {
+          const star = document.createElement('div')
+          star.classList.add('star')
+  
+          const images = starImg[Math.floor(Math.random() * starImg.length)]
+          star.style.backgroundImage = `url(${images})`;
+  
+          const size = random(10, 20)
+          star.style.width = `${size}px`
+          star.style.height = `${size}px`
+  
+          star.style.position = 'relative';
+          star.style.top = `${random(10, 50)}%`
+  
+          star.style.left = `${random(7, 97)}%`
+  
+          star.style.filter = `brightness(100 )`;
+  
+          star.style.animationDuration = `${random(20, 30)}s`
+   
+          starCon.appendChild(star)
+          stars.push(star)
+          
+        }
+      }
+      for (let i = 0; i < cloudAv; i++) {
+        const cloud = document.createElement('div')
+        cloud.classList.add('cloud')
+
+        const images = img[Math.floor(Math.random() * img.length)];
+        cloud.style.backgroundImage = `url(${images})`;
+
+        const size = random(100, 200) 
+        cloud.style.width = `${size}px`;
+        cloud.style.height = `${size * 0.6}px`;
+
+        cloud.style.top = `${random(5, 60)}%`
+
+        cloud.style.opacity = `${random(1, 100)}%`;
+
+        cloud.style.animationDuration = `${random(40, 120)}s`; 
+
+        cloud.style.animationDelay = `${random(-120, 0)}s`;
+
+        if (isBright) {
+          cloud.style.filter = 'brightness(50%)';
+        } else {
+          cloud.style.filter = 'brightness(100%)';
+        }
+
+        cloudCon.appendChild(cloud)
+        clouds.push(cloud)
+      }
+
+      updateStars();
+      updateClouds();
+  
+    // ===== PRICE LIST FUNCTIONS (asli dari info.html) =====
+    const voucher = document.querySelector(".opsi1");
+    const member = document.querySelector(".opsi2");
+    let list = "VpriceList.csv";
+    let isvoucher = true
+
+      function setList(listed) {     
+        fetch(listed)
+          .then(res => res.text())
+          .then(text => {
+            const rows = text.trim().split('\n');
+            const grid = document.querySelector('.infoContent')
+            grid.innerHTML = '';
+            rows.forEach((row, rowIndex) => {
+              const cols = row.split(',');
+              cols.forEach(col => {
+                const cell = document.createElement('div');
+
+                cell.className = 'cel';
+                cell.textContent = col;  
+                grid.appendChild(cell)
+              });
+            });
+          })
+          .catch(err => console.error('gagal', err));
+      }
+
+    if (isvoucher) {
+      list = "VpriceList.csv";
+      setList(list)
+    } else {
+      list = "MpriceList.csv";
+      setList(list)
+    }
+
+    voucher.addEventListener('click', () =>{
+      if (isvoucher) return;
+      isvoucher = true
+      list = "VpriceList.csv";
+      voucher.style.backgroundColor = "var(--accentMain)";
+      member.style.backgroundColor = "var(--untouched)";
+      member.style.color = "#000000"
+      voucher.style.color = "#ffffff"
+      setList(list)
+    })
+
+    member.addEventListener('click', () => {
+      if (!isvoucher) return;
+      isvoucher = false
+      list = "MpriceList.csv"
+      voucher.style.backgroundColor = "var(--untouched)";
+      member.style.backgroundColor = "var(--accentMain)";
+      member.style.color = "#ffffff"
+      voucher.style.color = "#000000"
+      setList(list)
+    })
+  </script>
+</body>
+
+   
+</html>

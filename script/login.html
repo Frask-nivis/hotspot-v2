@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>abahir login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"/>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="icon" type="image/x-icon" href="abaheer.png">
+<script src="script/d3.v3.min.js"></script>
+</head>
+
+<body>
+	<header class="header"> 
+        <div class="menu">
+            <div class="menu-wrapper"> 
+                <button id="menu-bttn">menu</button>
+            </div>
+            <a href="contactUs.html">Contact us</a>
+        </div>
+		
+    </header>
+<div class="main">
+<table align="center">
+	<tr>
+		<td>
+			<!--<div class?"notice" style="font-size: 14px; text-align:center;">Masa Aktif Voucher  <a href="./detail.html">Klik Disini</a></div><br />-->
+		</td>
+	</tr>
+</table> 
+<div class="tab">
+	<button class="tablinks" onclick="openLogin(event, 'KV')" id="defaultOpen" style="font-weight: bold;">Free Wifi</button>
+	<button class="tablinks" onclick="openLogin(event, 'UP')" style="font-weight: bold;">Member</button>
+</div>
+
+<div id="KV" class="tabcontent">
+$(if chap-id)
+	<form name="sendinkv" action="$(link-login-only)" method="post"> 
+		<input type="hidden" name="username" />
+		<input type="hidden" name="password" />
+		<input type="hidden" name="dst" value="$(link-orig)" />
+		<input type="hidden" name="popup" value="true" />
+	</form>
+
+	<script type="text/javascript" src="script/md5.js"></script>
+	<script type="text/javascript"> 
+	<!--
+	    function doLoginkv() {
+		document.sendinkv.username.value = document.loginkv.usernamekv.value;
+		document.sendinkv.password.value = hexMD5('$(chap-id)' + document.loginkv.usernamekv.value + '$(chap-challenge)');
+		document.sendinkv.submit();
+		return false;
+	    }
+	//-->
+	</script>
+$(endif)
+
+<table width="100%">
+	<table>
+		<tr>
+			<td><h2 align="center">tekan tombol berikut <br> untuk mendapatkan wifi</h2></td>
+		</tr>
+		<tr>
+			<td style="display: grid; justify-content: center; align-items: center;"><h3 id="p"></h3></td>
+		</tr>
+	</table>
+	<table align="center"class="tlogin">
+		<tr>
+		<td align="center" valign="bottom" height="70" colspan="2">
+			<div class="press-count" id="count">
+				<h3>click <br> me</h3>
+			</div>
+		</td>
+		</tr>
+	</table>
+</div>
+<div id="UP" class="tabcontent">
+$(if chap-id)
+	<form name="sendinup" action="$(link-login-only)" method="post">
+		<input type="hidden" name="username" />
+		<input type="hidden" name="password" />
+		<input type="hidden" name="dst" value="$(link-orig)" />
+		<input type="hidden" name="popup" value="true" />
+	</form>
+
+	<script type="text/javascript" src="/md5.js"></script>
+	<script type="text/javascript">
+	<!--
+	    function doLoginup() {
+		document.sendinup.username.value = document.loginup.usernameup.value;
+		document.sendinup.password.value = hexMD5('$(chap-id)' + document.loginup.passwordup.value + '$(chap-challenge)');
+		document.sendinup.submit();
+		return false;
+	    }
+	//-->
+	</script>
+$(endif)
+
+<table width="100%">
+	<table align="center"> 
+		<tr>
+		<td style="font-size: 20px; text-align:center;">Login Username & Password</td><br />
+		</tr>
+	</table>
+	<table align="center"class="tlogin">
+		<tr>
+		<td align="center" valign="bottom" height="70" colspan="2">
+			<form autocomplete="off" name="loginup" action="$(link-login-only)" method="post"
+			$(if chap-id) onSubmit="return doLoginup()" $(endif)>
+				<input type="hidden" name="dst" value="$(link-orig)" />
+				<input type="hidden" name="popup" value="true" />
+					<table width="100">
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td colspan=2><input  name="usernameup" type="text" placeholder="Username" value="$(username)"/></td>
+						</tr>
+						<tr>
+							<td colspan=2><input  name="passwordup" type="password" placeholder="Password"/></td> 
+						</tr>
+					<tr>
+						<td colspan=2 align="center";><input type="submit" class="button" value=" Masuk " /></td>
+					</tr>
+					$(if error)<br /><div style="color: red; font-size: 14px">$(error)</div>$(endif)
+					</table>
+			</form>
+		</td>
+		</tr>
+	</table>
+</div>
+<br>
+</div>
+
+<script src="script/script.js"></script>
+
+<script>
+function openLogin(evt, loginName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(loginName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+	
+<script type="text/javascript">
+  document.login.username.focus();
+</script>
+<footer class="footer">
+
+</footer>
+</body>
+</html>

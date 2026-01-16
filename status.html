@@ -1,0 +1,323 @@
+<html>
+<head>
+    <title>Abaheer > status</title>
+    $(if refresh-timeout)
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="$(refresh-timeout-secs)">
+    $(endif)
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" type="image/x-icon" href="abaheer.png">
+
+    <script language="JavaScript"> 
+        <!--
+        $(if advert-pending == 'yes')
+            var popup = '';
+            function focusAdvert() {  
+                if (window.focus) popup.focus();
+            }
+            function openAdvert() {
+                popup = open('$(link-advert)', 'hotspot_advert', '');
+                setTimeout("focusAdvert()", 1000);
+            }
+        $(endif)
+
+        function openLogout() {
+            if (window.name != 'hotspot_status') return true;
+            open(
+                '$(link-logout)',
+                'hotspot_logout',
+                'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250'
+            );
+            window.close();
+            return false;        
+        }
+        //-->
+    </script>
+</head>
+
+<body align="center"
+    $(if advert-pending == 'yes')
+        onLoad="openAdvert()"
+    $(endif)
+>
+
+<header class="header"> 
+      <div class="displayGrid">  
+        <div class="LeftDis">
+          <div class="calender"></div> 
+          <div id="date"></div>
+          <div class="clock"></div>
+          <div id="hour"></div>
+        </div> 
+
+        <div class="RightDis">
+          <p class="p">Mode</p>
+          <div id="mode" class="mode"></div>
+          <p>AbaheerHotspot</p>
+          <div class="wifi" id="wifi"></div>
+        </div>
+      </div> 
+</header>
+    <div class="sunCon">
+        <div class="sun"></div>
+    </div>
+    <div class="cloudCon"></div>
+    <div class="starCon"></div>   
+<div class="maincon">   
+    <table class="maintable"> 
+        <tr>
+            <td> 
+                <div class="welcome">
+                    $(if login-by != 'mac')
+                        <br><b><div style="text-align: center; font-size: 1.4em;">Selamat datang: $(username)</div></b><br> 
+                    $(endif)
+                </div> 
+            </td> 
+        </tr> 
+        <tr>
+            <td> 
+                <div class="main">   
+                <table width="100%" height="300px">
+                    <tr> 
+                        <td align="center" valign="middle"> 
+
+                            <form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
+                                
+                                <table class="tstatus" align="center">
+                                    <tr><td align="right">IP</td><td>:</td><td>$(ip)</td></tr>
+                                    <tr><td align="right">UL | DL</td><td>:</td><td>$(bytes-in-nice) | $(bytes-out-nice)</td></tr>
+                                    <tr><td align="right">Aktif</td><td>:</td><td>$(uptime)</td></tr>
+                                    $(if remain-bytes-total)
+                                        <tr><td align="right">Sisa Kuota</td><td>:</td><td>$(remain-bytes-total-nice)</td></tr>
+                                    $(endif) 
+
+                                    $(if session-time-left)
+                                        <tr><td align="right">Sisa Waktu</td><td>:</td><td>$(session-time-left)</td></tr>
+                                    $(endif)
+ 
+                                    $(if blocked == 'yes')
+                                        <tr>
+                                            <td align="right">Status</td><td>:</td>
+                                            <td>
+                                                <div style="color: #FF8080">
+                                                    <a href="$(link-advert)" target="hotspot_advert">advertisement</a> required
+                                                </div>
+                                            </td>
+                                    $(elif refresh-timeout)
+                                        <tr>
+                                            <td align="right">Refresh</td><td>:</td><td>$(refresh-timeout)</td>
+                                    $(endif)
+
+                                    <!--<div class?"notice" style="font-size: 14px; padding-top:5px; text-align:center; color:red;">
+                                        Mohon Maaf Abaheer net Sedang dalam Gangguan!
+                                    </div><br>-->
+
+                                    <b>
+                                        <div class="notice" style="text-align:center;">
+                                            Masa Aktif akun sahabat!
+                                        </div>
+                                    </b><br>
+
+                                </table>
+
+                                $(if login-by-mac != 'yes')
+                                    <br>
+                                    user manager link. if user manager resides on other router, replace $(hostname) by its address
+                                    <button  class="pp" onclick="document.location='http://$(hostname)/user?subs='; return false;">status</button>
+                                    <!-- end of user manager link -->
+                                    <center>
+                                        <input type="submit" class="button" value=" Logout | Keluar ">
+                                    </center>
+                                $(endif)
+
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+                </div>
+            </td>
+        </tr>  
+    </table>
+
+
+
+</div>
+
+
+<footer class="footer">
+    <div class="copyright" >
+      <p style="font-weight: 700;">copyright &copy; 2026 - Abuhurairah Forever V2</p>   
+    </div>
+</footer>
+
+<script>  
+    const currentMode = document.getElementById('mode');
+    const cloudCon = document.querySelector(".cloudCon")
+    const starCon = document.querySelector(".starCon")
+    let isBright = true;
+
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        isBright = false;
+    } else {        
+        isBright = true;  
+    }
+    const updateStars = () => {
+    if (!isBright) {
+      createStar()
+     } else {
+      starCon.innerHTML = '';
+      console.log("hi")
+    }
+    };
+
+    const updateClouds = () => {
+    clouds.forEach(cloud => {
+        cloud.style.filter = isBright ? 'brightness(50%)' : 'brightness(100%)';
+    });
+    };
+    document.documentElement.classList.toggle("dark", !isBright);
+    currentMode.style.backgroundImage = isBright 
+        ? 'url("img/sun-dim.png")' 
+        : 'url("img/moon.png")';
+
+    currentMode.addEventListener('click', () => {
+        isBright = !isBright;
+        document.documentElement.classList.toggle("dark", !isBright);
+        currentMode.style.backgroundImage = isBright 
+            ? 'url("img/sun-dim.png")' 
+            : 'url("img/moon.png")';
+        updateClouds()
+        updateStars()
+    });
+
+
+      function updateClock() {  
+        const now = new Date() 
+        //jam
+        const hh = String(now.getHours()).padStart(2, "0");
+        const mm = String(now.getMinutes()).padStart(2, "0");
+        const ss = String(now.getSeconds()).padStart(2, "0");
+        //tanggal
+        const dd = String(now.getDate()).padStart(2, "0");
+        const MM = String(now.getMonth() + 1).padStart(2, "0");
+        const yyyy = String(now.getFullYear()).padStart(4, "0");
+        const day = [
+          "SUNDAY",               
+          "MONDAY",
+          "TUESDAY",
+          "WEDNESDAY",
+          "THURSDAY",
+          "FRIDAY", 
+          "SATURDAY"
+        ][now.getDay()];
+
+        const greeting = { 
+          "05" : "SELAMAT PAGI SAHABAT!",
+          "12" : "SELAMAT SIANG SAHABAT!",
+          "15" : "SELAMAT SORE SAHABAT!",
+          "21" : "SELAMAT MALAM SAHABAT!",
+          "00" : "SAHABAT?📸🤨"
+        }
+
+        const timeSignal = {
+          "MT" : "05",
+          "NT" : "12",
+          "AFT" : "15",
+          "NgT" : "21",
+          "MNT" : "0"
+        }
+
+        const calender = document.getElementById("date");
+        calender.innerHTML = `${day}, ${dd}-${MM}-${yyyy}`;
+        const T = document.getElementById("hour");
+        T.innerHTML = `(${hh}:${mm}:${ss})`;
+
+        const nextTick = 1000 - now.getMilliseconds();
+        setTimeout(updateClock, nextTick);
+      }
+      updateClock();
+            const img = [
+        'img/cloud1.avif',
+        'img/cloud2.avif',
+        'img/cloud3.avif',
+        'img/cloud4.avif',  
+        'img/cloud5.avif'
+      ]; 
+
+      const starImg = [ 
+        'img/star1.png',
+        'img/star2.png',
+        'img/star3.png',
+      ] 
+
+      let starAv = 50;   
+      let cloudAv = 10;
+      let stars = [];
+      let clouds = [];
+      function random(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+      function createStar() {
+        for (let i = 0; i < starAv; i++) {
+        const star = document.createElement('div')
+        star.classList.add('star')
+
+        const images = starImg[Math.floor(Math.random() * starImg.length)]
+        star.style.backgroundImage = `url(${images})`;
+
+        const size = random(5, 15)
+        star.style.width = `${size}px`
+        star.style.height = `${size}px`
+
+        star.style.position = 'relative';
+        star.style.top = `${random(50, 10)}%` 
+
+        star.style.left = `${random(7, 97)}%`
+
+        star.style.animationDuration = `${random(20, 30)}s`
+ 
+        starCon.appendChild(star)
+        stars.push(star)
+        } 
+      }
+      if (!isBright) {
+        createStar()
+      }
+      
+      for (let i = 0; i < cloudAv; i++) {
+        const cloud = document.createElement('div')
+        cloud.classList.add('cloud')
+
+        const images = img[Math.floor(Math.random() * img.length)];
+        cloud.style.backgroundImage = `url(${images})`;
+
+        const size = random(100, 200) 
+        cloud.style.width = `${size}px`;
+        cloud.style.height = `${size * 0.6}px`;
+
+        cloud.style.top = `${random(5, 60)}%`
+
+        cloud.style.opacity = `${random(1, 100)}%`;
+ 
+        cloud.style.animationDuration = `${random(40, 120)}s`; 
+
+        cloud.style.animationDelay = `${random(-120, 0)}s`;
+
+
+        cloudCon.appendChild(cloud)
+        clouds.push(cloud)
+      } 
+
+      updateStars();
+      updateClouds();
+</script>
+<div class="paralax-con">
+  <div class="paralax-back"></div>
+  <div class="paralax1-back"></div>
+  <div class="paralax2-back"></div>
+  </div>
+</body> 
+</html>

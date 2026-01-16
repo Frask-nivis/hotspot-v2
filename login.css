@@ -1,0 +1,957 @@
+:root {
+  --bg: #f2f2f2;
+  --font: #13111f;
+  --accentMain: #1065c0;
+  --accentSub: #0747a1;
+  --reverseAccent: #131113;
+  --blurGlass: rgba(255,255,255,0.4);
+  --header-h: 85px;
+  --width: 40px;
+  --untouched: #b8b8b8;
+
+  --marginB: 65px; 
+  --height: 100px;
+
+  --parIMG1: url(img/par1.png);
+  --parIMG2: url(img/par2.png);
+  --parIMG3: url(img/par3.png);
+  --sun: url(img/day.png);
+  --glow: drop-shadow(0px 0px 10px yellow)
+        drop-shadow(0px 0px 50px yellow);
+  --gap: 5px;
+  --bright: rgb(255, 255, 255) 10% 10% / 80% 80% no-repeat,
+    var(--blurGlass);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif;}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+} 
+*:focus {
+  outline: none;
+}
+
+
+html, body {
+  min-height: 100dvh;
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--bg); /* lighter page background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+
+}
+
+@keyframes moveCloud {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(160vw);
+  }
+}
+
+.sunCon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  z-index: 0;
+  pointer-events: none;
+  transition: all .2 ease;
+}
+
+.sun {
+  transform: translateX(-118px) translateY(-130px);
+  height: 100px;
+  width: 100px;
+  background: var(--sun);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: var(--glow);
+}
+
+.cloudCon {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  z-index: 0;
+  pointer-events: none;
+} 
+
+.starCon {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  z-index: 0;
+  pointer-events: none;
+}
+
+.star {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.cloud {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  animation-name: moveCloud;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes moveCloud {
+  from {
+    transform: translateX(-30vw);
+  }
+  to {
+    transform: translateX(130vw);
+  }
+}
+
+
+.star {
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation-name: twinkle;
+  animation-iteration-count: infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.proto {
+  position: relative;
+  z-index: 6;
+}
+
+
+#login-toggle {
+}
+
+#login-toggle.is-right {
+}
+
+.toggle-btn {
+  transition: color .2s ease;
+  cursor: pointer;
+}
+
+.toggle-H {
+  pointer-events: none;
+}
+.toggle-H h1 {
+  pointer-events: auto;
+}
+.toggle-btn.active {
+  color: white;
+}
+.toggle-btn.inactive {
+  color: black;
+}
+
+/* hover tetap bekerja */
+.toggle-btn:hover:not(.active) {
+  color: #666;
+}
+
+
+.login-toggle-Container {
+  touch-action: none;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  position: relative;
+  background: var(--blurGlass);
+  backdrop-filter: blur(50px);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  width: 100%;
+  height: 50px;
+  border-radius: 50px; 
+  padding: 0 5px;
+  color: aliceblue;
+  border: 2px solid #131113;
+  user-select: none; /* cegah seleksi teks saat drag */
+  transform: translateY(-35px);
+}
+
+.login-toggle-Container .toggle-H {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  color: #554E63;
+  width: 100%;
+  z-index: 3;
+  transition: all 0.3s ease;
+  user-select: none; /* cegah seleksi teks saat drag */
+  position: relative;
+  
+}
+
+.toggle-container {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  height: calc(100% - 10px);
+  width: calc(50% - 10px);
+  pointer-events: none;
+}
+.toggle-container {
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+}
+
+.toggle-container.is-right {
+  transform: translateX(calc(100% + 10px));
+}
+
+.ver {
+  justify-self: center;
+  font-size: 2em;
+  position: absolute;
+  top: 750px;
+  color: #f2f2f2; 
+}
+.login-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--accentMain);
+  color: aliceblue;
+  cursor: pointer;
+  z-index: 4;
+  pointer-events: auto;
+}
+ 
+
+.wifi {
+  background-image: url('img/wifi.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-size: 25px;
+  height: 30px;
+  width: 30px;
+  animation: wifiAnim 1s linear infinite;
+}
+
+@keyframes wifiAnim {
+  0% {
+    background-image: url('img/wifi.png');
+  }
+  25% {
+    background-image: url('img/wifi-0.png');
+  }
+  50% {
+    background-image: url('img/wifi-1.png');
+  }
+  75% {
+    background-image: url('img/wifi-2.png');
+  }
+  100% {
+    background-image: url('img/wifi.png');
+  }
+}
+
+.calender {
+  background-image: url('img/calendar-alt.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-size: 25px;
+  height: 30px;
+  width: 30px;
+}
+
+.clock {
+  background-image: url('img/clock-10.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-size: 25px;
+  height: 30px; 
+  width: 30px;
+}
+
+#hour {
+  font-weight: 550;
+  top: 6.5px;
+  position: relative;
+}
+
+
+.timeCon {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0px;
+  place-items: center;
+  font-size: .9em;
+}
+
+.modeCon {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0px;
+  place-items: center;
+  font-size: .9em;
+}
+
+#hour {
+  place-self: start;
+}
+
+#greet {
+  position: relative;
+  display: block; 
+  top: -10px;
+  color: var(--font);
+}
+
+.mode {
+  background-image: url('img/sun-dim.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  width: 30px;
+  height: 30px;
+}
+
+.disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+:root.dark {
+  --bg: #13111f;
+  --accentMain: #241571;
+  --accentSub: #051650;
+  --font: #f2f2f2;
+  --blurGlass: rgba(117, 117, 117, 0.4);
+  --reverseAccent: #f2f2f2;
+  --bright: rgb(255, 255, 255) 10% 10% / 80% 80% no-repeat,
+    var(--blurGlass);
+
+  --parIMG1: url(img/parDark1.png);
+  --parIMG2: url(img/parDark2.png);
+  --parIMG3: url(img/parDark3.png);
+  --sun: url(img/night.png);
+  --glow: drop-shadow(0px 0px 10px rgb(255, 255, 255)) drop-shadow(0px 0px 50px yellow);
+}
+
+
+/* Header tetap di atas tanpa menutupi konten */
+.site-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  color: #f2f2f2;
+  font-family: monospace;
+  font-size: .7em;
+  padding: 10px 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-h);
+  background-color: var(--accentMain);
+  border-bottom: 2px solid #ffffff;
+  z-index: 2;
+  transition: all .3s ease-in-out;
+} 
+
+.displayGrid {
+  display: grid;
+  grid-template-columns: clamp(90px, 49vw, 700px) clamp(90px, 49vw, 700px);
+  padding-bottom: 20px;
+}
+
+
+.LeftDis{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--gap);
+  place-items: center start;
+}
+
+.RightDis{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--gap);
+  place-items: center end;
+}
+
+.RightDis a {
+  color: #f2f2f2;
+  text-decoration: none;
+}
+.space {
+  display: block;
+  height: 5px;
+}
+
+/* Main area: central container, punya padding top sesuai header */
+/* dasar layout (anggap header tetap seperti sebelumnya) */
+.main { position: relative; top: -0%; padding: 100px 16px 40px; transform: scale(.76); z-index: 2;}
+/* Konteiner gambar + overlay */
+
+
+.dorm-icon {
+  background: url(img/abaheer.png);
+  background-size: 150px;
+  width: 200px;
+  height: 225px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.cong{
+  color: #f2f2f2;
+  justify-content: center;
+  display: flex;
+  font-size: 1.5em;
+  font-weight: 650;
+  width: 100%;
+  height: auto;
+
+}
+
+.con {
+  display: flex;
+  justify-self: center;
+  position: absolute;
+  top: 90px;
+  width: 65%;
+  height: 50px;
+  background-color: blue;
+  transform: translateY(65px);
+}
+
+.proto {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  justify-self: center;
+  background-color: rgb(184, 184, 184);
+  background: var(--blurGlass);
+  backdrop-filter: blur(50px); 
+  border: 2px solid #131113;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+              rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  padding-right: 10%;
+  width: min(350px, 100%);
+  height: 225px;
+  border-radius: 10px;
+  z-index: 5;
+  background: var(--bright);
+}
+
+.glow {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background-color: white;
+  filter: blur(40px);
+  top: 10%;      /* agar tetap proporsional */
+  left: 10%;
+  border-radius: inherit; /* opsional, ikut radius parent */
+  z-index: -1;   /* kalau mau di belakang isi */
+} 
+
+.dcon {
+  display: flex;
+  justify-self: center;
+  width: 75%;
+  height: 40px;
+  background-color: white;
+  transform: translateY(-80px);
+}
+
+.input-con {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  height: 100%;
+}
+
+.proto-login .overlay{
+  border: 1px solid rgba(0,0,0,0.2);
+  background: rgba(255,255,255,0.98);
+  color: #13111f;
+  padding: 6px 8px;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  transition: box-shadow .12s;
+}
+
+.proto-login .username{
+  width: 135px;
+  height: 35px;
+  background-color: rgba(255,255,255,0.98);
+  border: 2px solid var(--reverseAccent);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: all .3s ease-in-out;
+}
+
+.hidden-pass {
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  opacity: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+.proto-login #eye {
+  position: relative; 
+  top: -37px;
+  left: 107px;
+  width: 20px;
+  height: 20px;
+  background-image: url(img/eye.png);
+  background-size: contain;
+  cursor: pointer;
+}
+
+.hidden-row {
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+}
+
+.proto-login .password{
+  width: 135px;
+  height: 35px;
+  background-color: rgba(255,255,255,0.98);
+  border: 2px solid var(--reverseAccent);
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.proto-login .submit{
+  width: 135px;
+  height: 55px;
+  border-radius: 10PX;
+  background-color: rgba(255,255,255,0.98);
+  border: 2px solid var(--reverseAccent);
+  font-size: 1.6em;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .3s ease-out;
+}
+
+.submit:hover {
+  transform: scale(1.1);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #f2f2f2;
+}
+
+/* debug visual (opsional, garisbatas semi) */
+.proto-login .overlay { box-shadow: 0 1px 0 rgba(0,0,0,0.08); }
+
+.mainCon {
+  transform: scale(0.8) translateY(62px);
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+}
+
+.infoContainer {
+  width: clamp(200px, 80vw, 450px);
+  height: 550px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0px; 
+}
+
+.info {
+  display: flex;
+  justify-self: center;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  color: #131113;
+  border: 2px solid #131113;
+  transform: translateY(-20px);
+  background: var(--blurGlass);
+}
+
+.info a {
+  text-decoration: none;
+  color: var(--font);
+}
+
+
+.infoOption {
+  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  grid-template-columns: auto auto auto;
+  transform: translateY(7px);
+  padding: 0 clamp(5px, 2vw, 30px);
+  width: 100%;
+  height: 60px;
+  border-radius: 20px;
+  z-index: 2;
+}
+
+.opsi1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  width: clamp(90px, 20vw, 120px);
+  border-radius: 15px;
+  font-size: clamp(.9em, 2vw, 1.2em);
+  color: var(--font);
+
+  background-color: var(--accentMain);
+}
+
+.opsi2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  width: clamp(90px, 20vw, 120px);
+  border-radius: 15px;
+  font-size: clamp(.9em, 2vw, 1.2em);
+  color: black;
+
+  background-color: var(--untouched);
+}
+
+.opsi3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  width: clamp(90px, 20vw, 120px);
+  border-radius: 15px;
+  font-size: clamp(.9em, 2vw, 1.2em);
+  color: black;
+  
+  background-color: var(--untouched);
+}
+
+.infoContent { 
+  display: grid;
+  padding-top: 74px;
+  grid-template-columns: auto 1fr 1fr;
+  grid-template-rows: auto;
+  width: 100%;
+  height: clamp(200px, 42vh, 440px);
+  border-radius: 20px;
+  background: var(--blurGlass);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 50px 100px -20px,
+              rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.cel {
+    padding-left: 10px;
+    display: flex;
+    font-size: clamp(0.9em, 2vw, 1.2em);
+    justify-content: center;
+    align-items: center;
+    border-top: 2px solid var(--untouched);
+    color: var(--font);
+}
+
+
+* {
+.error{
+  font-size: 0.9rem;
+  color: red;
+  font-weight: 600;
+}
+
+.errorCon {
+  position: relative;
+  top: -38.5px;
+  display: none; /* default: hidden */
+  width: 100%;
+  height: auto;
+  min-height: 30px;
+  border: 2px solid red;
+  border-radius: 30px;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  padding: 8px 12px;
+  margin-top: 1px;
+  background: rgba(255, 0, 0, 0.1);
+  color: red;
+  transition: all 0.3s ease;
+}
+
+/* Hanya tampil saat ada error (class 'has-error') */
+.errorCon.has-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Jika tidak ada error, jangan ambil space */
+.errorCon:empty {
+  display: none !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* responsive untuk berbagai ukuran layar */
+/* ====== HP KECIL (≤480px) ======  */
+
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 2px solid #f2f2f2;
+  
+    background-color: rgba(0,0,0,0.2);
+    padding: 15px 16px;
+    z-index: 3;
+}
+
+
+.footer {
+  background-color: var(--accentMain);
+  transition: all .3s ease-in-out;
+}
+
+.footer p{
+  color: #f2f2f2;
+}
+
+/* Pastikan label h1 nyaman diklik di kedua sisi */
+.login-toggle-Container .toggle-H h1 {
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  padding: 2px 0;
+  position: relative;
+  z-index: 5;
+}
+
+.sosmed {
+    display: flex;
+    gap: 20px;                  /* jarak antar icon lebih rapi */
+    justify-content: center;
+    align-items: center;
+}
+
+
+.copyright {
+    width: 100%;                /* penting: biar center sempurna */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    color: var(--bg);
+    font-size: 14px;
+    margin-right: 0;            /* hapus yg bikin menceng */
+}
+
+
+
+.paralax-back {
+  background: var(--parIMG1);
+  animation: par1 120s linear infinite;
+  z-index: 4;
+}
+ 
+.paralax1-back {
+  background: var(--parIMG2);
+  animation: par1 150s linear infinite;
+  z-index: 3;
+}
+
+.paralax2-back {
+  background: var(--parIMG3);
+  animation: par1 180s linear infinite;
+  z-index: 2;
+}
+
+@media screen and (min-width: 480px) {
+  .sun {
+    transform: translate(-375px, -125px);
+  }
+
+  .info {
+    transform: translateY(10px);
+  }
+
+  :root {
+    --height: 160px
+  }
+  .h3::after {
+    margin-top: -3.5%;
+
+  }
+  .errorCon {
+    top: -30px;
+    min-height: 40px;
+    transform: scale(1.2);
+  }
+
+  .dorm-icon {
+    height: 220px;
+    width: 205px;
+  }
+  .modeCon{
+    gap: 5px;
+  }
+
+  .mode {
+    background-size: contain;
+  }
+  .calender {
+    background-size: 35px;
+  }
+
+  .clock {
+    background-size: 35px;
+  }
+
+  #greet {
+    top: 0px;
+  }
+
+  #hour::after {
+    margin-top: -35.5%;
+    transform: translateX(-90px);
+  }
+  .con {
+    transform: translateY(30px);
+    width: 90%;
+    height: 50px;
+  }
+
+  .cong {
+    transform: translateY(-80px);
+    font-size: 1.8em;
+  }
+
+  .dcon {
+    width: 80%;
+    height: 50px;
+    transform: translateY(-50);
+  }
+
+  .proto {
+    transform: scale(1.2) translateY(-30px);
+  }
+
+  .site-header {
+    font-size: 1em;
+  }
+
+  .login-toggle-Container {
+    transform: scale(1.2);
+  }
+}
+
+/* --- Styles applied while on-screen keyboard is open (mobile devices) --- */
+.keyboard-open .site-header {
+  position: absolute !important;
+  height: 56px !important;
+  transition: height .2s ease;
+}
+.keyboard-open .main {
+  padding-top: 70px !important;
+}
+.keyboard-open .con { transform: translateY(40px) !important; }
+.keyboard-open .proto { transform: scale(.95) translateY(-10px) !important; }
+.keyboard-open .dcon { transform: translateY(-40px) !important; }
+.keyboard-open .login-toggle-Container { transform: scale(.95) translateY(-30px) !important; }
+.keyboard-open .footer { display: none !important; }
+.keyboard-open .greeting {transform: translateY(20);}
+
+/* keep inputs readable when keyboard opens */
+.keyboard-open .proto-login .username,
+.keyboard-open .proto-login .password {
+  transform: translateY(0) !important;
+}
+}
+
+/* ===== FIX PARALLAX ANIMATION ===== */
+/* Pastikan parallax container tidak terpotong */
+.paralax-con {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: var(--height);
+  width: 100%;
+  margin-bottom: var(--marginB);
+  overflow: visible !important;
+  z-index: 1;
+}
+
+/* Perbaiki agar background benar-benar ter-animate */
+.paralax-back,
+.paralax1-back,
+.paralax2-back {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: var(--height);
+  width: 200%;
+  background-repeat: repeat-x;
+  background-position: bottom left;
+  background-size: auto 100%;
+  background-attachment: scroll;
+  margin-bottom: var(--marginB);
+}
+
+@keyframes par1 {
+  0% { background-position: bottom left 0; }
+  100% { background-position: bottom left 1000px; }
+}
