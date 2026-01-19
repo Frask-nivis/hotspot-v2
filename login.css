@@ -366,7 +366,7 @@ html, body {
   --parIMG1: url(img/parDark1.png);
   --parIMG2: url(img/parDark2.png);
   --parIMG3: url(img/parDark3.png);
-  --sun: url(img/night.png);
+  --sun: url(img/night.avif);
   --glow: drop-shadow(0px 0px 10px rgb(255, 255, 255)) drop-shadow(0px 0px 50px yellow);
 }
 

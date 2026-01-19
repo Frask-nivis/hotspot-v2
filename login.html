@@ -185,8 +185,6 @@
 
       const cloudCon = document.querySelector(".cloudCon");
       const starCon = document.querySelector(".starCon");
-
-      
             let currtoggle; 
             let currState = localStorage.getItem('themeIsBright');
             let isBright;
@@ -242,7 +240,6 @@
           history.pushState({ hold: true }, "");
         }
       });
-
 
 
       eye.addEventListener('mousedown', (e) => {
@@ -308,7 +305,7 @@
         calender.innerHTML = `${day}, ${dd}-${MM}-${yyyy}`;
         const T = document.getElementById("hour");
         T.innerHTML = `(${hh}:${mm}:${ss})`;
-
+        
 
         const time = T.textContent.match(/\((.*?)\)/)[1];
         const hour = +time.split(":")[0];
@@ -351,6 +348,7 @@
       function random(min, max) {
         return Math.random() * (max - min) + min;
       }
+
       function createStar() {
         for (let i = 0; i < starAv; i++) {
         const star = document.createElement('div')
@@ -549,17 +547,14 @@
           toggleH2.style.zIndex = '5';
           toggleWrap.style.zIndex = '4'; 
           toggleH1.style.zIndex = '3';  
-
           // FIX PENTING
           pass.classList.add("hidden-pass");
           td1.classList.add("hidden-row");
           user.style.marginBottom = "0px";
           // atur value password
           pass.value = user.value;
-
           // label SUBMIT kembali normal
           submit.value = "LOGIN";
-
             isvoucher = true;   
             console.log("mode voucher");
             currtoggle = "left";

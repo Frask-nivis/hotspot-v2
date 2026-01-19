@@ -46,7 +46,7 @@
   --parIMG1: url(img/parDark1.png);
   --parIMG2: url(img/parDark2.png);
   --parIMG3: url(img/parDark3.png);
-  --sun: url(img/night.png);
+  --sun: url(img/night.avif);
   --glow: drop-shadow(0px 0px 10px rgb(255, 255, 255)) drop-shadow(0px 0px 50px yellow);
 }
 
@@ -319,11 +319,17 @@ body {
   width: 100%;
   background-color: rgba(255, 255, 255, 0.35);
   backdrop-filter: blur(10px);
-  color: #13111f;
+  color: #f02222;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  border: 2px solid var(--reverseAccent);
   font-size: 1rem;
   border-radius: 20px;
   margin-bottom: 10px;
+  padding: 20px;
+}
+
+.text {
+  color: var(--font);
 }
 
 #date {
@@ -332,7 +338,6 @@ body {
 
 .maincon {
   transform: scale(.7);
-  position: absolute;
   top: 25px;
   display: flex;
   justify-content: center;
@@ -340,7 +345,6 @@ body {
   gap: 0px;
   height: auto;
   color: #13111f;
-  position: absolute;
   width: auto;
   z-index: 3;
 }
@@ -353,7 +357,8 @@ body {
   top: 20%;
   color: #13111f;
   border: 2px solid var(--reverseAccent);
-  font-size: 1rem;
+  padding-top: 15px;
+  font-size: 1.03rem;
   border-radius: 15px;
   width:400px;
 }

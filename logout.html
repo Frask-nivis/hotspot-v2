@@ -43,39 +43,64 @@
   </div>
   <div class="cloudCon"></div>
   <div class="starCon"></div>  
-<div class="maincon">
-  <div class="main">
-    <br>
-    <b style="display:block; text-align:center; margin-top:12px;">Anda telah logout</b>
-    <table class="tstatus" align="center">
-        <tr><td align="right">User</td><td>:</td><td>$(username)</td></tr>
-        <tr><td align="right">IP Address</td><td>:</td><td>$(ip)</td></tr>
-        <tr><td align="right">MAC</td><td>:</td><td>$(mac)</td></tr>
-        <tr><td align="right">UL | DL</td><td>:</td><td>$(bytes-in-nice) | $(bytes-out-nice)</td></tr>
-        <tr><td align="right">Aktif</td><td>:</td><td>$(uptime)</td></tr>
-        $(if remain-bytes-total)	
-        <tr><td align="right">Sisa Kuota</td><td>:</td><td>$(remain-bytes-total-nice)</td></tr>
-        $(endif)
-        $(if session-time-left)	
-        <tr><td align="right">Sisa Waktu</td><td>:</td><td>$(session-time-left)</td></tr>
-        $(endif)
+<div class="maincon">   
+    <table class="maintable"> 
+        <tr>
+            <td> 
+                <div class="welcome">
+                  <b style="display:block; text-align:center; font-size: 1.5rem">Akun sahabat telah logout</b>
+                </div> 
+            </td> 
+        </tr> 
+        <tr>
+            <td> 
+                <div class="main">   
+                <table width="100%" height="300px">
+                    <tr> 
+                        <td align="center" valign="middle"> 
+                            <h2 class="text">silahkan login kembali</h2>
+                            <form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
+                                
+                                <table class="tstatus" align="center">
+                                    <tr><td align="right">User</td><td>:</td><td>$(username)</td></tr>
+                                    <tr><td align="right">IP Address</td><td>:</td><td>$(ip)</td></tr>
+                                    <tr><td align="right">MAC</td><td>:</td><td>$(mac)</td></tr>
+                                    <tr><td align="right">UL | DL</td><td>:</td><td>$(bytes-in-nice) | $(bytes-out-nice)</td></tr>
+                                    <tr><td align="right">Aktif</td><td>:</td><td>$(uptime)</td></tr>
+                                    $(if remain-bytes-total)	
+                                    <tr><td align="right">Sisa Kuota</td><td>:</td><td>$(remain-bytes-total-nice)</td></tr>
+                                    $(endif)
+                                    $(if session-time-left)	
+                                    <tr><td align="right">Sisa Waktu</td><td>:</td><td>$(session-time-left)</td></tr>
+                                    $(endif)
+                                </table>
+
+                                <form action="$(link-login)" name="login" onSubmit="return openLogin()">
+                                  <center><input type="submit" class="button" value=" Login kembali "></center>
+                                  <br>
+                                </form>
+
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+                </div>
+            </td>
+        </tr>  
     </table>
 
 
 
-    <form action="$(link-login)" name="login" onSubmit="return openLogin()">
-      <center><input type="submit" class="button" value=" Login kembali "></center>
-      <br>
-    </form>
-  </div>
 </div>
+
 <footer class="footer">
     <div class="copyright" >
       <p style="font-weight: 700;">copyright &copy; 2025 - Abuhurairah Forever V1</p>   
     </div>
 </footer>
 
-<script>  
+<script>
+    const wel = document.querySelector('.welcome');
     const currentMode = document.getElementById('mode');
     const cloudCon = document.querySelector(".cloudCon")
     const starCon = document.querySelector(".starCon")
@@ -91,13 +116,13 @@
     currentMode.style.backgroundImage = isBright 
         ? 'url("img/sun-dim.png")' 
         : 'url("img/moon.png")';
-
     currentMode.addEventListener('click', () => {
         isBright = !isBright;
         document.documentElement.classList.toggle("dark", !isBright);
         currentMode.style.backgroundImage = isBright 
             ? 'url("img/sun-dim.png")' 
             : 'url("img/moon.png")';
+
         updateClouds()
         updateStars()
     });
