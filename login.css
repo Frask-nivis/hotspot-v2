@@ -370,6 +370,75 @@ html, body {
   --glow: drop-shadow(0px 0px 10px rgb(255, 255, 255)) drop-shadow(0px 0px 50px yellow);
 }
 
+/* Time-of-day specific styles */
+:root.pagi {
+  --bg: #fff9e6;
+  --accentMain: #e67e22;
+  --accentSub: #d35400;
+  --font: #2c3e50;
+  --blurGlass: rgba(255, 200, 100, 0.3);
+  --reverseAccent: #2c3e50;
+  --bright: rgb(255, 200, 100) 10% 10% / 80% 80% no-repeat,
+    var(--blurGlass);
+
+  --parIMG1: url(img/par1.png);
+  --parIMG2: url(img/par2.png);
+  --parIMG3: url(img/par3.png);
+  --sun: url(img/day.png);
+  --glow: drop-shadow(0px 0px 10px #e67e22);
+}
+
+:root.siang {
+  --bg: #ecf0f1;
+  --accentMain: #2980b9;
+  --accentSub: #1f618d;
+  --font: #2c3e50;
+  --blurGlass: rgba(100, 150, 255, 0.3);
+  --reverseAccent: #2c3e50;
+  --bright: rgb(100, 150, 255) 10% 10% / 80% 80% no-repeat,
+    var(--blurGlass);
+ 
+  --parIMG1: url(img/par1.png);
+  --parIMG2: url(img/par2.png);
+  --parIMG3: url(img/par3.png);
+  --sun: url(img/day.png);
+  --glow: drop-shadow(0px 0px 10px #2980b9);
+}
+
+:root.sore {
+  --bg: #fff5e6;
+  --accentMain: #d9534f;
+  --accentSub: #c9302c;
+  --font: #2c3e50;
+  --blurGlass: rgba(255, 150, 100, 0.3);
+  --reverseAccent: #2c3e50;
+  --bright: rgb(255, 150, 100) 10% 10% / 80% 80% no-repeat,
+    var(--blurGlass);
+
+  --parIMG1: url(img/par1.png);
+  --parIMG2: url(img/par2.png);
+  --parIMG3: url(img/par3.png);
+  --sun: url(img/day.png);
+  --glow: drop-shadow(0px 0px 10px #d9534f);
+}
+
+:root.malam {
+  --bg: #13111f;
+  --accentMain: #241571;
+  --accentSub: #051650;
+  --font: #f2f2f2;
+  --blurGlass: rgba(117, 117, 117, 0.4);
+  --reverseAccent: #f2f2f2;
+  --bright: rgb(255, 255, 255) 10% 10% / 80% 80% no-repeat,
+    var(--blurGlass);
+
+  --parIMG1: url(img/parDark1.png);
+  --parIMG2: url(img/parDark2.png);
+  --parIMG3: url(img/parDark3.png);
+  --sun: url(img/night.avif);
+  --glow: drop-shadow(0px 0px 10px rgb(255, 255, 255)) drop-shadow(0px 0px 50px yellow);
+}
+
 
 /* Header tetap di atas tanpa menutupi konten */
 .site-header {

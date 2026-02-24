@@ -68,7 +68,8 @@
 
     `);      
   </script>    
-  <script src="script/script.js" defer></script> 
+  <script src="script/script.js" defer></script>
+  <script src="script/theme.js" defer></script>
 </head> 
 <body class="login-page">                                                        
   <header class="site-header">   
@@ -176,47 +177,21 @@
       const greet = document.getElementById("greet");
       const td1 = document.getElementById("td1");
       const td2 = document.getElementById("td2");
-      const submit = document.getElementById("submit")
-
-
-  
-      const currentMode = document.getElementById('mode');
-      const info = document.getElementById("info");
-
-      const cloudCon = document.querySelector(".cloudCon");
-      const starCon = document.querySelector(".starCon");
-            let currtoggle; 
-            let currState = localStorage.getItem('themeIsBright');
-            let isBright;
-      
-            // Ambil dari storage jika ada
-      if (currState !== null) {
-      isBright = currState === 'true';
-      } else {
-        // Default: ikut system
-        isBright = !(window.matchMedia('(prefers-color-scheme: dark)').matches);
+      const submit = document.getElementById("submit");
+      const cloudCon = document.querySelector('.cloudCon')
+      const starCon = document.querySelector('.starCon')
+      // Theme handled by script/theme.js
+      // Helper to determine current time-of-day category
+      function getCurrentTimeOfDay() {
+        for (const cls of document.documentElement.classList) {
+          if (['pagi', 'siang', 'sore', 'malam'].includes(cls)) return cls;
+        }
+        return 'siang'; // fallback
       }
-
-      // Apply state awal
-      document.documentElement.classList.toggle("dark", !isBright);
-      currentMode.style.backgroundImage = isBright
-        ? 'url("img/sun-dim.png")'
-        : 'url("img/moon.png")';
-
-      // Ketika tombol ditekan
-      currentMode.addEventListener('click', () => {
-        isBright = !isBright; // jauh lebih aman & simple
-
-        localStorage.setItem('themeIsBright', isBright ? 'true' : 'false');
-
-        document.documentElement.classList.toggle("dark", !isBright);
-        currentMode.style.backgroundImage = isBright
-          ? 'url("img/sun-dim.png")'
-          : 'url("img/moon.png")';
-
-        updateStars();
-        updateClouds();
-      });
+      // Check if current period is bright (not malam)
+      function isCurrentlyBright() {
+        return getCurrentTimeOfDay() !== 'malam';
+      }
 
 
 
@@ -240,7 +215,6 @@
           history.pushState({ hold: true }, "");
         }
       });
-
 
       eye.addEventListener('mousedown', (e) => {
         e.preventDefault();
@@ -315,7 +289,6 @@
           const closestH = value
             .filter(v => v <= hour)
             .sort((a, b) => b - a)[0] || 0;
-
           const key = closestH.toString().padStart(2, "0");
 
           greet.textContent = `${greeting[key]}`
@@ -372,7 +345,7 @@
         stars.push(star)
         } 
       }
-      if (!isBright) {
+      if (!isCurrentlyBright()) {
         createStar()
       }
       
@@ -395,7 +368,7 @@
 
         cloud.style.animationDelay = `${random(-120, 0)}s`;
 
-        if (isBright) {
+        if (isCurrentlyBright()) {
           cloud.style.filter = 'brightness(50%)';
         } else {
           cloud.style.filter = 'brightness(100%)';
@@ -406,7 +379,7 @@
       } 
     
       const updateStars = () => {
-        if (!isBright) {
+        if (!isCurrentlyBright()) {
           createStar()
         } else {
           starCon.innerHTML = '';
@@ -415,7 +388,7 @@
 
       const updateClouds = () => {
         clouds.forEach(cloud => {
-          cloud.style.filter = isBright ? 'brightness(50%)' : 'brightness(100%)';
+          cloud.style.filter = isCurrentlyBright() ? 'brightness(50%)' : 'brightness(100%)';
         });
       };
 

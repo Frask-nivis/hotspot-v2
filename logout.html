@@ -9,6 +9,7 @@
     <meta http-equiv="expires" content="-1">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="icon" type="image/x-icon" href="abaheer.png">
+    <script src="script/theme.js" defer></script>
     <script>
       function openLogin() {
         if (window.name != 'hotspot_logout') return true;
@@ -101,31 +102,7 @@
 
 <script>
     const wel = document.querySelector('.welcome');
-    const currentMode = document.getElementById('mode');
-    const cloudCon = document.querySelector(".cloudCon")
-    const starCon = document.querySelector(".starCon")
-    let isBright = true;
-
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        isBright = false;
-    } else {        
-        isBright = true;  
-    }
-
-    document.documentElement.classList.toggle("dark", !isBright);
-    currentMode.style.backgroundImage = isBright 
-        ? 'url("img/sun-dim.png")' 
-        : 'url("img/moon.png")';
-    currentMode.addEventListener('click', () => {
-        isBright = !isBright;
-        document.documentElement.classList.toggle("dark", !isBright);
-        currentMode.style.backgroundImage = isBright 
-            ? 'url("img/sun-dim.png")' 
-            : 'url("img/moon.png")';
-
-        updateClouds()
-        updateStars()
-    });
+    // Theme handled by script/theme.js
 
 
       function updateClock() {  

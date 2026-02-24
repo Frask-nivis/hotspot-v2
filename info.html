@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>info</title>
     <link rel="stylesheet" href="login.css">
+    <script src="script/theme.js" defer></script>
 </head> 
 <body> 
   <header class="site-header">  
@@ -52,50 +53,7 @@
     </div>
   </footer>
   <script>
-    // ===== CLOCK & DATE & MODE FUNCTIONS (dipindah dari login.html) =====
-    const currentMode = document.getElementById('mode');
-    const greet = document.getElementById("greet");
-    
-    let currState = localStorage.getItem('themeIsBright');
-    let isBright;  
-
-    // Ambil dari storage jika ada 
-    if (currState !== null) { 
-      isBright = currState === 'true';
-    } else {
-      // Default: ikut system
-      isBright = !(window.matchMedia('(prefers-color-scheme: dark)').matches);
-    }
-
-      const updateStars = () => {
-        if (!isBright) {
-          createStar()
-        } else {
-          starCon.innerHTML = '';
-        }
-      };
-
-    const updateClouds = () => {
-      clouds.forEach(cloud => {
-        cloud.style.filter = isBright ? 'brightness(50%)' : 'brightness(100%)';
-      });
-    };
-
-    // Apply state awal
-    document.documentElement.classList.toggle("dark", !isBright);
-    currentMode.style.backgroundImage = isBright
-      ? 'url("img/sun-dim.png")'
-      : 'url("img/moon.png")';
-
-    // Ketika tombol ditekan
-    currentMode.addEventListener('click', () => {
-      isBright = !isBright;
-      localStorage.setItem('themeIsBright', isBright ? 'true' : 'false');
-      document.documentElement.classList.toggle("dark", !isBright);
-      currentMode.style.backgroundImage = isBright
-        ? 'url("img/sun-dim.png")'
-        : 'url("img/moon.png")';
-    });
+    // Theme handled by script/theme.js
 
     function updateClock() {  
       const now = new Date() 

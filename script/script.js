@@ -1,4 +1,3 @@
-
       // Referensi elemen
       const loginCont = document.getElementById('login-toggle-Container');
       const toggleWrap = document.querySelector('.toggle-container');
@@ -20,43 +19,7 @@
 
       const cloudCon = document.querySelector(".cloudCon")
       const starCon = document.querySelector(".starCon")
-
-      
-            let currtoggle; 
-            let currState = localStorage.getItem('themeIsBright');
-            let isBright;
-      
-            // Ambil dari storage jika ada
-      if (currState !== null) {
-      isBright = currState === 'true';
-      } else {
-        // Default: ikut system
-        isBright = !(window.matchMedia('(prefers-color-scheme: dark)').matches);
-      }
-
-      // Apply state awal
-      document.documentElement.classList.toggle("dark", !isBright);
-      currentMode.style.backgroundImage = isBright
-        ? 'url("img/sun-dim.png")'
-        : 'url("img/moon.png")';
-
-      // Ketika tombol ditekan
-      currentMode.addEventListener('click', () => {
-        isBright = !isBright; // jauh lebih aman & simple
-
-        localStorage.setItem('themeIsBright', isBright ? 'true' : 'false');
-
-        document.documentElement.classList.toggle("dark", !isBright);
-        currentMode.style.backgroundImage = isBright
-          ? 'url("img/sun-dim.png")'
-          : 'url("img/moon.png")';
-
-        updateStars();
-        updateClouds();
-      });
-
-
-
+            // Theme logic moved to script/theme.js — please use that file to manage themeMode (manual/localtime)
       const user = protoLogin.querySelector('input[name="username"]');
       const pass = protoLogin.querySelector('input[name="password"]');
 
