@@ -21,6 +21,10 @@
   --gap: 5px;
   --bright: rgb(255, 255, 255) 10% 10% / 80% 80% no-repeat,
     var(--blurGlass);
+
+  --sun-center-x: 50;
+  --sun-center-y: 94;
+  --sun-radius: 45;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif;}
@@ -72,14 +76,38 @@ html, body {
 }
 
 .sun {
-  transform: translateX(-118px) translateY(-130px);
-  height: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+
   width: 100px;
+  height: 100px;
+
   background: var(--sun);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+
+  transform: translate(-50%, -50%);
   filter: var(--glow);
+
+  will-change: left, top;
+}
+
+.moon {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  transform: translate(-50%, -50%);
+  height: 100px;
+  width: 100px;
+  background: url(img/night.avif);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: var(--glow);
+  transition: left 1s linear, top 1s linear;
+  opacity: 0; /* hidden by default until night */
 }
 
 .cloudCon {
@@ -151,12 +179,6 @@ html, body {
   z-index: 6;
 }
 
-
-#login-toggle {
-}
-
-#login-toggle.is-right {
-}
 
 .toggle-btn {
   transition: color .2s ease;
@@ -311,7 +333,6 @@ html, body {
   position: relative;
 }
 
-
 .timeCon {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -340,13 +361,56 @@ html, body {
 }
 
 .mode {
-  background-image: url('img/sun-dim.png');
+  /* icon container; actual image shown inside <img> */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 30px;
-  width: 30px;
-  height: 30px;
+  width: 38px;   /* slightly larger for easier tapping */
+  height: 38px;
+  padding: 4px;
+  position: relative;
+  cursor: pointer;
 }
+
+.mode-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.mode-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--bg);
+  box-shadow: 0 2px 6px rgba(0,0,0,.2);
+  border-radius: 4px;
+  display: none;
+  z-index: 100;
+}
+.mode-menu.visible,
+.mode-menu:not(.hidden) {
+  display: block;
+}
+
+.mode-item {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  white-space: nowrap;
+}
+.mode-item img {
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+}
+
+.hidden {
+  display: none !important;
+} 
 
 .disabled {
   opacity: 0;
@@ -372,7 +436,7 @@ html, body {
 
 /* Time-of-day specific styles */
 :root.pagi {
-  --bg: #fff9e6;
+  --bg: #FEFEE2;
   --accentMain: #e67e22;
   --accentSub: #d35400;
   --font: #2c3e50;
@@ -381,10 +445,12 @@ html, body {
   --bright: rgb(255, 200, 100) 10% 10% / 80% 80% no-repeat,
     var(--blurGlass);
 
-  --parIMG1: url(img/par1.png);
-  --parIMG2: url(img/par2.png);
-  --parIMG3: url(img/par3.png);
+  --parIMG1: url(img/morpar1.png);
+  --parIMG2: url(img/morpar2.png);
+  --parIMG3: url(img/morpar3.png);
   --sun: url(img/day.png);
+  --sunpos: translate(5px, -283px);
+
   --glow: drop-shadow(0px 0px 10px #e67e22);
 }
 
@@ -402,11 +468,12 @@ html, body {
   --parIMG2: url(img/par2.png);
   --parIMG3: url(img/par3.png);
   --sun: url(img/day.png);
+  --sunpos: translate(439px, 212px);
   --glow: drop-shadow(0px 0px 10px #2980b9);
 }
 
 :root.sore {
-  --bg: #fff5e6;
+  --bg: #FDD980;
   --accentMain: #d9534f;
   --accentSub: #c9302c;
   --font: #2c3e50;
@@ -415,10 +482,11 @@ html, body {
   --bright: rgb(255, 150, 100) 10% 10% / 80% 80% no-repeat,
     var(--blurGlass);
 
-  --parIMG1: url(img/par1.png);
-  --parIMG2: url(img/par2.png);
-  --parIMG3: url(img/par3.png);
+  --parIMG1: url(img/evepar1.png);
+  --parIMG2: url(img/evepar2.png);
+  --parIMG3: url(img/evepar3.png);
   --sun: url(img/day.png);
+  --sunpos: translate(439px, 212px);
   --glow: drop-shadow(0px 0px 10px #d9534f);
 }
 
@@ -436,6 +504,7 @@ html, body {
   --parIMG2: url(img/parDark2.png);
   --parIMG3: url(img/parDark3.png);
   --sun: url(img/night.avif);
+  --sunpos: translate(5px, -283px);
   --glow: drop-shadow(0px 0px 10px rgb(255, 255, 255)) drop-shadow(0px 0px 50px yellow);
 }
 
@@ -465,7 +534,6 @@ html, body {
   grid-template-columns: clamp(90px, 49vw, 700px) clamp(90px, 49vw, 700px);
   padding-bottom: 20px;
 }
-
 
 .LeftDis{
   display: grid;
@@ -890,10 +958,6 @@ html, body {
 }
 
 @media screen and (min-width: 480px) {
-  .sun {
-    transform: translate(-375px, -125px);
-  }
-
   .info {
     transform: translateY(10px);
   }

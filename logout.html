@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="icon" type="image/x-icon" href="abaheer.png">
     <script src="script/theme.js" defer></script>
+    <script src="script/sunpath-debug.js" defer></script>
     <script>
       function openLogin() {
         if (window.name != 'hotspot_logout') return true;
@@ -33,7 +34,10 @@
 
         <div class="RightDis">
           <h3 class="h3">Mode</h3>
-          <div id="mode" class="mode"></div>
+          <div id="mode" class="mode">
+            <img id="modeIcon" class="mode-icon" src="" alt="mode icon">
+            <div class="mode-menu hidden"></div>
+          </div>
           <h3>AbaheerHotspot</h3>
           <div class="wifi" id="wifi"></div>
         </div>
@@ -41,6 +45,7 @@
 </header>
   <div class="sunCon">
     <div class="sun"></div>
+    <div class="moon"></div>
   </div>
   <div class="cloudCon"></div>
   <div class="starCon"></div>  
@@ -150,6 +155,8 @@
         setTimeout(updateClock, nextTick);
       }
       updateClock();
+      if (typeof updateSunPositionByTime === 'function') updateSunPositionByTime();
+      if (typeof updateMoonPositionByTime === 'function') updateMoonPositionByTime();
             const img = [
         'img/cloud1.avif',
         'img/cloud2.avif',

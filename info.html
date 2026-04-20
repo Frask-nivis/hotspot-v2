@@ -5,6 +5,7 @@
     <title>info</title>
     <link rel="stylesheet" href="login.css">
     <script src="script/theme.js" defer></script>
+    <script src="script/sunpath-debug.js" defer></script>
 </head> 
 <body> 
   <header class="site-header">  
@@ -18,7 +19,10 @@
 
         <div class="RightDis">     
           <p class="p">Mode</p>       
-          <div id="mode" class="mode"></div>
+          <div id="mode" class="mode">
+            <img id="modeIcon" class="mode-icon" src="" alt="mode icon">
+            <div class="mode-menu hidden"></div>
+          </div>
           <a href="login.html">AbaheerHotspot</a>
           <div class="wifi" id="wifi"></div>
         </div>
@@ -26,6 +30,7 @@
   </header>
   <div class="sunCon">
     <div class="sun"></div>
+    <div class="moon"></div>
   </div>
   <div class="starCon"></div>
   <div class="cloudCon"></div>
@@ -113,6 +118,8 @@
       setTimeout(updateClock, nextTick);
     }
     updateClock();
+    if (typeof updateSunPositionByTime === 'function') updateSunPositionByTime();
+    if (typeof updateMoonPositionByTime === 'function') updateMoonPositionByTime();
 
       const cloudCon = document.querySelector(".cloudCon")
       const starCon = document.querySelector(".starCon")

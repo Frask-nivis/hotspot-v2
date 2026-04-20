@@ -30,6 +30,10 @@
     var(--blurGlass);
   --glow: drop-shadow(0px 0px 10px yellow)
         drop-shadow(0px 0px 50px yellow);
+
+  --sun-center-x: 50;
+  --sun-center-y: 94;
+  --sun-radius: 45;
 }
 
 :root.dark {
@@ -52,28 +56,32 @@
 
 /* Time-of-day specific styles */
 :root.pagi {
-  --bright: brightness(70%);
-  --bg: #fff9e6;
+  --bg: #FEFEE2;
   --accentMain: #e67e22;
   --accentSub: #d35400;
   --font: #2c3e50;
   --blurGlass: rgba(255, 200, 100, 0.3);
   --reverseAccent: #2c3e50;
-  --parIMG1: url(img/par1.png);
-  --parIMG2: url(img/par2.png);
-  --parIMG3: url(img/par3.png);
+  --bright: rgb(255, 200, 100) 10% 10% / 80% 80% no-repeat,
+    var(--blurGlass);
+
+  --parIMG1: url(img/morpar1.png);
+  --parIMG2: url(img/morpar2.png);
+  --parIMG3: url(img/morpar3.png);
   --sun: url(img/day.png);
   --glow: drop-shadow(0px 0px 10px #e67e22);
 }
 
 :root.siang {
-  --bright: brightness(100%);
   --bg: #ecf0f1;
   --accentMain: #2980b9;
   --accentSub: #1f618d;
   --font: #2c3e50;
   --blurGlass: rgba(100, 150, 255, 0.3);
   --reverseAccent: #2c3e50;
+  --bright: rgb(100, 150, 255) 10% 10% / 80% 80% no-repeat,
+    var(--blurGlass);
+ 
   --parIMG1: url(img/par1.png);
   --parIMG2: url(img/par2.png);
   --parIMG3: url(img/par3.png);
@@ -82,28 +90,32 @@
 }
 
 :root.sore {
-  --bright: brightness(80%);
-  --bg: #fff5e6;
+  --bg: #FDD980;
   --accentMain: #d9534f;
   --accentSub: #c9302c;
   --font: #2c3e50;
   --blurGlass: rgba(255, 150, 100, 0.3);
   --reverseAccent: #2c3e50;
-  --parIMG1: url(img/par1.png);
-  --parIMG2: url(img/par2.png);
-  --parIMG3: url(img/par3.png);
+  --bright: rgb(255, 150, 100) 10% 10% / 80% 80% no-repeat,
+    var(--blurGlass);
+
+  --parIMG1: url(img/evepar1.png);
+  --parIMG2: url(img/evepar2.png);
+  --parIMG3: url(img/evepar3.png);
   --sun: url(img/day.png);
   --glow: drop-shadow(0px 0px 10px #d9534f);
 }
 
 :root.malam {
-  --bright: brightness(50%);
   --bg: #13111f;
   --accentMain: #241571;
   --accentSub: #051650;
   --font: #f2f2f2;
   --blurGlass: rgba(117, 117, 117, 0.4);
   --reverseAccent: #f2f2f2;
+  --bright: rgb(255, 255, 255) 10% 10% / 80% 80% no-repeat,
+    var(--blurGlass);
+
   --parIMG1: url(img/parDark1.png);
   --parIMG2: url(img/parDark2.png);
   --parIMG3: url(img/parDark3.png);
@@ -131,12 +143,51 @@ body {
   font-size: 1.1em;
 }
 .mode {
-  background-image: url('img/sun-dim.png');
+  /* icon wrapper; image set via <img> */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  width: 30px;
-  height: 30px;
+  width: 38px;
+  height: 38px;
+  padding: 4px;
+  position: relative;
+  cursor: pointer;
+}
+.mode-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.mode-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--bg);
+  box-shadow: 0 2px 6px rgba(0,0,0,.2);
+  border-radius: 4px;
+  display: none;
+  z-index: 100;
+}
+.mode-menu.visible,
+.mode-menu:not(.hidden) {
+  display: block;
+}
+.mode-item {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  white-space: nowrap;
+}
+.mode-item img {
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+}
+.hidden {
+  display: none !important;
 }
 
 .header {
@@ -243,7 +294,10 @@ body {
 }
 
 .sun {
-  transform: translateX(-118px) translateY(-130px);
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  transform: translate(-50%, -50%);
   height: 100px;
   width: 100px;
   background: var(--sun);
@@ -251,6 +305,23 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   filter: var(--glow);
+  transition: left 1s linear, top 1s linear;
+}
+
+.moon {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  transform: translate(-50%, -50%);
+  height: 100px;
+  width: 100px;
+  background: url(img/night.avif);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: var(--glow);
+  transition: left 1s linear, top 1s linear;
+  opacity: 0; /* hidden by default until night */
 }
 
 .wifi {
@@ -704,10 +775,6 @@ a:active {
 }
 
 @media screen and (min-width: 480px) {
-  .sun {
-    transform: translate(-375px, -125px);
-
-  }
   .header{
     font-size: 1em;
   }

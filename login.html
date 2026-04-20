@@ -70,6 +70,7 @@
   </script>    
   <script src="script/script.js" defer></script>
   <script src="script/theme.js" defer></script>
+  <script src="script/sunpath-debug.js" defer></script>
 </head> 
 <body class="login-page">                                                        
   <header class="site-header">   
@@ -83,15 +84,21 @@
 
         <div class="RightDis">
           <p class="h3">Mode</p>
-          <div id="mode" class="mode"></div>
+          <div id="mode" class="mode">
+            <img id="modeIcon" class="mode-icon" src="" alt="mode icon">
+            <div class="mode-menu hidden"></div>
+          </div>
           <p>AbaheerHotspot</p>
           <div class="wifi" id="wifi"></div>
         </div>
       </div> 
   </header>
+  
   <div class="sunCon">
     <div class="sun"></div>
+    <div class="moon"></div>
   </div>
+
   <div class="cloudCon"></div>
   <div class="starCon"></div>  
       
@@ -193,7 +200,7 @@
         return getCurrentTimeOfDay() !== 'malam';
       }
 
-
+      // Theme handled by script/theme.js – it will position sun/moon automatically
 
 
       const user = protoLogin.querySelector('input[name="username"]');
@@ -294,12 +301,14 @@
           greet.textContent = `${greeting[key]}`
 
         }
-        
+        const isLocal = localStorage.getItem('localTime') === 'true';
+        if (isLocal) {
+
+        }
         const nextTick = 1000 - now.getMilliseconds();
         setTimeout(updateClock, nextTick);
       }
       updateClock();
-
       const img = [
         'img/cloud1.avif',
         'img/cloud2.avif',
@@ -359,7 +368,7 @@
         const size = random(100, 200) 
         cloud.style.width = `${size}px`;
         cloud.style.height = `${size * 0.6}px`;
-
+        
         cloud.style.top = `${random(5, 60)}%`
 
         cloud.style.opacity = `${random(1, 100)}%`;
@@ -637,6 +646,7 @@ function onPointerUp(e) {
     dragging = false;
 
     if (didDrag) {
+      
         const currentX = getTransformXPx();
         applyStateFromPosition(currentX);
 
@@ -702,7 +712,7 @@ function onPointerUp(e) {
           // Ada error → tampilkan container
           errorCon.classList.add('has-error');
           setTimeout(()=>{
-            errorCon.classList.remove('has-error')
+            errorCon.classList.remove('has-error') 
             errorCon.innerHTML = '';
             errorCon.innerHTML = `<p>$(if error)<span class="error">$(error)</span>$(endif)</p>`;
           },

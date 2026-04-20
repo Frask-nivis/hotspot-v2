@@ -12,6 +12,7 @@
     <link rel="icon" type="image/x-icon" href="abaheer.png">
 
     <script src="script/theme.js" defer></script>
+    <script src="script/sunpath-debug.js" defer></script>
 
     <script language="JavaScript"> 
         <!--
@@ -25,7 +26,6 @@
                 setTimeout("focusAdvert()", 1000);
             }
         $(endif)
-
         function openLogout() {
             if (window.name != 'hotspot_status') return true;
             open(
@@ -57,7 +57,10 @@
 
         <div class="RightDis">
           <p class="p">Mode</p>
-          <div id="mode" class="mode"></div>
+          <div id="mode" class="mode">
+            <img id="modeIcon" class="mode-icon" src="" alt="mode icon">
+            <div class="mode-menu hidden"></div>
+          </div>
           <p>AbaheerHotspot</p>
           <div class="wifi" id="wifi"></div>
         </div>
@@ -65,6 +68,7 @@
 </header>
     <div class="sunCon">
         <div class="sun"></div>
+        <div class="moon"></div>
     </div>
     <div class="cloudCon"></div>
     <div class="starCon"></div>   
@@ -87,17 +91,16 @@
                         <td align="center" valign="middle"> 
 
                             <form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
-                                
                                 <table class="tstatus" align="center">
                                     <tr><td align="right">IP</td><td>:</td><td>$(ip)</td></tr>
-                                    <tr><td align="right">UL | DL</td><td>:</td><td>$(bytes-in-nice) | $(bytes-out-nice)</td></tr>
-                                    <tr><td align="right">Aktif</td><td>:</td><td>$(uptime)</td></tr>
+                                    <tr><td align="right">UL | DL</td><td>:</td><td class="internet">$(bytes-in-nice) | $(bytes-out-nice)</td></tr>
+                                    <tr><td align="right">Aktif</td><td>:</td><td class="activeTime">$(uptime)</td></tr>
                                     $(if remain-bytes-total)
-                                        <tr><td align="right">Sisa Kuota</td><td>:</td><td>$(remain-bytes-total-nice)</td></tr>
+                                        <tr><td align="right">Sisa Kuota</td><td>:</td><td class="quota">$(remain-bytes-total-nice)</td></tr>
                                     $(endif) 
 
                                     $(if session-time-left)
-                                        <tr><td align="right">Sisa Waktu</td><td>:</td><td>$(session-time-left)</td></tr>
+                                        <tr><td align="right">Sisa Waktu</td><td>:</td><td class="sessionTime">$(session-time-left)</td></tr>
                                     $(endif)
  
                                     $(if blocked == 'yes')
@@ -127,9 +130,6 @@
 
                                 $(if login-by-mac != 'yes')
                                     <br>
-                                    user manager link. if user manager resides on other router, replace $(hostname) by its address
-                                    <button  class="pp" onclick="document.location='http://$(hostname)/user?subs='; return false;">status</button>
-                                    <!-- end of user manager link -->
                                     <center>
                                         <input type="submit" class="button" value=" Logout | Keluar ">
                                     </center>
@@ -204,6 +204,8 @@
         setTimeout(updateClock, nextTick);
       }
       updateClock();
+      if (typeof updateSunPositionByTime === 'function') updateSunPositionByTime();
+      if (typeof updateMoonPositionByTime === 'function') updateMoonPositionByTime();
             const img = [
         'img/cloud1.avif',
         'img/cloud2.avif',
@@ -274,7 +276,18 @@
 
         cloudCon.appendChild(cloud)
         clouds.push(cloud)
-      } 
+      }
+      const internet = document.querySelector('.internet');
+      const activeTime = document.querySelector('.activeTime');
+      const quota = document.querySelector('.quota');
+      const sessionTime = document.querySelector('.sessionTime');
+
+      const dl = "$(bytes-in-nice)";
+      const ul = "$(bytes-out-nice)";
+      function updateStatus(packets) {
+        internet.textContent = packets;
+        // Update other status elements as needed
+      }
 
       updateStars();
       updateClouds();
