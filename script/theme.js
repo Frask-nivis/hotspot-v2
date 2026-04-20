@@ -118,7 +118,7 @@
         Cy = Cy * (height / 400);
       }
 
-      let radiusX = parsePercent(style.getPropertyValue('--sun-radius'), 66);
+      let radiusX = parsePercent(style.getPropertyValue('--sun-radius'), 70);
       let radiusY = radiusX;
 
       // 📱 Mode HP → jadi lonjong
@@ -171,11 +171,13 @@
       // Ensure sun stays within screen bounds (accounting for its 100px size)
       const halfSizeW = (50 / vw) * 100;
       const halfSizeH = (50 / vh) * 100;
+
       const clampedLeft = Math.min(Math.max(left, halfSizeW), 100 - halfSizeW);
       const clampedTop = Math.min(Math.max(top, halfSizeH), 100 - halfSizeH);
 
       sun.style.left = `${clampedLeft}%`;
       sun.style.top = `${clampedTop}%`;
+
       sun.style.opacity = (hour >= start && hour < end) ? '1' : '0';
     }
 
@@ -208,8 +210,14 @@
         const left = (leftPx / vw) * 100;
         const top = (topPx / vh) * 100;
 
-        moon.style.left = `${left}%`;
-        moon.style.top = `${top}%`;
+        const halfSizeW = (50 / vw) * 100;
+        const halfSizeH = (50 / vh) * 100;
+
+        const clampedLeft = Math.min(Math.max(left, halfSizeW), 100 - halfSizeW);
+        const clampedTop = Math.min(Math.max(top, halfSizeH), 100 - halfSizeH);
+
+        moon.style.left = `${clampedLeft}%`;
+        moon.style.top = `${clampedTop}%`;
         moon.style.opacity = (hour >= start && hour < end) ? '1' : '0';
     }
 

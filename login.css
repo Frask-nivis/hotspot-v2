@@ -24,7 +24,14 @@
 
   --sun-center-x: 50;
   --sun-center-y: 94;
-  --sun-radius: 45;
+  --sun-radius: 120;
+}
+
+@media (max-width: 360px) {
+  :root {
+    --sun-radius: 70;
+  }
+  
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif;}

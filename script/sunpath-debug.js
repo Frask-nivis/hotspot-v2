@@ -1,3 +1,5 @@
+let debugMode = localStorage.getItem('debugMode') === 'true';
+
 (function () {
   // Debug tool: show sun trajectory and allow manual hour selection.
   const PANEL_ID = 'sunpath-debug';
@@ -12,7 +14,7 @@
   // These values are in percent (0-100) relative to the viewport / .sunCon container.
   let sunCenterX = 50;
   let sunCenterY = 93;
-  let sunRadius = 62;  // percent of min(width, height)
+  let sunRadius = 76;  // percent of min(width, height)
   let lastHour = new Date().getHours();
 
   function getViewportSize() {
@@ -160,7 +162,7 @@
     <div class="small">Use the sliders to manually position the sun path; toggle live mode to follow system time.</div>
   `;
 
-  document.body.appendChild(panel);
+  document.body.appendChild(panel)
   const deviceWidthEl = document.getElementById(`${PANEL_ID}-device-width`);
   const deviceHeightEl = document.getElementById(`${PANEL_ID}-device-height`);
   const timeEl = document.getElementById(`${PANEL_ID}-time`);
