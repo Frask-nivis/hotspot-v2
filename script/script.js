@@ -11,7 +11,7 @@
       const td1 = document.getElementById("td1");
       const td2 = document.getElementById("td2");
       const submit = document.getElementById("submit")
-
+      let isBright = localStorage.getItem('themeMode') === 'localtime' ? (new Date().getHours() >= 6 && new Date().getHours() < 18) : localStorage.getItem('themeMode') === 'bright';
 
   
       const currentMode = document.getElementById('mode');
@@ -189,6 +189,9 @@
           cloud.style.filter = isBright ? 'brightness(50%)' : 'brightness(100%)';
         });
       };
+
+      updateStars();
+      updateClouds();
     
     function fixLayoutForKeyboard() {
     const isKeyboardOpen = window.innerHeight < screen.height * 0.75;

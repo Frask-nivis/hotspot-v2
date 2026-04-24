@@ -59,7 +59,7 @@
   </footer>
   <script>
     // Theme handled by script/theme.js
-
+    let isBright = localStorage.getItem('themeMode') === 'localtime' ? (new Date().getHours() >= 6 && new Date().getHours() < 18) : localStorage.getItem('themeMode') === 'bright';
     function updateClock() {  
       const now = new Date() 
       //jam
@@ -201,17 +201,33 @@
         clouds.push(cloud)
       }
 
+      const updateStars = () => {
+        if (!isBright) {
+          if (stars.length === 0) createStar();
+        } else {
+          starCon.innerHTML = '';
+          stars = [];
+        }
+      };
+
+      const updateClouds = () => {
+        clouds.forEach(cloud => {
+          cloud.style.filter = isBright ? 'brightness(50%)' : 'brightness(100%)';
+        });
+      };
+
       updateStars();
       updateClouds();
   
     // ===== PRICE LIST FUNCTIONS (asli dari info.html) =====
     const voucher = document.querySelector(".opsi1");
     const member = document.querySelector(".opsi2");
+    console.log(voucher, member)
     let list = "VpriceList.csv";
     let isvoucher = true
 
       function setList(listed) {     
-        fetch(listed)
+        const data = fetch(listed)
           .then(res => res.text())
           .then(text => {
             const rows = text.trim().split('\n');
@@ -229,6 +245,9 @@
             });
           })
           .catch(err => console.error('gagal', err));
+        if (!data) {
+          console.error('Gagal memuat data');
+        }
       }
 
     if (isvoucher) {

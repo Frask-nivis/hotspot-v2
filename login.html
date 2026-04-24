@@ -10,7 +10,7 @@
   <link rel="icon" href="abaheer.png">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link href='https://cdn.boxicons.com/3.0.3/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
-  <script defer>     
+  <script defer>
     console.log(`   
                                 77                                     
                                7777                               
@@ -46,7 +46,7 @@
       778888888777888888888777777777778888888888778888888877      
         78888888777888888888888877888888888888887788888887        
          788888777888888877888888888888788888887778888887         
-         788888878778888887778888888777788888877778888887         
+         788888878778888887778888888777788888877778888887          
          788888888777888888877788887778888888877788888887         
          788888888787788888887788887788888887877888888887         
          788888888887778888887788887888888788878888888887         
@@ -68,7 +68,7 @@
 
     `);      
   </script>    
-  <script src="script/script.js" defer></script>
+  <!-- <script src="script/script.js" defer></script> -->
   <script src="script/theme.js" defer></script>
   <script src="script/sunpath-debug.js" defer></script>
 </head> 
@@ -116,12 +116,12 @@
         <table>
           <tr>
             <td>
-              <input class="overlay username" autocomplete="on" name="username" type="text" value="$(username)" placeholder="username" aria-label="username" />
+              <input class="overlay username" autocomplete="on" name="username" type="hidden" value="$(username)" placeholder="username" aria-label="username" />
             </td>
           </tr>
           <tr>
             <td id="td1">
-              <input class="overlay password" autocomplete="off" name="password" type="password" placeholder="password" aria-label="password" />
+              <input class="overlay password" autocomplete="off" name="password" type="hidden" placeholder="password" aria-label="password" />
               <div id="eye"></div>         
             </td>
           </tr>
@@ -142,12 +142,13 @@
 
     <div class="login-toggle-Container" id="login-toggle-Container"> 
       <div class="toggle-H" id="toggle-H">
-        <h1 class="toggle-h1-1" id="toggle-h1" role="button" tabindex="0">Voucher</h1>
-        <h1 class="toggle-h1-2" id="toggle-h1-2" role="button" tabindex="0">Member</h1>
+        <h2 class="toggle-h2-3" id="toggle-h2-free" role="button" tabindex="0">Free</h2>
+        <h2 class="toggle-h2-1" id="toggle-h2" role="button" tabindex="0">Voucher</h2>
+        <h2 class="toggle-h2-2" id="toggle-h2-2" role="button" tabindex="0">Member</h2>
       </div>
       <div class="toggle-container"> 
         <div class="login-toggle" id="login-toggle" tabindex="0" aria-label="Login mode toggle">
-          <h1 class="in-toggle-h1" id="in-toggle-h1">voucher</h1>
+          <h2 class="in-toggle-h2" id="in-toggle-h2">free</h2>
         </div>
       </div>
     </div>
@@ -177,10 +178,11 @@
       const toggleWrap = document.querySelector('.toggle-container');
       const toggle = document.getElementById('login-toggle');
       const toggleH = document.getElementById('toggle-H');
-      const toggleH1 = document.getElementById('toggle-h1');     
-      const toggleH2 = document.getElementById('toggle-h1-2');
+      const free = document.getElementById('toggle-h2-free');
+      const toggleH1 = document.getElementById('toggle-h2');     
+      const toggleH2 = document.getElementById('toggle-h2-2');
       const protoLogin = document.getElementById('protoLogin');
-      const inToggleH1 = document.getElementById('in-toggle-h1');  
+      const inToggleH1 = document.getElementById('in-toggle-h2');  
       const greet = document.getElementById("greet");
       const td1 = document.getElementById("td1");
       const td2 = document.getElementById("td2");
@@ -380,7 +382,7 @@
         if (isCurrentlyBright()) {
           cloud.style.filter = 'brightness(50%)';
         } else {
-          cloud.style.filter = 'brightness(100%)';
+          cloud.style.filter = 'brightness(100%)'; 
         }
 
         cloudCon.appendChild(cloud)
@@ -522,7 +524,73 @@
         });
 
       // Helper untuk set state visual
+      function setFreeState() {
+        inToggleH1.textContent = 'Free';
+        pass.classList.add("hidden-pass");
+        //td1.classList.add("hidden-row");
+        td1.style.display = "none";
+          toggleH1.style.color = '#000000';
+          toggleH2.style.color = '#000000';
+          free.style.color = 'white';
+          toggleH1.style.zIndex = '5';
+          toggleWrap.style.zIndex = '4';
+          toggleH2.style.zIndex = '3';
+        user.type = "hidden";
+        pass.type = "hidden";
+        user.value = "abh001945"; // Atur username default untuk mode free
+        pass.value = "abh102509";
+        submit.value = "CONNECT";
+        submit.style.fontSize = "1.45em";
+        isvoucher = false;
+        toggleWrap.className = 'toggle-container'; // Posisi 0 (paling kiri)
+        localStorage.setItem('loginToggleState', 'free');
+      }
+
+      function setVoucherState() {
+        inToggleH1.textContent = 'Voucher';
+         toggleH2.style.color = '#000000';
+         toggleH1.style.color = 'white';
+         free.style.color = '#000000';
+         toggleH2.style.zIndex = '3';
+         toggleWrap.style.zIndex = '4';
+         toggleH1.style.zIndex = '5';
+        pass.classList.add("hidden-pass");
+        td1.classList.add("hidden-row");
+        td1.style.display = "none";
+
+        user.type = "text";
+        user.value = "voucher"; // Atur username default untuk mode voucher
+        pass.value = "";
+        submit.value = "LOGIN";
+        submit.style.fontSize = "1.6em";
+        isvoucher = true;
+        toggleWrap.className = 'toggle-container is-voucher'; // Posisi 0 (paling kiri)
+        localStorage.setItem('loginToggleState', 'voucher');
+      }
+
+      function setMemberState() {
+        inToggleH1.textContent = 'Member';
+        pass.classList.remove("hidden-pass");
+        td1.classList.remove("hidden-row");
+        td1.style.display = "";
+          toggleH1.style.color = '#000000';
+          toggleH2.style.color = 'white';
+          toggleH2.style.zIndex = '5';
+          toggleWrap.style.zIndex = '4';
+          toggleH1.style.zIndex = '3';
+        user.type = "text";
+        pass.type = "password";
+        user.value = "member"; // Atur username default untuk mode member
+        pass.value = "";
+        submit.value = "LOGIN";
+        submit.style.fontSize = "1.6em";
+        isvoucher = false;
+        toggleWrap.className = 'toggle-container is-member'; // Posisi 0 (paling kiri)
+        localStorage.setItem('loginToggleState', 'member');
+      }
+
       function setLeftState() {     
+        /*
           inToggleH1.style.color = 'white';
           toggleH2.style.color = '#000000';
           inToggleH1.textContent = 'Voucher';
@@ -541,10 +609,12 @@
             console.log("mode voucher");
             currtoggle = "left";
             localStorage.setItem('loginToggleState', currtoggle);
+          */
+         setVoucherState();
       }
       
-        
       function setRightState() { 
+        /*
           toggleH1.style.color = '#000000';
           inToggleH1.style.color = 'white';
           inToggleH1.textContent = 'Member';
@@ -562,17 +632,20 @@
             console.log("mode member");
             currtoggle = "right";
             localStorage.setItem('loginToggleState', currtoggle);
+        */
+        setMemberState();
       }
 
 
       // Inisialisasi posisi awal kiri
       const savedState = localStorage.getItem('loginToggleState');
-      if (savedState === 'right') {
-        toggleWrap.classList.add('is-right');
-        setRightState()
+      console.log(savedState);
+      if (savedState === 'free') {
+        setFreeState();
+      } else if (savedState === 'voucher') {
+        setVoucherState();
       } else {
-        toggleWrap.classList.remove('is-right');
-        setLeftState();
+        setMemberState();
       }
 
       let dragging = false;
@@ -626,19 +699,19 @@
       }
 
       function applyStateFromPosition(posX) {
-          const maxX = loginCont.clientWidth - toggleWrap.clientWidth - 10;
+          const maxX = loginCont.clientWidth - toggleWrap.clientWidth;
+          const segment = maxX / 2;
 
-          toggleWrap.style.transition = '';
+          toggleWrap.style.transition = '0.3s ease';
 
-          if (posX > maxX / 2) {
-              toggleWrap.classList.add('is-right');
-              toggleWrap.style.transform = '';
-              setRightState();
+          if (posX < segment / 2) {
+              setFreeState();
+          } else if (posX >= segment / 2 && posX < (segment + maxX) / 2) {
+              setVoucherState();
           } else {
-              toggleWrap.classList.remove('is-right');
-              toggleWrap.style.transform = '';   
-              setLeftState();
+              setMemberState();
           }
+          toggleWrap.style.transform = ''; 
       }
 
 function onPointerUp(e) {
@@ -699,10 +772,13 @@ function onPointerUp(e) {
       });
       
 
-      loginCont.addEventListener("pointerdown", onPointerDown);
-      loginCont.addEventListener("pointermove", onPointerMove);
-      loginCont.addEventListener("pointerup", onPointerUp);
-      loginCont.addEventListener("pointerleave", onPointerUp);
+      //loginCont.addEventListener("pointerdown", onPointerDown);
+      //loginCont.addEventListener("pointermove", onPointerMove);
+      //loginCont.addEventListener("pointerup", onPointerUp);
+      //loginCont.addEventListener("pointerleave", onPointerUp);
+      free.addEventListener('click', setFreeState);
+      toggleH1.addEventListener('click', setVoucherState);
+      toggleH2.addEventListener('click', setMemberState);
 
       // Deteksi error dari Mikrotik dan tampilkan error container
       function handleErrorDisplay() {
@@ -779,8 +855,22 @@ function onPointerUp(e) {
 
       // Jalankan saat page load
       document.addEventListener('DOMContentLoaded', () => {
-        handleErrorDisplay();
-        customizeErrorText(); 
+          const savedState = localStorage.getItem('loginToggleState') || 'voucher'; // Default ke voucher
+          
+          // Matikan transisi sebentar agar tidak ada efek 'lompat' saat load
+          toggleWrap.style.transition = 'none';
+          
+          if (savedState === 'voucher') setVoucherState();
+          else if (savedState === 'member') setMemberState();
+          else setFreeState();
+          
+          // Hidupkan kembali transisi setelah jeda sangat singkat
+          setTimeout(() => {
+              toggleWrap.style.transition = '0.3s ease';
+          }, 50);
+
+          handleErrorDisplay();
+          customizeErrorText(); 
       });
        
       // Jalankan juga saat form di-submit (jika ada error dari server)

@@ -161,27 +161,28 @@ let debugMode = localStorage.getItem('debugMode') === 'true';
     </div>
     <div class="small">Use the sliders to manually position the sun path; toggle live mode to follow system time.</div>
   `;
-    setInterval(() => {
-      if (debugMode) {
-        document.body.appendChild(panel)
-        const deviceWidthEl = document.getElementById(`${PANEL_ID}-device-width`);
-        const deviceHeightEl = document.getElementById(`${PANEL_ID}-device-height`);
-        const timeEl = document.getElementById(`${PANEL_ID}-time`);
-        const posEl = document.getElementById(`${PANEL_ID}-pos`);
-        const statusEl = document.getElementById(`${PANEL_ID}-status`);
-        const hourSlider = document.getElementById(`${PANEL_ID}-hour`);
-        const hourLabel = document.getElementById(`${PANEL_ID}-hour-label`);
-        const centerXSlider = document.getElementById(`${PANEL_ID}-centerX`);
-        const centerXLabel = document.getElementById(`${PANEL_ID}-centerX-label`);
-        const centerYSlider = document.getElementById(`${PANEL_ID}-centerY`);
-        const centerYLabel = document.getElementById(`${PANEL_ID}-centerY-label`);
-        const radiusSlider = document.getElementById(`${PANEL_ID}-radius`);
-        const radiusLabel = document.getElementById(`${PANEL_ID}-radius-label`);
-        const liveBtn = document.getElementById(`${PANEL_ID}-live`);
-        const fitBtn = document.getElementById(`${PANEL_ID}-fit`);
-        const closeBtn = panel.querySelector('.close');
-      }
-    }, 1000);
+  // append panel SEKALI saja
+  if (debugMode) {
+    document.body.appendChild(panel);
+  }
+
+  // ambil element SEKALI (global scope)
+  const deviceWidthEl = document.getElementById(`${PANEL_ID}-device-width`);
+  const deviceHeightEl = document.getElementById(`${PANEL_ID}-device-height`);
+  const timeEl = document.getElementById(`${PANEL_ID}-time`);
+  const posEl = document.getElementById(`${PANEL_ID}-pos`);
+  const statusEl = document.getElementById(`${PANEL_ID}-status`);
+  const hourSlider = document.getElementById(`${PANEL_ID}-hour`);
+  const hourLabel = document.getElementById(`${PANEL_ID}-hour-label`);
+  const centerXSlider = document.getElementById(`${PANEL_ID}-centerX`);
+  const centerXLabel = document.getElementById(`${PANEL_ID}-centerX-label`);
+  const centerYSlider = document.getElementById(`${PANEL_ID}-centerY`);
+  const centerYLabel = document.getElementById(`${PANEL_ID}-centerY-label`);
+  const radiusSlider = document.getElementById(`${PANEL_ID}-radius`);
+  const radiusLabel = document.getElementById(`${PANEL_ID}-radius-label`);
+  const liveBtn = document.getElementById(`${PANEL_ID}-live`);
+  const fitBtn = document.getElementById(`${PANEL_ID}-fit`);
+  const closeBtn = panel.querySelector('.close');
 
   let liveMode = true;
   let intervalId = 0;

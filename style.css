@@ -33,7 +33,7 @@
 
   --sun-center-x: 50;
   --sun-center-y: 94;
-  --sun-radius: 120;
+  --sun-radius: 80;
 }
   
 @media (max-width: 360px) {

@@ -24,7 +24,7 @@
 
   --sun-center-x: 50;
   --sun-center-y: 94;
-  --sun-radius: 120;
+  --sun-radius: 70;
 }
 
 @media (max-width: 360px) {
@@ -195,7 +195,7 @@ html, body {
 .toggle-H {
   pointer-events: none;
 }
-.toggle-H h1 {
+.toggle-H h2 {
   pointer-events: auto;
 }
 .toggle-btn.active {
@@ -232,7 +232,7 @@ html, body {
 
 .login-toggle-Container .toggle-H {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   place-items: center;
   color: #554E63;
   width: 100%;
@@ -248,7 +248,7 @@ html, body {
   top: 5px;
   left: 5px;
   height: calc(100% - 10px);
-  width: calc(50% - 10px);
+  width: calc(33% - 10px);
   pointer-events: none;
 }
 .toggle-container {
@@ -256,8 +256,12 @@ html, body {
   transition: transform 0.3s ease;
 }
 
-.toggle-container.is-right {
+.toggle-container.is-voucher {
   transform: translateX(calc(100% + 10px));
+}
+
+.toggle-container.is-member {
+  transform: translateX(calc(200% + 22px));
 }
 
 .ver {
@@ -267,6 +271,7 @@ html, body {
   top: 750px;
   color: #f2f2f2; 
 }
+
 .login-toggle {
   display: flex;
   justify-content: center;
@@ -697,6 +702,7 @@ html, body {
   padding: 0 !important;
   margin: 0 !important;
   overflow: hidden !important;
+  
 }
 
 .proto-login .password{
@@ -885,7 +891,6 @@ html, body {
 /* responsive untuk berbagai ukuran layar */
 /* ====== HP KECIL (≤480px) ======  */
 
-
 .footer {
     position: fixed;
     bottom: 0;
@@ -904,7 +909,6 @@ html, body {
     z-index: 3;
 }
 
-
 .footer {
   background-color: var(--accentMain);
   transition: all .3s ease-in-out;
@@ -914,8 +918,8 @@ html, body {
   color: #f2f2f2;
 }
 
-/* Pastikan label h1 nyaman diklik di kedua sisi */
-.login-toggle-Container .toggle-H h1 {
+/* Pastikan label h2 nyaman diklik di kedua sisi */
+.login-toggle-Container .toggle-H h2 {
   cursor: pointer;
   width: 100%;
   text-align: center;
@@ -931,7 +935,6 @@ html, body {
     align-items: center;
 }
 
-
 .copyright {
     width: 100%;                /* penting: biar center sempurna */
     display: flex;
@@ -943,8 +946,6 @@ html, body {
     font-size: 14px;
     margin-right: 0;            /* hapus yg bikin menceng */
 }
-
-
 
 .paralax-back {
   background: var(--parIMG1);
