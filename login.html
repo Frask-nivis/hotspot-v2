@@ -68,7 +68,7 @@
 
     `);      
   </script>    
-  <!-- <script src="script/script.js" defer></script> -->
+  <script src="script/script.js" defer></script> 
   <script src="script/theme.js" defer></script>
   <script src="script/sunpath-debug.js" defer></script>
 </head> 
@@ -169,7 +169,7 @@
   <footer class="footer">                      
     <div class="copyright" >
     
-      <p style="font-weight: 700;">copyright &copy; 2026 - Abuhurairah Forever v3</p>   
+      <p style="font-weight: 700;">copyright &copy; 2026 - Abuhurairah Forever <span id="ver"></span></p> 
     </div>
   </footer>    
     <script>
@@ -183,12 +183,9 @@
       const toggleH2 = document.getElementById('toggle-h2-2');
       const protoLogin = document.getElementById('protoLogin');
       const inToggleH1 = document.getElementById('in-toggle-h2');  
-      const greet = document.getElementById("greet");
       const td1 = document.getElementById("td1");
       const td2 = document.getElementById("td2");
       const submit = document.getElementById("submit");
-      const cloudCon = document.querySelector('.cloudCon')
-      const starCon = document.querySelector('.starCon')
       // Theme handled by script/theme.js
       // Helper to determine current time-of-day category
       function getCurrentTimeOfDay() {
@@ -248,163 +245,6 @@
         return true;
       };
 
-      function updateClock() {  
-        const now = new Date() 
-        //jam
-        const hh = String(now.getHours()).padStart(2, "0");
-        const mm = String(now.getMinutes()).padStart(2, "0");
-        const ss = String(now.getSeconds()).padStart(2, "0");
-        //tanggal
-        const dd = String(now.getDate()).padStart(2, "0");
-        const MM = String(now.getMonth() + 1).padStart(2, "0");
-        const yyyy = String(now.getFullYear()).padStart(4, "0");
-        const day = [
-          "SUNDAY",
-          "MONDAY",
-          "TUESDAY",
-          "WEDNESDAY",
-          "THURSDAY",
-          "FRIDAY", 
-          "SATURDAY"
-        ][now.getDay()];
-
-        const greeting = { 
-          "05" : "SELAMAT PAGI SAHABAT!",
-          "12" : "SELAMAT SIANG SAHABAT!",
-          "15" : "SELAMAT SORE SAHABAT!",
-          "21" : "SELAMAT MALAM SAHABAT!",
-          "00" : "SAHABAT?🤨"
-        }
-
-        const timeSignal = {
-          "MT" : "05",
-          "NT" : "12",
-          "AFT" : "15",
-          "NgT" : "21",
-          "MNT" : "0"
-        }
-
-        const calender = document.getElementById("date");
-        calender.innerHTML = `${day}, ${dd}-${MM}-${yyyy}`;
-        const T = document.getElementById("hour");
-        T.innerHTML = `(${hh}:${mm}:${ss})`;
-        
-
-        const time = T.textContent.match(/\((.*?)\)/)[1];
-        const hour = +time.split(":")[0];
-
-        const value = Object.values(timeSignal).map(Number);
-        if (value) {
-          const closestH = value
-            .filter(v => v <= hour)
-            .sort((a, b) => b - a)[0] || 0;
-          const key = closestH.toString().padStart(2, "0");
-
-          greet.textContent = `${greeting[key]}`
-
-        }
-        const isLocal = localStorage.getItem('localTime') === 'true';
-        if (isLocal) {
-
-        }
-        const nextTick = 1000 - now.getMilliseconds();
-        setTimeout(updateClock, nextTick);
-      }
-      updateClock();
-      const img = [
-        'img/cloud1.avif',
-        'img/cloud2.avif',
-        'img/cloud3.avif',
-        'img/cloud4.avif',  
-        'img/cloud5.avif'
-      ]; 
-
-      const starImg = [ 
-        'img/star1.png',
-        'img/star2.png',
-        'img/star3.png',
-      ] 
-
-      let starAv = 20;   
-      let cloudAv = 5; 
-      let stars = [];
-      let clouds = [];
-      function random(min, max) {
-        return Math.random() * (max - min) + min;
-      }
-
-      function createStar() {
-        for (let i = 0; i < starAv; i++) {
-        const star = document.createElement('div')
-        star.classList.add('star')
-
-        const images = starImg[Math.floor(Math.random() * starImg.length)]
-        star.style.backgroundImage = `url(${images})`;
-
-        const size = random(10, 20)
-        star.style.width = `${size}px`
-        star.style.height = `${size}px`
-
-        star.style.position = 'relative';
-        star.style.top = `${random(50, 10)}%` 
-
-        star.style.left = `${random(7, 97)}%`
-
-        star.style.animationDuration = `${random(20, 30)}s`
- 
-        starCon.appendChild(star)
-        stars.push(star)
-        } 
-      }
-      if (!isCurrentlyBright()) {
-        createStar()
-      }
-      
-      for (let i = 0; i < cloudAv; i++) {
-        const cloud = document.createElement('div')
-        cloud.classList.add('cloud')
-
-        const images = img[Math.floor(Math.random() * img.length)];
-        cloud.style.backgroundImage = `url(${images})`;
-
-        const size = random(100, 200) 
-        cloud.style.width = `${size}px`;
-        cloud.style.height = `${size * 0.6}px`;
-        
-        cloud.style.top = `${random(5, 60)}%`
-
-        cloud.style.opacity = `${random(1, 100)}%`;
-
-        cloud.style.animationDuration = `${random(40, 120)}s`; 
-
-        cloud.style.animationDelay = `${random(-120, 0)}s`;
-
-        if (isCurrentlyBright()) {
-          cloud.style.filter = 'brightness(50%)';
-        } else {
-          cloud.style.filter = 'brightness(100%)'; 
-        }
-
-        cloudCon.appendChild(cloud)
-        clouds.push(cloud)
-      } 
-    
-      const updateStars = () => {
-        if (!isCurrentlyBright()) {
-          createStar()
-        } else {
-          starCon.innerHTML = '';
-        }
-      };
-
-      const updateClouds = () => {
-        clouds.forEach(cloud => {
-          cloud.style.filter = isCurrentlyBright() ? 'brightness(50%)' : 'brightness(100%)';
-        });
-      };
-
-      updateStars();
-      updateClouds();
     
     function fixLayoutForKeyboard() {
     const isKeyboardOpen = window.innerHeight < screen.height * 0.75;
@@ -576,6 +416,7 @@
         td1.style.display = "";
           toggleH1.style.color = '#000000';
           toggleH2.style.color = 'white';
+          free.style.color = '#000000';
           toggleH2.style.zIndex = '5';
           toggleWrap.style.zIndex = '4';
           toggleH1.style.zIndex = '3';
