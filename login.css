@@ -5,7 +5,7 @@
   --accentSub: #0747a1;
   --reverseAccent: #131113;
   --blurGlass: rgba(255,255,255,0.4);
-  --header-h: 85px;
+  --header-h: 65px;
   --width: 40px;
   --untouched: #b8b8b8;
 
@@ -340,10 +340,17 @@ html, body {
 }
 
 #hour {
+  display: flex;
+  justify-content: center;
+  color: var(--font);
+
   font-weight: 550;
   top: 6.5px;
-  position: relative;
+  width: 100%;
+
 }
+
+
 
 .timeCon {
   display: grid;
@@ -361,9 +368,6 @@ html, body {
   font-size: .9em;
 }
 
-#hour {
-  place-self: start;
-}
 
 #greet {
   position: relative;
@@ -524,7 +528,7 @@ html, body {
 /* Header tetap di atas tanpa menutupi konten */
 .site-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   color: #f2f2f2;
   font-family: monospace;
@@ -544,7 +548,6 @@ html, body {
 .displayGrid {
   display: grid;
   grid-template-columns: clamp(90px, 49vw, 700px) clamp(90px, 49vw, 700px);
-  padding-bottom: 20px;
 }
 
 .LeftDis{
@@ -587,14 +590,16 @@ html, body {
 
 .cong{
   color: #f2f2f2;
-  justify-content: center;
+  align-items: center;
   display: flex;
+  flex-direction: column;
   font-size: 1.5em;
   font-weight: 650;
   width: 100%;
   height: auto;
-
 }
+
+
 
 .con {
   display: flex;

@@ -79,7 +79,7 @@
     }
     applyTheme(currentTimeOfDay);
     // localtime auto-check
-    let localtimeInterval = null;
+    let localtimeInterval = null; 
     function startLocaltimeInterval() {
       if (localtimeInterval) return;
       localtimeInterval = setInterval(() => {
@@ -333,3 +333,4 @@
     refreshModeUI();
 
   })();
+

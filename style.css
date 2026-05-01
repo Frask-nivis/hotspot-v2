@@ -12,7 +12,7 @@
   --accentSub: #0747a1;
   --reverseAccent: #131113;
   --blurGlass: rgba(255,255,255,0.4);
-  --header-h: 85px;
+  --header-h: 65px;
   --width: 40px;
   --untouched: #b8b8b8;
 
@@ -199,7 +199,7 @@ body {
 
 .header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   color: #f2f2f2;
   font-family: monospace;
@@ -220,7 +220,6 @@ body {
   color: #f2f2f2;
   display: grid;
   grid-template-columns: clamp(90px, 49vw, 700px) clamp(90px, 49vw, 700px);
-  padding-bottom: 20px;
 }
 
 
@@ -339,7 +338,25 @@ body {
   background-size: 25px;
   height: 30px;
   width: 30px;
+  animation: wifiAnim 1s linear infinite;
+}
 
+@keyframes wifiAnim {
+  0% {
+    background-image: url('img/wifi.png');
+  }
+  25% {
+    background-image: url('img/wifi-0.png');
+  }
+  50% {
+    background-image: url('img/wifi-1.png');
+  }
+  75% {
+    background-image: url('img/wifi-2.png');
+  }
+  100% {
+    background-image: url('img/wifi.png');
+  }
 }
 
 .cloudCon {

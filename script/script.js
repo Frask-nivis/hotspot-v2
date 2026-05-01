@@ -1,7 +1,7 @@
 const greet = document.getElementById("greet");
 const ver = document.getElementById("ver");
 
-let currVer = "v3.5"
+let currVer = "v4"
 
 ver.textContent = currVer;
 
@@ -45,23 +45,28 @@ let isBright = localStorage.getItem('themeMode') === 'localtime' ? (new Date().g
       const calender = document.getElementById("date");
       calender.innerHTML = `${day}, ${dd}-${MM}-${yyyy}`;
       const T = document.getElementById("hour");
-      T.innerHTML = `(${hh}:${mm}:${ss})`;
+      
+      function setTime(T) {
+        T.innerHTML = `(${hh}:${mm}:${ss})`;
 
-      const time = T.textContent.match(/\((.*?)\)/)[1];
-      const hour = +time.split(":")[0];
-
-      const value = Object.values(timeSignal).map(Number);
-      if (value) {
-        const closestH = value
-          .filter(v => v <= hour)
-          .sort((a, b) => b - a)[0] || 0;
-
-        const key = closestH.toString().padStart(2, "0");
-        if (greet) {
-          greet.textContent = `${greeting[key]}`
+        const time = T.textContent.match(/\((.*?)\)/)[1];
+        const hour = +time.split(":")[0];
+  
+        const value = Object.values(timeSignal).map(Number);
+        if (value) {
+          const closestH = value
+            .filter(v => v <= hour)
+            .sort((a, b) => b - a)[0] || 0;
+  
+          const key = closestH.toString().padStart(2, "0");
+          if (greet) {
+            greet.textContent = `${greeting[key]}`
+          }
         }
       }
-      
+      if (T) {
+        setTime(T);
+      }
       const nextTick = 1000 - now.getMilliseconds();
       setTimeout(updateClock, nextTick);
     }
