@@ -4,23 +4,21 @@
   --accentMain: #1065c0;
   --accentSub: #0747a1;
   --reverseAccent: #131113;
-  --blurGlass: rgba(255,255,255,0.4);
+  --blurGlass: rgba(255, 255, 255, 0.4);
   --header-h: 65px;
   --width: 40px;
   --untouched: #b8b8b8;
 
-  --marginB: 65px; 
+  --marginB: 65px;
   --height: 100px;
 
   --parIMG1: url(img/par1.png);
   --parIMG2: url(img/par2.png);
   --parIMG3: url(img/par3.png);
   --sun: url(img/day.png);
-  --glow: drop-shadow(0px 0px 10px yellow)
-        drop-shadow(0px 0px 50px yellow);
+  --glow: drop-shadow(0px 0px 10px yellow) drop-shadow(0px 0px 50px yellow);
   --gap: 5px;
-  --bright: rgb(255, 255, 255) 10% 10% / 80% 80% no-repeat,
-    var(--blurGlass);
+  --bright: rgb(255, 255, 255) 10% 10% / 80% 80% no-repeat, var(--blurGlass);
 
   --sun-center-x: 50;
   --sun-center-y: 94;
@@ -31,20 +29,24 @@
   :root {
     --sun-radius: 70;
   }
-  
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif;}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
 
 * {
   -webkit-tap-highlight-color: transparent;
-} 
+}
 *:focus {
   outline: none;
 }
 
-
-html, body {
+html,
+body {
   min-height: 100dvh;
   min-height: 100vh;
   position: relative;
@@ -54,7 +56,6 @@ html, body {
   justify-content: center;
   height: 100vh;
   width: 100vw;
-
 }
 
 @keyframes moveCloud {
@@ -79,7 +80,7 @@ html, body {
 
   z-index: 0;
   pointer-events: none;
-  transition: all .2 ease;
+  transition: all 0.2 ease;
 }
 
 .sun {
@@ -113,7 +114,9 @@ html, body {
   background-position: center;
   background-repeat: no-repeat;
   filter: var(--glow);
-  transition: left 1s linear, top 1s linear;
+  transition:
+    left 1s linear,
+    top 1s linear;
   opacity: 0; /* hidden by default until night */
 }
 
@@ -127,7 +130,7 @@ html, body {
 
   z-index: 0;
   pointer-events: none;
-} 
+}
 
 .starCon {
   position: fixed;
@@ -164,7 +167,6 @@ html, body {
   }
 }
 
-
 .star {
   background-size: cover;
   background-repeat: no-repeat;
@@ -173,7 +175,8 @@ html, body {
 }
 
 @keyframes twinkle {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -186,9 +189,8 @@ html, body {
   z-index: 6;
 }
 
-
 .toggle-btn {
-  transition: color .2s ease;
+  transition: color 0.2s ease;
   cursor: pointer;
 }
 
@@ -210,7 +212,6 @@ html, body {
   color: #666;
 }
 
-
 .login-toggle-Container {
   touch-action: none;
   display: flex;
@@ -219,28 +220,28 @@ html, body {
   position: relative;
   background: var(--blurGlass);
   backdrop-filter: blur(50px);
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   width: 100%;
   height: 50px;
-  border-radius: 50px; 
+  border-radius: 50px;
   padding: 0 5px;
   color: aliceblue;
   border: 2px solid #131113;
   user-select: none; /* cegah seleksi teks saat drag */
-  transform: translateY(-35px);
 }
 
 .login-toggle-Container .toggle-H {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   place-items: center;
-  color: #554E63;
+  color: #554e63;
   width: 100%;
   z-index: 3;
   transition: all 0.3s ease;
   user-select: none; /* cegah seleksi teks saat drag */
   position: relative;
-  
 }
 
 .toggle-container {
@@ -269,7 +270,7 @@ html, body {
   font-size: 2em;
   position: absolute;
   top: 750px;
-  color: #f2f2f2; 
+  color: #f2f2f2;
 }
 
 .login-toggle {
@@ -288,7 +289,6 @@ html, body {
   z-index: 4;
   pointer-events: auto;
 }
- 
 
 .wifi {
   background-image: url('img/wifi.png');
@@ -335,7 +335,7 @@ html, body {
   background-repeat: no-repeat;
   background-size: contain;
   background-size: 25px;
-  height: 30px; 
+  height: 30px;
   width: 30px;
 }
 
@@ -347,17 +347,14 @@ html, body {
   font-weight: 550;
   top: 6.5px;
   width: 100%;
-
 }
-
-
 
 .timeCon {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 0px;
   place-items: center;
-  font-size: .9em;
+  font-size: 0.9em;
 }
 
 .modeCon {
@@ -365,13 +362,12 @@ html, body {
   grid-template-columns: auto 1fr;
   gap: 0px;
   place-items: center;
-  font-size: .9em;
+  font-size: 0.9em;
 }
-
 
 #greet {
   position: relative;
-  display: block; 
+  display: block;
   top: -10px;
   color: var(--font);
 }
@@ -384,7 +380,7 @@ html, body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: 30px;
-  width: 38px;   /* slightly larger for easier tapping */
+  width: 38px; /* slightly larger for easier tapping */
   height: 38px;
   padding: 4px;
   position: relative;
@@ -402,7 +398,7 @@ html, body {
   top: 100%;
   right: 0;
   background: var(--bg);
-  box-shadow: 0 2px 6px rgba(0,0,0,.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   display: none;
   z-index: 100;
@@ -426,7 +422,7 @@ html, body {
 
 .hidden {
   display: none !important;
-} 
+}
 
 .disabled {
   opacity: 0;
@@ -440,26 +436,25 @@ html, body {
   --font: #f2f2f2;
   --blurGlass: rgba(117, 117, 117, 0.4);
   --reverseAccent: #f2f2f2;
-  --bright: rgb(255, 255, 255) 10% 10% / 80% 80% no-repeat,
-    var(--blurGlass);
+  --bright: rgb(255, 255, 255) 10% 10% / 80% 80% no-repeat, var(--blurGlass);
 
   --parIMG1: url(img/parDark1.png);
   --parIMG2: url(img/parDark2.png);
   --parIMG3: url(img/parDark3.png);
   --sun: url(img/night.avif);
-  --glow: drop-shadow(0px 0px 10px rgb(255, 255, 255)) drop-shadow(0px 0px 50px yellow);
+  --glow: drop-shadow(0px 0px 10px rgb(255, 255, 255))
+    drop-shadow(0px 0px 50px yellow);
 }
 
 /* Time-of-day specific styles */
 :root.pagi {
-  --bg: #FEFEE2;
+  --bg: #fefee2;
   --accentMain: #e67e22;
   --accentSub: #d35400;
   --font: #2c3e50;
   --blurGlass: rgba(255, 200, 100, 0.3);
   --reverseAccent: #2c3e50;
-  --bright: rgb(255, 200, 100) 10% 10% / 80% 80% no-repeat,
-    var(--blurGlass);
+  --bright: rgb(255, 200, 100) 10% 10% / 80% 80% no-repeat, var(--blurGlass);
 
   --parIMG1: url(img/morpar1.png);
   --parIMG2: url(img/morpar2.png);
@@ -477,9 +472,8 @@ html, body {
   --font: #2c3e50;
   --blurGlass: rgba(100, 150, 255, 0.3);
   --reverseAccent: #2c3e50;
-  --bright: rgb(100, 150, 255) 10% 10% / 80% 80% no-repeat,
-    var(--blurGlass);
- 
+  --bright: rgb(100, 150, 255) 10% 10% / 80% 80% no-repeat, var(--blurGlass);
+
   --parIMG1: url(img/par1.png);
   --parIMG2: url(img/par2.png);
   --parIMG3: url(img/par3.png);
@@ -489,14 +483,13 @@ html, body {
 }
 
 :root.sore {
-  --bg: #FDD980;
+  --bg: #fdd980;
   --accentMain: #d9534f;
   --accentSub: #c9302c;
   --font: #2c3e50;
   --blurGlass: rgba(255, 150, 100, 0.3);
   --reverseAccent: #2c3e50;
-  --bright: rgb(255, 150, 100) 10% 10% / 80% 80% no-repeat,
-    var(--blurGlass);
+  --bright: rgb(255, 150, 100) 10% 10% / 80% 80% no-repeat, var(--blurGlass);
 
   --parIMG1: url(img/evepar1.png);
   --parIMG2: url(img/evepar2.png);
@@ -513,17 +506,16 @@ html, body {
   --font: #f2f2f2;
   --blurGlass: rgba(117, 117, 117, 0.4);
   --reverseAccent: #f2f2f2;
-  --bright: rgb(255, 255, 255) 10% 10% / 80% 80% no-repeat,
-    var(--blurGlass);
+  --bright: rgb(255, 255, 255) 10% 10% / 80% 80% no-repeat, var(--blurGlass);
 
   --parIMG1: url(img/parDark1.png);
   --parIMG2: url(img/parDark2.png);
   --parIMG3: url(img/parDark3.png);
   --sun: url(img/night.avif);
   --sunpos: translate(5px, -283px);
-  --glow: drop-shadow(0px 0px 10px rgb(255, 255, 255)) drop-shadow(0px 0px 50px yellow);
+  --glow: drop-shadow(0px 0px 10px rgb(255, 255, 255))
+    drop-shadow(0px 0px 50px yellow);
 }
-
 
 /* Header tetap di atas tanpa menutupi konten */
 .site-header {
@@ -532,8 +524,8 @@ html, body {
   justify-content: center;
   color: #f2f2f2;
   font-family: monospace;
-  font-size: .7em;
-  padding: 10px 10px;
+  font-size: 0.7em;
+  padding: 15px 10px;
   position: fixed;
   top: 0;
   left: 0;
@@ -542,22 +534,22 @@ html, body {
   background-color: var(--accentMain);
   border-bottom: 2px solid #ffffff;
   z-index: 2;
-  transition: all .3s ease-in-out;
-} 
+  transition: all 0.3s ease-in-out;
+}
 
 .displayGrid {
   display: grid;
   grid-template-columns: clamp(90px, 49vw, 700px) clamp(90px, 49vw, 700px);
 }
 
-.LeftDis{
+.LeftDis {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: var(--gap);
   place-items: center start;
 }
 
-.RightDis{
+.RightDis {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: var(--gap);
@@ -575,9 +567,14 @@ html, body {
 
 /* Main area: central container, punya padding top sesuai header */
 /* dasar layout (anggap header tetap seperti sebelumnya) */
-.main { position: relative; top: -0%; padding: 100px 16px 40px; transform: scale(.76); z-index: 2;}
+.main {
+  position: relative;
+  top: -0%;
+  padding: 40px 16px 40px;
+  transform: scale(0.76);
+  z-index: 2;
+}
 /* Konteiner gambar + overlay */
-
 
 .dorm-icon {
   background: url(img/abaheer.png);
@@ -588,41 +585,44 @@ html, body {
   background-repeat: no-repeat;
 }
 
-.cong{
+.cong {
+  place-items: center;
+  gap: 10px;
   color: #f2f2f2;
   align-items: center;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
   font-size: 1.5em;
   font-weight: 650;
   width: 100%;
   height: auto;
 }
 
-
+.proto {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4%;
+}
 
 .con {
-  display: flex;
-  justify-self: center;
-  position: absolute;
-  top: 90px;
   width: 65%;
   height: 50px;
   background-color: blue;
-  transform: translateY(65px);
 }
 
-.proto {
+.proto-login {
   position: relative;
   display: flex;
   justify-content: flex-end;
   justify-self: center;
   background-color: rgb(184, 184, 184);
   background: var(--blurGlass);
-  backdrop-filter: blur(50px); 
+  backdrop-filter: blur(50px);
   border: 2px solid #131113;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-              rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   padding-right: 10%;
   width: min(350px, 100%);
   height: 225px;
@@ -632,25 +632,29 @@ html, body {
 }
 
 .glow {
-  content: "";
+  content: '';
   position: absolute;
   width: 50%;
   height: 50%;
   background-color: white;
   filter: blur(40px);
-  top: 10%;      /* agar tetap proporsional */
+  top: 10%; /* agar tetap proporsional */
   left: 10%;
   border-radius: inherit; /* opsional, ikut radius parent */
-  z-index: -1;   /* kalau mau di belakang isi */
-} 
+  z-index: -1; /* kalau mau di belakang isi */
+}
 
 .dcon {
-  display: flex;
-  justify-self: center;
   width: 75%;
   height: 40px;
+  align-self: self-end;
   background-color: white;
-  transform: translateY(-80px);
+  margin: 10px auto 0;
+}
+
+.con,
+.dcon {
+  position: absolute;
 }
 
 .input-con {
@@ -660,25 +664,25 @@ html, body {
   height: 100%;
 }
 
-.proto-login .overlay{
-  border: 1px solid rgba(0,0,0,0.2);
-  background: rgba(255,255,255,0.98);
+.proto-login .overlay {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.98);
   color: #13111f;
   padding: 6px 8px;
   font-size: 14px;
   outline: none;
   box-sizing: border-box;
-  transition: box-shadow .12s;
+  transition: box-shadow 0.12s;
 }
 
-.proto-login .username{
+.proto-login .username {
   width: 135px;
   height: 35px;
-  background-color: rgba(255,255,255,0.98);
+  background-color: rgba(255, 255, 255, 0.98);
   border: 2px solid var(--reverseAccent);
   border-radius: 10px;
   margin-bottom: 10px;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .hidden-pass {
@@ -692,7 +696,7 @@ html, body {
 }
 
 .proto-login #eye {
-  position: relative; 
+  position: relative;
   top: -37px;
   left: 107px;
   width: 20px;
@@ -707,44 +711,50 @@ html, body {
   padding: 0 !important;
   margin: 0 !important;
   overflow: hidden !important;
-  
 }
 
-.proto-login .password{
+.proto-login .password {
   width: 135px;
   height: 35px;
-  background-color: rgba(255,255,255,0.98);
+  background-color: rgba(255, 255, 255, 0.98);
   border: 2px solid var(--reverseAccent);
   border-radius: 10px;
   margin-bottom: 10px;
 }
 
-.proto-login .submit{
+.proto-login .submit {
   width: 135px;
   height: 55px;
-  border-radius: 10PX;
-  background-color: rgba(255,255,255,0.98);
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.98);
   border: 2px solid var(--reverseAccent);
   font-size: 1.6em;
   font-weight: 700;
   cursor: pointer;
-  transition: all .3s ease-out;
+  transition: all 0.3s ease-out;
 }
 
 .submit:hover {
-  transform: scale(1.1);
   background-color: rgba(0, 0, 0, 0.5);
   color: #f2f2f2;
 }
 
 /* debug visual (opsional, garisbatas semi) */
-.proto-login .overlay { box-shadow: 0 1px 0 rgba(0,0,0,0.08); }
+.proto-login .overlay {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+}
 
 .mainCon {
-  transform: scale(0.8) translateY(62px);
   display: grid;
   grid-template-columns: 1fr;
   place-items: center;
+}
+
+.menuCon {
+  display: grid;
+  height: auto;
+  width: auto;
+  gap: 10px;
 }
 
 .infoContainer {
@@ -752,7 +762,7 @@ html, body {
   height: 550px;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0px; 
+  grid-template-rows: 0px;
 }
 
 .info {
@@ -766,7 +776,6 @@ html, body {
   border-radius: 10px;
   color: #131113;
   border: 2px solid #131113;
-  transform: translateY(-20px);
   background: var(--blurGlass);
 }
 
@@ -775,13 +784,11 @@ html, body {
   color: var(--font);
 }
 
-
 .infoOption {
   display: grid;
   justify-content: space-between;
   align-items: center;
   grid-template-columns: auto auto auto;
-  transform: translateY(7px);
   padding: 0 clamp(5px, 2vw, 30px);
   width: 100%;
   height: 60px;
@@ -796,7 +803,7 @@ html, body {
   height: 90%;
   width: clamp(90px, 20vw, 120px);
   border-radius: 15px;
-  font-size: clamp(.9em, 2vw, 1.2em);
+  font-size: clamp(0.9em, 2vw, 1.2em);
   color: var(--font);
 
   background-color: var(--accentMain);
@@ -809,7 +816,7 @@ html, body {
   height: 90%;
   width: clamp(90px, 20vw, 120px);
   border-radius: 15px;
-  font-size: clamp(.9em, 2vw, 1.2em);
+  font-size: clamp(0.9em, 2vw, 1.2em);
   color: black;
 
   background-color: var(--untouched);
@@ -822,13 +829,13 @@ html, body {
   height: 90%;
   width: clamp(90px, 20vw, 120px);
   border-radius: 15px;
-  font-size: clamp(.9em, 2vw, 1.2em);
+  font-size: clamp(0.9em, 2vw, 1.2em);
   color: black;
-  
+
   background-color: var(--untouched);
 }
 
-.infoContent { 
+.infoContent {
   display: grid;
   padding-top: 74px;
   grid-template-columns: auto 1fr 1fr;
@@ -837,66 +844,65 @@ html, body {
   height: clamp(200px, 42vh, 440px);
   border-radius: 20px;
   background: var(--blurGlass);
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 50px 100px -20px,
-              rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  box-shadow:
+    rgba(0, 0, 0, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
 .cel {
-    padding-left: 10px;
-    display: flex;
-    font-size: clamp(0.9em, 2vw, 1.2em);
-    justify-content: center;
-    align-items: center;
-    border-top: 2px solid var(--untouched);
-    color: var(--font);
+  padding-left: 10px;
+  display: flex;
+  font-size: clamp(0.9em, 2vw, 1.2em);
+  justify-content: center;
+  align-items: center;
+  border-top: 2px solid var(--untouched);
+  color: var(--font);
 }
-
 
 * {
-.error{
-  font-size: 0.9rem;
-  color: red;
-  font-weight: 600;
-}
+  .error {
+    font-size: 0.9rem;
+    color: red;
+    font-weight: 600;
+  }
 
-.errorCon {
-  position: relative;
-  top: -38.5px;
-  display: none; /* default: hidden */
-  width: 100%;
-  height: auto;
-  min-height: 30px;
-  border: 2px solid red;
-  border-radius: 30px;
-  justify-content: center;
-  justify-self: center;
-  align-items: center;
-  padding: 8px 12px;
-  margin-top: 1px;
-  background: rgba(255, 0, 0, 0.1);
-  color: red;
-  transition: all 0.3s ease;
-}
+  .errorCon {
+    position: relative;
+    display: none; /* default: hidden */
+    width: 100%;
+    height: auto;
+    min-height: 30px;
+    border: 2px solid red;
+    border-radius: 30px;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    padding: 8px 12px;
+    margin-top: 1px;
+    background: rgba(255, 0, 0, 0.1);
+    color: red;
+    transition: all 0.3s ease;
+  }
 
-/* Hanya tampil saat ada error (class 'has-error') */
-.errorCon.has-error {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  /* Hanya tampil saat ada error (class 'has-error') */
+  .errorCon.has-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-/* Jika tidak ada error, jangan ambil space */
-.errorCon:empty {
-  display: none !important;
-  height: 0 !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
+  /* Jika tidak ada error, jangan ambil space */
+  .errorCon:empty {
+    display: none !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
 
-/* responsive untuk berbagai ukuran layar */
-/* ====== HP KECIL (≤480px) ======  */
+  /* responsive untuk berbagai ukuran layar */
+  /* ====== HP KECIL (≤480px) ======  */
 
-.footer {
+  .footer {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -908,40 +914,40 @@ html, body {
     justify-content: center;
     align-items: center;
     border-top: 2px solid #f2f2f2;
-  
-    background-color: rgba(0,0,0,0.2);
+
+    background-color: rgba(0, 0, 0, 0.2);
     padding: 15px 16px;
     z-index: 3;
-}
+  }
 
-.footer {
-  background-color: var(--accentMain);
-  transition: all .3s ease-in-out;
-}
+  .footer {
+    background-color: var(--accentMain);
+    transition: all 0.3s ease-in-out;
+  }
 
-.footer p{
-  color: #f2f2f2;
-}
+  .footer p {
+    color: #f2f2f2;
+  }
 
-/* Pastikan label h2 nyaman diklik di kedua sisi */
-.login-toggle-Container .toggle-H h2 {
-  cursor: pointer;
-  width: 100%;
-  text-align: center;
-  padding: 2px 0;
-  position: relative;
-  z-index: 5;
-}
+  /* Pastikan label h2 nyaman diklik di kedua sisi */
+  .login-toggle-Container .toggle-H h2 {
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    padding: 2px 0;
+    position: relative;
+    z-index: 5;
+  }
 
-.sosmed {
+  .sosmed {
     display: flex;
-    gap: 20px;                  /* jarak antar icon lebih rapi */
+    gap: 20px; /* jarak antar icon lebih rapi */
     justify-content: center;
     align-items: center;
-}
+  }
 
-.copyright {
-    width: 100%;                /* penting: biar center sempurna */
+  .copyright {
+    width: 100%; /* penting: biar center sempurna */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -949,123 +955,110 @@ html, body {
 
     color: var(--bg);
     font-size: 14px;
-    margin-right: 0;            /* hapus yg bikin menceng */
-}
-
-.paralax-back {
-  background: var(--parIMG1);
-  animation: par1 120s linear infinite;
-  z-index: 4;
-}
- 
-.paralax1-back {
-  background: var(--parIMG2);
-  animation: par1 150s linear infinite;
-  z-index: 3;
-}
-
-.paralax2-back {
-  background: var(--parIMG3);
-  animation: par1 180s linear infinite;
-  z-index: 2;
-}
-
-@media screen and (min-width: 480px) {
-  .info {
-    transform: translateY(10px);
+    margin-right: 0; /* hapus yg bikin menceng */
   }
 
-  :root {
-    --height: 160px
-  }
-  .h3::after {
-    margin-top: -3.5%;
-
-  }
-  .errorCon {
-    top: -30px;
-    min-height: 40px;
-    transform: scale(1.2);
+  .paralax-back {
+    background: var(--parIMG1);
+    animation: par1 120s linear infinite;
+    z-index: 4;
   }
 
-  .dorm-icon {
-    height: 220px;
-    width: 205px;
-  }
-  .modeCon{
-    gap: 5px;
+  .paralax1-back {
+    background: var(--parIMG2);
+    animation: par1 150s linear infinite;
+    z-index: 3;
   }
 
-  .mode {
-    background-size: contain;
+  .paralax2-back {
+    background: var(--parIMG3);
+    animation: par1 180s linear infinite;
+    z-index: 2;
   }
-  .calender {
-    background-size: 35px;
+  /* TODO HILANGKAN SEMUA SCALE*/
+
+  @media screen and (min-width: 480px) {
+    .main {
+      transform: scale(1);
+    }
+
+    :root {
+      --height: 160px;
+    }
+    .h3::after {
+      margin-top: -3.5%;
+    }
+    .errorCon {
+      min-height: 40px;
+    }
+
+    .dorm-icon {
+      height: 220px;
+      width: 205px;
+    }
+    .modeCon {
+      gap: 5px;
+    }
+
+    .mode {
+      background-size: contain;
+    }
+    .calender {
+      background-size: 35px;
+    }
+
+    .clock {
+      background-size: 35px;
+    }
+
+    #greet {
+      top: 0px;
+    }
+
+    #hour::after {
+      margin-top: -35.5%;
+    }
+
+    .cong {
+      font-size: 1.8em;
+    }
+
+    .proto-login {
+    }
+
+    .site-header {
+      font-size: 1em;
+    }
+
+    .login-toggle-Container {
+    }
   }
 
-  .clock {
-    background-size: 35px;
+  /* --- Styles applied while on-screen keyboard is open (mobile devices) --- */
+  .keyboard-open .site-header {
+    position: absolute !important;
+    height: 56px !important;
+    transition: height 0.2s ease;
+  }
+  .keyboard-open .main {
+    padding-top: 70px !important;
+  }
+  /* .keyboard-open .con { transform: translateY(40px) !important; } */
+  .keyboard-open .proto {
+  }
+  /*.keyboard-open .dcon { transform: translateY(-40px) !important; }*/
+  .keyboard-open .login-toggle-Container {
+  }
+  .keyboard-open .footer {
+    display: none !important;
+  }
+  .keyboard-open .greeting {
   }
 
-  #greet {
-    top: 0px;
+  /* keep inputs readable when keyboard opens */
+  .keyboard-open .proto-login .username,
+  .keyboard-open .proto-login .password {
   }
-
-  #hour::after {
-    margin-top: -35.5%;
-    transform: translateX(-90px);
-  }
-  .con {
-    transform: translateY(30px);
-    width: 90%;
-    height: 50px;
-  }
-
-  .cong {
-    transform: translateY(-80px);
-    font-size: 1.8em;
-  }
-
-  .dcon {
-    width: 80%;
-    height: 50px;
-    transform: translateY(-50);
-  }
-
-  .proto {
-    transform: scale(1.2) translateY(-30px);
-  }
-
-  .site-header {
-    font-size: 1em;
-  }
-
-  .login-toggle-Container {
-    transform: scale(1.2);
-  }
-}
-
-/* --- Styles applied while on-screen keyboard is open (mobile devices) --- */
-.keyboard-open .site-header {
-  position: absolute !important;
-  height: 56px !important;
-  transition: height .2s ease;
-}
-.keyboard-open .main {
-  padding-top: 70px !important;
-}
-.keyboard-open .con { transform: translateY(40px) !important; }
-.keyboard-open .proto { transform: scale(.95) translateY(-10px) !important; }
-.keyboard-open .dcon { transform: translateY(-40px) !important; }
-.keyboard-open .login-toggle-Container { transform: scale(.95) translateY(-30px) !important; }
-.keyboard-open .footer { display: none !important; }
-.keyboard-open .greeting {transform: translateY(20);}
-
-/* keep inputs readable when keyboard opens */
-.keyboard-open .proto-login .username,
-.keyboard-open .proto-login .password {
-  transform: translateY(0) !important;
-}
 }
 
 /* ===== FIX PARALLAX ANIMATION ===== */
@@ -1098,6 +1091,10 @@ html, body {
 }
 
 @keyframes par1 {
-  0% { background-position: bottom left 0; }
-  100% { background-position: bottom left 1000px; }
+  0% {
+    background-position: bottom left 0;
+  }
+  100% {
+    background-position: bottom left 1000px;
+  }
 }

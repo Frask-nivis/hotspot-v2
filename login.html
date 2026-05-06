@@ -1,17 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="utf-8" />
-  <title>Abaheer net</title> 
-  <meta http-equiv="pragma" content="no-cache" />
-  <meta http-equiv="expires" content="-1" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" href="login.css" media="screen">
-  <link rel="icon" href="abaheer.png">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link href='https://cdn.boxicons.com/3.0.3/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
-  <script defer>
-    console.log(`   
+  <head>
+    <meta charset="utf-8" />
+    <title>Abaheer net</title>
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="login.css" media="screen" />
+    <link rel="icon" href="abaheer.png" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.boxicons.com/3.0.3/fonts/brands/boxicons-brands.min.css"
+      rel="stylesheet"
+    />
+    <script defer>
+      console.log(`   
                                 77                                     
                                7777                               
                               788887                              
@@ -66,122 +72,174 @@
                                7777                               
                                 77                           
 
-    `);      
-  </script>    
-  <script src="script/script.js" defer></script> 
-  <script src="script/theme.js" defer></script>
-  <script src="script/sunpath-debug.js" defer></script>
-</head> 
-<body class="login-page">                                                        
-  <header class="site-header">   
-      <div class="displayGrid"> 
+    `);
+    </script>
+    <script src="script/script.js" defer></script>
+    <script src="script/theme.js" defer></script>
+    <script src="script/sunpath-debug.js" defer></script>
+  </head>
+  <body class="login-page">
+    <header class="site-header">
+      <div class="displayGrid">
         <div class="LeftDis">
           <div class="wifi" id="wifi"></div>
           <p>AbaheerHotspot</p>
-
-        </div> 
+        </div>
 
         <div class="RightDis">
           <div id="date"></div>
-          <div class="calender"></div> 
-
-        </div>
-      </div> 
-  </header>
-  
-  <div class="sunCon">
-    <div class="sun"></div>
-    <div class="moon"></div>
-  </div>
-
-  <div class="cloudCon"></div>
-  <div class="starCon"></div>  
-      
-  <main class="main">
-    <form class="vertical-form" name="login" action="$(link-login-only)" method="post" $(if chap-id) onsubmit="return doLogin()" $(endif)>
-    <input type="hidden" name="dst" value="$(link-orig)"/>
-    <input type="hidden" name="popup" value="true"/>
-    <div class="con"></div>
-    <div class="cong">
-      <div id="greet"></div>
-      <div id="hour"></div>
-    </div>
-    <div class="proto proto-login" id="protoLogin">
-      <div class="dorm-icon"></div>
-      <div class="input-con">
-        <table>
-          <tr>
-            <td>
-              <input class="overlay username" autocomplete="on" name="username" type="hidden" value="$(username)" placeholder="username" aria-label="username" />
-            </td>
-          </tr>
-          <tr>
-            <td id="td1">
-              <input class="overlay password" autocomplete="off" name="password" type="hidden" placeholder="password" aria-label="password" />
-              <div id="eye"></div>         
-            </td>
-          </tr>
-          <tr> 
-            <td id="td2">
-              <input class="overlay submit" id="submit" name="submit" type="submit" value="LOGIN" />
-            </td>
-          </tr> 
-        </table>
-      </div>
-    </div>
-    <div class="dcon"> 
-    </div>
-
-    <div class="errorCon">
-      <p>$(if error)<span class="error">$(error)</span>$(endif)</p>
-    </div>
-
-    <div class="login-toggle-Container" id="login-toggle-Container"> 
-      <div class="toggle-H" id="toggle-H">
-        <h2 class="toggle-h2-3" id="toggle-h2-free" role="button" tabindex="0">Free</h2>
-        <h2 class="toggle-h2-1" id="toggle-h2" role="button" tabindex="0">Voucher</h2>
-        <h2 class="toggle-h2-2" id="toggle-h2-2" role="button" tabindex="0">Member</h2>
-      </div>
-      <div class="toggle-container"> 
-        <div class="login-toggle" id="login-toggle" tabindex="0" aria-label="Login mode toggle">
-          <h2 class="in-toggle-h2" id="in-toggle-h2">free</h2>
+          <div class="calender"></div>
         </div>
       </div>
+    </header>
+
+    <div class="sunCon">
+      <div class="sun"></div>
+      <div class="moon"></div>
     </div>
 
-    <div class="info" id="info">
-      <a href="info.html">infone maseh</a>
-    </div>   
-                 
+    <div class="cloudCon"></div>
+    <div class="starCon"></div>
 
+    <main class="main">
+      <form
+        class="vertical-form"
+        name="login"
+        action="$(link-login-only)"
+        method="post"
+        $(if
+        chap-id)
+        onsubmit="return doLogin();"
+        $(endif)
+      >
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="popup" value="true" />
+        <div class="cong">
+          <div id="greet"></div>
+          <div id="hour"></div>
+        </div>
+        <div class="proto">
+          <div class="con"></div>
+          <div class="dcon"></div>
 
-    </form>
-  </main>       
-  <div class="paralax-con">
-  <div class="paralax-back"></div>
-  <div class="paralax1-back"></div>
-  <div class="paralax2-back"></div>
-  </div>
-  <footer class="footer">                      
-    <div class="copyright" >
-    
-      <p style="font-weight: 700;">copyright &copy; - Abuhurairah Forever <span id="ver"></span></p> 
+          <div class="proto-login" id="protoLogin">
+            <div class="dorm-icon"></div>
+            <div class="input-con">
+              <table>
+                <tr>
+                  <td>
+                    <input
+                      class="overlay username"
+                      autocomplete="on"
+                      name="username"
+                      type="hidden"
+                      value="$(username)"
+                      placeholder="username"
+                      aria-label="username"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td id="td1">
+                    <input
+                      class="overlay password"
+                      autocomplete="off"
+                      name="password"
+                      type="hidden"
+                      placeholder="password"
+                      aria-label="password"
+                    />
+                    <div id="eye"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td id="td2">
+                    <input
+                      class="overlay submit"
+                      id="submit"
+                      name="submit"
+                      type="submit"
+                      value="LOGIN"
+                    />
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="menuCon">
+          <div class="errorCon">
+            <p>$(if error)<span class="error">$(error)</span>$(endif)</p>
+          </div>
+
+          <div class="login-toggle-Container" id="login-toggle-Container">
+            <div class="toggle-H" id="toggle-H">
+              <h2
+                class="toggle-h2-3"
+                id="toggle-h2-free"
+                role="button"
+                tabindex="0"
+              >
+                Free
+              </h2>
+              <h2 class="toggle-h2-1" id="toggle-h2" role="button" tabindex="0">
+                Voucher
+              </h2>
+              <h2
+                class="toggle-h2-2"
+                id="toggle-h2-2"
+                role="button"
+                tabindex="0"
+              >
+                Member
+              </h2>
+            </div>
+            <div class="toggle-container">
+              <div
+                class="login-toggle"
+                id="login-toggle"
+                tabindex="0"
+                aria-label="Login mode toggle"
+              >
+                <h2 class="in-toggle-h2" id="in-toggle-h2">free</h2>
+              </div>
+            </div>
+          </div>
+
+          <div class="info" id="info">
+            <a href="info.html">infone maseh</a>
+          </div>
+        </div>
+      </form>
+    </main>
+    <div class="paralax-con">
+      <div class="paralax-back"></div>
+      <div class="paralax1-back"></div>
+      <div class="paralax2-back"></div>
     </div>
-  </footer>    
+    <footer class="footer">
+      <div class="copyright">
+        <p style="font-weight: 700">
+          copyright &copy; - Abuhurairah Forever <span id="ver"></span>
+        </p>
+      </div>
+    </footer>
+
     <script>
+      // TODO adjust juga semua transform yang di ubah saat keyboard muncul (errorCon, info, currentMode) agar tetap terlihat dengan baik
       // Referensi elemen
       const loginCont = document.getElementById('login-toggle-Container');
       const toggleWrap = document.querySelector('.toggle-container');
       const toggle = document.getElementById('login-toggle');
       const toggleH = document.getElementById('toggle-H');
       const free = document.getElementById('toggle-h2-free');
-      const toggleH1 = document.getElementById('toggle-h2');     
+      const toggleH1 = document.getElementById('toggle-h2');
       const toggleH2 = document.getElementById('toggle-h2-2');
       const protoLogin = document.getElementById('protoLogin');
-      const inToggleH1 = document.getElementById('in-toggle-h2');  
-      const td1 = document.getElementById("td1");
-      const td2 = document.getElementById("td2");
-      const submit = document.getElementById("submit");
+      const inToggleH1 = document.getElementById('in-toggle-h2');
+      const td1 = document.getElementById('td1');
+      const td2 = document.getElementById('td2');
+      const submit = document.getElementById('submit');
       // Theme handled by script/theme.js
       // Helper to determine current time-of-day category
       function getCurrentTimeOfDay() {
@@ -197,186 +255,181 @@
 
       // Theme handled by script/theme.js – it will position sun/moon automatically
 
-
       const user = protoLogin.querySelector('input[name="username"]');
       const pass = protoLogin.querySelector('input[name="password"]');
-      history.replaceState({ page: 'login' }, "");
+      history.replaceState({ page: 'login' }, '');
 
-      const eye = document.getElementById("eye");
-      let ishide = false
+      const eye = document.getElementById('eye');
+      let ishide = false;
 
       window.addEventListener('popstate', () => {
-
-        if (document.activeElement === user || document.activeElement === pass) {
-
+        if (
+          document.activeElement === user ||
+          document.activeElement === pass
+        ) {
           document.activeElement.blur();
           enabled();
           isfocus = false;
 
           // tahan agar tidak keluar halaman
-          history.pushState({ hold: true }, "");
+          history.pushState({ hold: true }, '');
         }
       });
 
-      eye.addEventListener('mousedown', (e) => {
+      eye.addEventListener('mousedown', e => {
         e.preventDefault();
       });
       eye.addEventListener('click', () => {
-        eye.style.backgroundImage = ishide ? "url(img/eye.png)" : "url(img/eye-closed.png)";
-        pass.type = ishide ? "password" : "text";
-        ishide = !ishide
-        pass.focus()
-      })
-      user.addEventListener('click', () => { 
+        eye.style.backgroundImage = ishide
+          ? 'url(img/eye.png)'
+          : 'url(img/eye-closed.png)';
+        pass.type = ishide ? 'password' : 'text';
+        ishide = !ishide;
+        pass.focus();
+      });
+      user.addEventListener('click', () => {
         if (isvoucher) pass.value = user.value;
-      })  
+      });
 
       let isvoucher = true;
 
       // first login error handler
       function doLogin() {
         if (isvoucher) {
-          pass.value = user.value
+          pass.value = user.value;
         }
         return true;
-      };
+      }
 
-    
-    function fixLayoutForKeyboard() {
-    const isKeyboardOpen = window.innerHeight < screen.height * 0.75;
-  }
-  
-      const main = document.querySelector(".main");
-      const header = document.querySelector(".site-header");
-      const grid = document.querySelector(".displayGrid")
-      const footer = document.querySelector(".footer");
-      const con = document.querySelector(".con");
-      const proto = document.querySelector(".proto");
-      const dcon = document.querySelector(".dcon");
-      const tc = document.querySelector(".header-grid") || document.querySelector(".timeCon")
-      const errorCon = document.querySelector(".errorCon")
-          const root = document.documentElement;
-          const currMarB = getComputedStyle(root).getPropertyValue('--marginB');
-  
-          function disabled() {
-            header.style.position = "absolute"; 
-            header.style.height = "10px";    // jauh lebih rendah
-            grid.classList.add("disabled");
-            main.style.top = "0";
-            if (tc) tc.style.gap = "0px";
-            main.style.paddingTop = "100px";
-            footer.style.height = "10px"
-            con.style.top = "250px";
-            con.style.transform = 'scale(0.6)';
-            proto.style.transform = "scale(.85)"
-            dcon.style.transform = "translateY(-60px) scale(0.5)" 
-            loginCont.style.transform = "scale(0.9) translateY(-50px)"
-            currentMode.style.transform = "scale(.6)"
-            if (info) info.style.transform = "scale(.8) translateY(-60px)";
-              root.style.setProperty('--marginB', '0px');
-            root.style.setProperty('--height', '60px');   
-    
-            errorCon.style.top = "-49px" 
-            errorCon.style.transform = "scale(0.9)"
-    
-            if (window.innerWidth > 480) { 
-              greet.style.top = "70px"  
-            } else {  
-              greet.style.top = "10px" 
-              greet.style.fontSize = ".87em" 
-            }
-          }
-          function enabled() {
-              header.style.position = "fixed";
-              header.style.height = "var(--header-h)";
-              grid.classList.remove('disabled');
-              main.style.top = "-10%"; 
-              if (tc) tc.style.gap = "5px";  
-              main.style.paddingTop = "100px";
-              footer.style.height = "65px";
-              con.style.top = "90px";
-              con.style.transform = "translateY(65px) scale(0.7)";
-              proto.style.transform = "scale(1)";
-              dcon.style.transform = "translateY(-80px)"; 
-              loginCont.style.transform = "scale(1) translateY(-25px)";
-              currentMode.style.transform = "scale(1)"
-              errorCon.style.transform = "scale(1)"
-              errorCon.style.top = "-35px"
-              root.style.setProperty('--marginB', '65px')
-              root.style.setProperty('--height', currMarB)
-              info.style.transform = "scale(1) translateY(-20px)"
-              if (window.innerWidth > 480) {
-                greet.style.top = "70px";
-              } else {
-                greet.style.top = "-10px";   
-                greet.style.fontSize = "1em"
-              }
-              }
-              let isfocus = false
-              let isKeyboardOpen = false
-              if (window.innerWidth <= 480) {
-                user.addEventListener('focus', () => {
-                  isfocus = true
-                  isKeyboardOpen = true
-                  disabled()
-                  history.pushState({ isfocus: true }, "");
-                })
-                user.addEventListener('blur', (e) => {
-                  const related = e.relatedTarget;
-                  if (protoLogin.contains(related)) return;
-                  isKeyboardOpen = false
-                  isfocus = false
-                  enabled()
-                })
-                pass.addEventListener('focus', () => {
-                  isKeyboardOpen = true
-                  isfocus = true
-                  disabled()
-                  history.pushState({ isfocus: true }, "");
-                })
-                pass.addEventListener('blur', (e) => {
-                  const related = e.relatedTarget;
-                  if (protoLogin.contains(related)) return;
-                  isKeyboardOpen = false
-                  isfocus = false
-                  enabled()
-                })
-              }
-        let lastHeight = window.innerHeight;
+      function fixLayoutForKeyboard() {
+        const isKeyboardOpen = window.innerHeight < screen.height * 0.75;
+      }
 
-        window.addEventListener("resize", () => {
-          // keyboard tertutup
-          if (
-            window.innerHeight > lastHeight &&
-            (document.activeElement === user || document.activeElement === pass)
-          ) {
+      const main = document.querySelector('.main');
+      const header = document.querySelector('.site-header');
+      const grid = document.querySelector('.displayGrid');
+      const footer = document.querySelector('.footer');
+      const con = document.querySelector('.con');
+      const proto = document.querySelector('.proto');
+      const dcon = document.querySelector('.dcon');
+      const tc =
+        document.querySelector('.header-grid') ||
+        document.querySelector('.timeCon');
+      const errorCon = document.querySelector('.errorCon');
+      const info = document.getElementById('info');
+      const currentMode =
+        document.querySelector('.login-toggle-Container') ||
+        document.querySelector('.toggle-container');
+      const root = document.documentElement;
+      const currMarB = getComputedStyle(root).getPropertyValue('--marginB');
 
-            document.activeElement.blur();
-            enabled();
-            isfocus = false;
-          }
+      function disabled() {
+        header.style.position = 'absolute';
+        header.style.height = '10px'; // jauh lebih rendah
+        main.style.top = '0';
+        if (tc) tc.style.gap = '0px';
+        main.style.paddingTop = '100px';
+        footer.style.height = '10px';
+        main.style.transform = 'scale(0.65)';
+        if (currentMode) currentMode.style.transform = '';
+        root.style.setProperty('--marginB', '0px');
+        root.style.setProperty('--height', '60px');
 
-          lastHeight = window.innerHeight;
+        errorCon.style.top = '-49px';
+        errorCon.style.transform = '';
+
+        if (window.innerWidth > 480) {
+          if (greet) greet.style.top = '70px';
+        } else {
+          if (greet) greet.style.top = '10px';
+          if (greet) greet.style.fontSize = '.87em';
+        }
+      }
+      function enabled() {
+        header.style.position = 'fixed';
+        header.style.height = 'var(--header-h)';
+        main.style.top = '-10%';
+        if (tc) tc.style.gap = '5px';
+        main.style.paddingTop = '100px';
+        footer.style.height = '65px';
+        main.style.transform = 'scale(0.76)';
+        if (currentMode) currentMode.style.transform = '';
+        errorCon.style.transform = '';
+        errorCon.style.top = '-35px';
+        root.style.setProperty('--marginB', '65px');
+        root.style.setProperty('--height', currMarB);
+        if (info) info.style.transform = '';
+        if (window.innerWidth > 480) {
+          if (greet) greet.style.top = '70px';
+        } else {
+          if (greet) greet.style.top = '-10px';
+          if (greet) greet.style.fontSize = '1em';
+        }
+      }
+      let isfocus = false;
+      let isKeyboardOpen = false;
+      if (window.innerWidth <= 480) {
+        user.addEventListener('focus', () => {
+          isfocus = true;
+          isKeyboardOpen = true;
+          disabled();
+          history.pushState({ isfocus: true }, '');
         });
+        user.addEventListener('blur', e => {
+          const related = e.relatedTarget;
+          if (protoLogin.contains(related)) return;
+          isKeyboardOpen = false;
+          isfocus = false;
+          enabled();
+        });
+        pass.addEventListener('focus', () => {
+          isKeyboardOpen = true;
+          isfocus = true;
+          disabled();
+          history.pushState({ isfocus: true }, '');
+        });
+        pass.addEventListener('blur', e => {
+          const related = e.relatedTarget;
+          if (protoLogin.contains(related)) return;
+          isKeyboardOpen = false;
+          isfocus = false;
+          enabled();
+        });
+      }
+      let lastHeight = window.innerHeight;
+
+      window.addEventListener('resize', () => {
+        // keyboard tertutup
+        if (
+          window.innerHeight > lastHeight &&
+          (document.activeElement === user || document.activeElement === pass)
+        ) {
+          document.activeElement.blur();
+          enabled();
+          isfocus = false;
+        }
+
+        lastHeight = window.innerHeight;
+      });
 
       // Helper untuk set state visual
       function setFreeState() {
         inToggleH1.textContent = 'Free';
-        pass.classList.add("hidden-pass");
+        pass.classList.add('hidden-pass');
         //td1.classList.add("hidden-row");
-        td1.style.display = "none";
-          toggleH1.style.color = '#000000';
-          toggleH2.style.color = '#000000';
-          free.style.color = 'white';
-          toggleH1.style.zIndex = '5';
-          toggleWrap.style.zIndex = '4';
-          toggleH2.style.zIndex = '3';
-        user.type = "hidden";
-        pass.type = "hidden";
-        user.value = "abahirfree"; // Atur username default untuk mode free
-        pass.value = "abh102509";
-        submit.value = "CONNECT";
-        submit.style.fontSize = "1.45em";
+        td1.style.display = 'none';
+        toggleH1.style.color = '#000000';
+        toggleH2.style.color = '#000000';
+        free.style.color = 'white';
+        toggleH1.style.zIndex = '5';
+        toggleWrap.style.zIndex = '4';
+        toggleH2.style.zIndex = '3';
+        user.type = 'hidden';
+        pass.type = 'hidden';
+        user.value = 'abahirfree'; // Atur username default untuk mode free
+        pass.value = 'abh102509';
+        submit.value = 'CONNECT';
+        submit.style.fontSize = '1.45em';
         isvoucher = false;
         toggleWrap.className = 'toggle-container'; // Posisi 0 (paling kiri)
         localStorage.setItem('loginToggleState', 'free');
@@ -384,22 +437,22 @@
 
       function setVoucherState() {
         inToggleH1.textContent = 'Voucher';
-         toggleH2.style.color = '#000000';
-         toggleH1.style.color = 'white';
-         free.style.color = '#000000';
-         toggleH2.style.zIndex = '3';
-         toggleWrap.style.zIndex = '4';
-         toggleH1.style.zIndex = '5';
-        pass.classList.add("hidden-pass");
-        td1.classList.add("hidden-row");
-        td1.style.display = "none";
+        toggleH2.style.color = '#000000';
+        toggleH1.style.color = 'white';
+        free.style.color = '#000000';
+        toggleH2.style.zIndex = '3';
+        toggleWrap.style.zIndex = '4';
+        toggleH1.style.zIndex = '5';
+        pass.classList.add('hidden-pass');
+        td1.classList.add('hidden-row');
+        td1.style.display = 'none';
 
-        user.type = "text";
-        user.value = ""; // Atur username default untuk mode voucher
-        user.placeholder = "voucher"
-        pass.value = "";
-        submit.value = "LOGIN";
-        submit.style.fontSize = "1.6em";
+        user.type = 'text';
+        user.value = ''; // Atur username default untuk mode voucher
+        user.placeholder = 'voucher';
+        pass.value = '';
+        submit.value = 'LOGIN';
+        submit.style.fontSize = '1.6em';
         isvoucher = true;
         toggleWrap.className = 'toggle-container is-voucher'; // Posisi 0 (paling kiri)
         localStorage.setItem('loginToggleState', 'voucher');
@@ -407,28 +460,28 @@
 
       function setMemberState() {
         inToggleH1.textContent = 'Member';
-        pass.classList.remove("hidden-pass");
-        td1.classList.remove("hidden-row");
-        td1.style.display = "";
-          toggleH1.style.color = '#000000';
-          toggleH2.style.color = 'white';
-          free.style.color = '#000000';
-          toggleH2.style.zIndex = '5';
-          toggleWrap.style.zIndex = '4';
-          toggleH1.style.zIndex = '3';
-        user.type = "text";
-        pass.type = "password";
-        user.value = "";
-        user.placeholder = "member"; // Atur username default untuk mode member
-        pass.value = "";
-        submit.value = "LOGIN";
-        submit.style.fontSize = "1.6em";
+        pass.classList.remove('hidden-pass');
+        td1.classList.remove('hidden-row');
+        td1.style.display = '';
+        toggleH1.style.color = '#000000';
+        toggleH2.style.color = 'white';
+        free.style.color = '#000000';
+        toggleH2.style.zIndex = '5';
+        toggleWrap.style.zIndex = '4';
+        toggleH1.style.zIndex = '3';
+        user.type = 'text';
+        pass.type = 'password';
+        user.value = '';
+        user.placeholder = 'member'; // Atur username default untuk mode member
+        pass.value = '';
+        submit.value = 'LOGIN';
+        submit.style.fontSize = '1.6em';
         isvoucher = false;
         toggleWrap.className = 'toggle-container is-member'; // Posisi 0 (paling kiri)
         localStorage.setItem('loginToggleState', 'member');
       }
 
-      function setLeftState() {     
+      function setLeftState() {
         /*
           inToggleH1.style.color = 'white';
           toggleH2.style.color = '#000000';
@@ -449,10 +502,10 @@
             currtoggle = "left";
             localStorage.setItem('loginToggleState', currtoggle);
           */
-         setVoucherState();
+        setVoucherState();
       }
-      
-      function setRightState() { 
+
+      function setRightState() {
         /*
           toggleH1.style.color = '#000000';
           inToggleH1.style.color = 'white';
@@ -475,7 +528,6 @@
         setMemberState();
       }
 
-
       // Inisialisasi posisi awal kiri
       const savedState = localStorage.getItem('loginToggleState');
       console.log(savedState);
@@ -496,14 +548,14 @@
       let startFromToggle = false;
 
       function getTransformXPx() {
-        const t = getComputedStyle(toggleWrap).transform; 
+        const t = getComputedStyle(toggleWrap).transform;
         if (t === 'none') return 0;
         try {
           const m = new DOMMatrixReadOnly(t);
           return m.m41 || 0;
         } catch {
           return 0;
-        }  
+        }
       }
 
       function clamp(val, min, max) {
@@ -511,105 +563,104 @@
       }
 
       function onPointerDown(e) {
-          if (toggleH.contains(e.target)) return;
-          dragging = true;
-          didDrag = false;
-          suppressClick = false;
-          startFromToggle = !!e.target.closest('#login-toggle');
-          startX = e.clientX;
+        if (toggleH.contains(e.target)) return;
+        dragging = true;
+        didDrag = false;
+        suppressClick = false;
+        startFromToggle = !!e.target.closest('#login-toggle');
+        startX = e.clientX;
 
-          startTransformX = getTransformXPx();
-          toggleWrap.style.transition = 'none';
+        startTransformX = getTransformXPx();
+        toggleWrap.style.transition = 'none';
 
-          try { loginCont.setPointerCapture(e.pointerId); } catch {}
+        try {
+          loginCont.setPointerCapture(e.pointerId);
+        } catch {}
       }
 
       function onPointerMove(e) {
-          if (!dragging) return; 
+        if (!dragging) return;
 
-          const dx = e.clientX - startX;
-          if (Math.abs(dx) < dragThreshold) return;
-          didDrag = true;
+        const dx = e.clientX - startX;
+        if (Math.abs(dx) < dragThreshold) return;
+        didDrag = true;
 
-          const maxX = loginCont.clientWidth - toggleWrap.clientWidth - 10;
-          const nextX = clamp(startTransformX + dx, 0, maxX);
+        const maxX = loginCont.clientWidth - toggleWrap.clientWidth - 10;
+        const nextX = clamp(startTransformX + dx, 0, maxX);
 
-          toggleWrap.style.transform = `translateX(${nextX}px)`;
+        toggleWrap.style.transform = `translateX(${nextX}px)`;
       }
 
       function applyStateFromPosition(posX) {
-          const maxX = loginCont.clientWidth - toggleWrap.clientWidth;
-          const segment = maxX / 2;
+        const maxX = loginCont.clientWidth - toggleWrap.clientWidth;
+        const segment = maxX / 2;
 
-          toggleWrap.style.transition = '0.3s ease';
+        toggleWrap.style.transition = '0.3s ease';
 
-          if (posX < segment / 2) {
-              setFreeState();
-          } else if (posX >= segment / 2 && posX < (segment + maxX) / 2) {
-              setVoucherState();
-          } else {
-              setMemberState();
-          }
-          toggleWrap.style.transform = ''; 
+        if (posX < segment / 2) {
+          setFreeState();
+        } else if (posX >= segment / 2 && posX < (segment + maxX) / 2) {
+          setVoucherState();
+        } else {
+          setMemberState();
+        }
       }
 
-function onPointerUp(e) {
-    if (!dragging) return;
-    dragging = false;
+      function onPointerUp(e) {
+        if (!dragging) return;
+        dragging = false;
 
-    if (didDrag) {
-      
-        const currentX = getTransformXPx();
-        applyStateFromPosition(currentX);
-
-        suppressClick = true;
-        setTimeout(() => { suppressClick = false; }, 200);
-    }
-
-    else if (startFromToggle) {
-
-        // SUDAH Voucher → tetap Voucher
-        if (isvoucher) {
+        if (didDrag) {
+          applyStateFromPosition(0);
+          setTimeout(() => {
+            suppressClick = false;
+          }, 200);
+        } else if (startFromToggle) {
+          // SUDAH Voucher → tetap Voucher
+          if (isvoucher) {
             toggleWrap.classList.remove('is-right');
             setLeftState();
-        }
+          }
 
-        // SUDAH Member → tetap Member
-        else {
+          // SUDAH Member → tetap Member
+          else {
             toggleWrap.classList.add('is-right');
             setRightState();
+          }
+
+          suppressClick = true;
+          setTimeout(() => {
+            suppressClick = false;
+          }, 200);
         }
 
-        suppressClick = true;
-        setTimeout(() => { suppressClick = false; }, 200);
-    }
-
-    try { loginCont.releasePointerCapture(e.pointerId); } catch {}
-}
+        try {
+          loginCont.releasePointerCapture(e.pointerId);
+        } catch {}
+      }
       // Klik label untuk pindah kiri/kanan tanpa drag
-      toggleH1.addEventListener('click', (e) => {
-          if (suppressClick) return;
-          if (isvoucher) return; // SUDAH VOUCHER → jangan ubah apa pun
+      toggleH1.addEventListener('click', e => {
+        if (suppressClick) return;
+        if (isvoucher) return; // SUDAH VOUCHER → jangan ubah apa pun
 
-          toggleWrap.style.transition = '';
-          toggleWrap.classList.remove('is-right');
-          toggleWrap.style.transform = '';
-          setLeftState();
+        toggleWrap.style.transition = '';
+        toggleWrap.classList.remove('is-right');
+        setLeftState();
       });
 
-
-      toggleH2.addEventListener('click', (e) => {
-        if (suppressClick) { e.preventDefault(); return; }
+      toggleH2.addEventListener('click', e => {
+        if (suppressClick) {
+          e.preventDefault();
+          return;
+        }
         if (isvoucher) {
           toggleWrap.style.transition = '';
-          toggleWrap.style.transform = '';
           toggleWrap.classList.add('is-right');
           setRightState();
-        } else {  
-          return
-        };
+        } else {
+          return;
+        }
       });
-      
 
       //loginCont.addEventListener("pointerdown", onPointerDown);
       //loginCont.addEventListener("pointermove", onPointerMove);
@@ -626,14 +677,11 @@ function onPointerUp(e) {
         if (errorSpan && errorSpan.textContent.trim().length > 0) {
           // Ada error → tampilkan container
           errorCon.classList.add('has-error');
-          setTimeout(()=>{
-            errorCon.classList.remove('has-error') 
+          setTimeout(() => {
+            errorCon.classList.remove('has-error');
             errorCon.innerHTML = '';
             errorCon.innerHTML = `<p>$(if error)<span class="error">$(error)</span>$(endif)</p>`;
-          },
-          5000
-          );
-
+          }, 5000);
         } else {
           // Tidak ada error → sembunyikan container
           errorCon.classList.remove('has-error');
@@ -651,74 +699,168 @@ function onPointerUp(e) {
 
         // Daftar kemungkinan mapping: gunakan kombinasi exact, includes, regex
         const mappings = [
-          {type: 'exact', pattern: 'invalid username or password', replace: 'Username atau password salah'},
-          {type: 'includes', pattern: 'invalid username', replace: 'Username sahabat tidak valid.'},
-          {type: 'includes', pattern: 'invalid password', replace: 'Password sahabat tidak valid.'},
-          {type: 'includes', pattern: 'invalid user', replace: 'Username sahabat tidak ditemukan.'},
-          {type: 'includes', pattern: 'user disabled', replace: 'Akun sahabat dinonaktifkan. Hubungi administrator.'},
-          {type: 'includes', pattern: 'user suspended', replace: 'Akun sahabat ditangguhkan.'},
-          {type: 'includes', pattern: 'account expired', replace: 'Masa aktif akun sahabat telah habis.'},
-          {type: 'includes', pattern: 'session expired', replace: 'Sesi sahabat telah berakhir. Silakan login lagi.'},
-          {type: 'includes', pattern: 'session limit', replace: 'Kapasitas sesi telah tercapai.'},
-          {type: 'includes', pattern: 'too many sessions', replace: 'Terlalu banyak sesi aktif untuk akun ini.'},
-          {type: 'includes', pattern: 'no free sessions', replace: 'Tidak ada sesi gratis tersedia saat ini.'},
-          {type: 'includes', pattern: 'user already logged in', replace: 'Sahabat sudah login di perangkat lain.'},
-          {type: 'includes', pattern: 'mac', replace: 'Autentikasi perangkat gagal (MAC).'},
-          {type: 'includes', pattern: 'ip', replace: 'Alamat IP tidak diizinkan.'},
-          {type: 'includes', pattern: 'access denied', replace: 'Sahabat ditolak.'},
-          {type: 'includes', pattern: 'unable to authenticate', replace: 'Gagal mengautentikasi. Periksa kredensial.'},
-          {type: 'includes', pattern: 'voucher', replace: 'Voucher tidak valid atau sudah digunakan.'},
-          {type: 'includes', pattern: 'radius', replace: 'Terjadi kesalahan autentikasi (RADIUS). Coba lagi nanti.'},
-          {type: 'includes', pattern: 'server error', replace: 'Terjadi kesalahan server. Coba lagi nanti.'},
-          {type: 'includes', pattern: 'internal server error', replace: 'Terjadi kesalahan internal. Hubungi admin.'},
-          {type: 'includes', pattern: 'please accept', replace: 'Silakan setujui syarat dan ketentuan untuk melanjutkan.'},
-          {type: 'includes', pattern: 'login failed', replace: 'Login gagal. Periksa kembali username/password.'},
-          {type: 'regex', pattern: /expired/i, replace: 'Sudah kadaluarsa.'},
-        ]; 
+          {
+            type: 'exact',
+            pattern: 'invalid username or password',
+            replace: 'Username atau password salah',
+          },
+          {
+            type: 'includes',
+            pattern: 'invalid username',
+            replace: 'Username sahabat tidak valid.',
+          },
+          {
+            type: 'includes',
+            pattern: 'invalid password',
+            replace: 'Password sahabat tidak valid.',
+          },
+          {
+            type: 'includes',
+            pattern: 'invalid user',
+            replace: 'Username sahabat tidak ditemukan.',
+          },
+          {
+            type: 'includes',
+            pattern: 'user disabled',
+            replace: 'Akun sahabat dinonaktifkan. Hubungi administrator.',
+          },
+          {
+            type: 'includes',
+            pattern: 'user suspended',
+            replace: 'Akun sahabat ditangguhkan.',
+          },
+          {
+            type: 'includes',
+            pattern: 'account expired',
+            replace: 'Masa aktif akun sahabat telah habis.',
+          },
+          {
+            type: 'includes',
+            pattern: 'session expired',
+            replace: 'Sesi sahabat telah berakhir. Silakan login lagi.',
+          },
+          {
+            type: 'includes',
+            pattern: 'session limit',
+            replace: 'Kapasitas sesi telah tercapai.',
+          },
+          {
+            type: 'includes',
+            pattern: 'too many sessions',
+            replace: 'Terlalu banyak sesi aktif untuk akun ini.',
+          },
+          {
+            type: 'includes',
+            pattern: 'no free sessions',
+            replace: 'Tidak ada sesi gratis tersedia saat ini.',
+          },
+          {
+            type: 'includes',
+            pattern: 'user already logged in',
+            replace: 'Sahabat sudah login di perangkat lain.',
+          },
+          {
+            type: 'includes',
+            pattern: 'mac',
+            replace: 'Autentikasi perangkat gagal (MAC).',
+          },
+          {
+            type: 'includes',
+            pattern: 'ip',
+            replace: 'Alamat IP tidak diizinkan.',
+          },
+          {
+            type: 'includes',
+            pattern: 'access denied',
+            replace: 'Sahabat ditolak.',
+          },
+          {
+            type: 'includes',
+            pattern: 'unable to authenticate',
+            replace: 'Gagal mengautentikasi. Periksa kredensial.',
+          },
+          {
+            type: 'includes',
+            pattern: 'voucher',
+            replace: 'Voucher tidak valid atau sudah digunakan.',
+          },
+          {
+            type: 'includes',
+            pattern: 'radius',
+            replace: 'Terjadi kesalahan autentikasi (RADIUS). Coba lagi nanti.',
+          },
+          {
+            type: 'includes',
+            pattern: 'server error',
+            replace: 'Terjadi kesalahan server. Coba lagi nanti.',
+          },
+          {
+            type: 'includes',
+            pattern: 'internal server error',
+            replace: 'Terjadi kesalahan internal. Hubungi admin.',
+          },
+          {
+            type: 'includes',
+            pattern: 'please accept',
+            replace: 'Silakan setujui syarat dan ketentuan untuk melanjutkan.',
+          },
+          {
+            type: 'includes',
+            pattern: 'login failed',
+            replace: 'Login gagal. Periksa kembali username/password.',
+          },
+          { type: 'regex', pattern: /expired/i, replace: 'Sudah kadaluarsa.' },
+        ];
 
         for (const m of mappings) {
           if (m.type === 'exact' && key === m.pattern) {
-            errorSpan.textContent = m.replace; return;
+            errorSpan.textContent = m.replace;
+            return;
           }
-          if (m.type === 'includes' && key.includes(m.pattern)) { 
-            errorSpan.textContent = m.replace; return;
+          if (m.type === 'includes' && key.includes(m.pattern)) {
+            errorSpan.textContent = m.replace;
+            return;
           }
           if (m.type === 'regex' && m.pattern.test(raw)) {
-            errorSpan.textContent = m.replace; return;
+            errorSpan.textContent = m.replace;
+            return;
           }
-        }  
+        }
 
         // Fallback: tambahkan prefix agar jelas
-        errorSpan.textContent = 'Error: ' + raw; 
+        errorSpan.textContent = 'Error: ' + raw;
       }
 
       // Jalankan saat page load
       document.addEventListener('DOMContentLoaded', () => {
-          const savedState = localStorage.getItem('loginToggleState') || 'voucher'; // Default ke voucher
-          
-          // Matikan transisi sebentar agar tidak ada efek 'lompat' saat load
-          toggleWrap.style.transition = 'none';
-          
-          if (savedState === 'voucher') setVoucherState();
-          else if (savedState === 'member') setMemberState();
-          else setFreeState();
-          
-          // Hidupkan kembali transisi setelah jeda sangat singkat
-          setTimeout(() => {
-              toggleWrap.style.transition = '0.3s ease';
-          }, 50);
+        const savedState =
+          localStorage.getItem('loginToggleState') || 'voucher'; // Default ke voucher
 
-          handleErrorDisplay();
-          customizeErrorText(); 
+        // Matikan transisi sebentar agar tidak ada efek 'lompat' saat load
+        toggleWrap.style.transition = 'none';
+
+        if (savedState === 'voucher') setVoucherState();
+        else if (savedState === 'member') setMemberState();
+        else setFreeState();
+
+        // Hidupkan kembali transisi setelah jeda sangat singkat
+        setTimeout(() => {
+          toggleWrap.style.transition = '0.3s ease';
+        }, 50);
+
+        handleErrorDisplay();
+        customizeErrorText();
       });
-       
-      // Jalankan juga saat form di-submit (jika ada error dari server)
-      document.querySelector('.vertical-form').addEventListener('submit', () => {
-        setTimeout(() => { handleErrorDisplay(); customizeErrorText(); }, 120);
-      });  
-   
-    </script> 
 
-</body>  
+      // Jalankan juga saat form di-submit (jika ada error dari server)
+      document
+        .querySelector('.vertical-form')
+        .addEventListener('submit', () => {
+          setTimeout(() => {
+            handleErrorDisplay();
+            customizeErrorText();
+          }, 120);
+        });
+    </script>
+  </body>
 </html>
- 
