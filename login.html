@@ -523,7 +523,10 @@
 
         // Daftar kemungkinan mapping: gunakan kombinasi exact, includes, regex
         const mappings = [
-          {type: 'exact', pattern: 'invalid username or password', replace: savedState === 'free' ? 'mode sedang tidak aktif, coba yang lain' : 'Username atau password salah'},
+          {type: 'exact', pattern: 'invalid username or password', replace: ({
+            free: 'mode sedang tidak aktif, coba yang lain',
+            voucher: 'voucher anda salah silahkan koreksi'
+          })[savedState] || 'Username atau password salah.'},
           {type: 'includes', pattern: 'invalid username', replace: 'Username sahabat tidak valid.'},
           {type: 'includes', pattern: 'invalid password', replace: 'Password sahabat tidak valid.'},
           {type: 'includes', pattern: 'invalid user', replace: 'Username sahabat tidak ditemukan.'},
