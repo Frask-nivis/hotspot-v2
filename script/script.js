@@ -1,7 +1,7 @@
 const greet = document.getElementById("greet");
 const ver = document.getElementById("ver");
 
-let currVer = "v4"
+let currVer = "v4.5"
 
 ver.textContent = currVer;
 

@@ -4,6 +4,7 @@ let debugMode = localStorage.getItem('debugMode') === 'true';
   // Debug tool: show sun trajectory and allow manual hour selection.
   const PANEL_ID = 'sunpath-debug';
   if (document.getElementById(PANEL_ID)) return;
+  if (!debugMode) return;
 
   const sun = document.querySelector('.sun');
   if (!sun) return;
@@ -223,8 +224,10 @@ let debugMode = localStorage.getItem('debugMode') === 'true';
   let olheight = window.innerHeight
   let olwidth = window.innerWidth
 
-  deviceWidthEl.textContent = olwidth
-  deviceHeightEl.textContent = olheight
+  if (deviceWidthEl && deviceHeightEl) {
+    deviceWidthEl.textContent = olwidth
+    deviceHeightEl.textContent = olheight
+  }
 
   function updateSize() {
     const height = window.innerHeight
@@ -267,43 +270,45 @@ let debugMode = localStorage.getItem('debugMode') === 'true';
       applyCurrentHour();
     }
   }
+  if (hourSlider) {
 
-  hourSlider.addEventListener('input', (event) => {
-    const hour = Number(event.target.value);
-    lastHour = hour;
+    hourSlider.addEventListener('input', (event) => {
+      const hour = Number(event.target.value);
+      lastHour = hour;
+  
+      window.__debugHour = hour; // 🔥 inject ke theme
+  
+      hourLabel.textContent = String(hour).padStart(2, '0');
+  
+      if (typeof window.updateSunPositionByTime === 'function') {
+        window.updateSunPositionByTime();
+      }
+      if (typeof window.updateMoonPositionByTime === 'function') {
+        window.updateMoonPositionByTime();
+      }
+    });
+    centerXSlider.addEventListener('input', (event) => {
+      sunCenterX = Number(event.target.value);
+      centerXLabel.textContent = `${sunCenterX.toFixed(0)}%`;
+      document.documentElement.style.setProperty('--sun-center-x', sunCenterX + '%');
+      applyCurrentHour();
+    });
+  
+    centerYSlider.addEventListener('input', (event) => {
+      sunCenterY = Number(event.target.value);
+      centerYLabel.textContent = `${sunCenterY.toFixed(0)}%`;
+      document.documentElement.style.setProperty('--sun-center-y', sunCenterY + '%');
+      applyCurrentHour();
+    });
+  
+    radiusSlider.addEventListener('input', (event) => {
+      sunRadius = Number(event.target.value);
+      radiusLabel.textContent = `${sunRadius.toFixed(0)}%`;
+      document.documentElement.style.setProperty('--sun-radius', sunRadius + '%');
+      applyCurrentHour();
+    });
+  }
 
-    window.__debugHour = hour; // 🔥 inject ke theme
-
-    hourLabel.textContent = String(hour).padStart(2, '0');
-
-    if (typeof window.updateSunPositionByTime === 'function') {
-      window.updateSunPositionByTime();
-    }
-    if (typeof window.updateMoonPositionByTime === 'function') {
-      window.updateMoonPositionByTime();
-    }
-  });
-
-  centerXSlider.addEventListener('input', (event) => {
-    sunCenterX = Number(event.target.value);
-    centerXLabel.textContent = `${sunCenterX.toFixed(0)}%`;
-    document.documentElement.style.setProperty('--sun-center-x', sunCenterX + '%');
-    applyCurrentHour();
-  });
-
-  centerYSlider.addEventListener('input', (event) => {
-    sunCenterY = Number(event.target.value);
-    centerYLabel.textContent = `${sunCenterY.toFixed(0)}%`;
-    document.documentElement.style.setProperty('--sun-center-y', sunCenterY + '%');
-    applyCurrentHour();
-  });
-
-  radiusSlider.addEventListener('input', (event) => {
-    sunRadius = Number(event.target.value);
-    radiusLabel.textContent = `${sunRadius.toFixed(0)}%`;
-    document.documentElement.style.setProperty('--sun-radius', sunRadius + '%');
-    applyCurrentHour();
-  });
 
   liveBtn.addEventListener('click', () => {
     setLiveMode(!liveMode);

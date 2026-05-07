@@ -11,6 +11,7 @@
 
   --marginB: 65px; 
   --height: 100px;
+  --footer-h: 65px;
 
   --parIMG1: url(img/par1.png);
   --parIMG2: url(img/par2.png);
@@ -45,16 +46,14 @@
 
 
 html, body {
-  min-height: 100dvh;
-  min-height: 100vh;
-  position: relative;
-  background-color: var(--bg); /* lighter page background */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
-
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin: 0;
+    background-color: var(--bg);
+    position: relative;
 }
 
 @keyframes moveCloud {
@@ -181,7 +180,7 @@ html, body {
   }
 }
 
-.proto {
+.proto-login {
   position: relative;
   z-index: 6;
 }
@@ -210,6 +209,11 @@ html, body {
   color: #666;
 }
 
+.menuCon {
+    place-items: center;
+    display: grid;
+    gap: 5px;
+}
 
 .login-toggle-Container {
   touch-action: none;
@@ -227,7 +231,6 @@ html, body {
   color: aliceblue;
   border: 2px solid #131113;
   user-select: none; /* cegah seleksi teks saat drag */
-  transform: translateY(-35px);
 }
 
 .login-toggle-Container .toggle-H {
@@ -250,18 +253,15 @@ html, body {
   height: calc(100% - 10px);
   width: calc(33% - 10px);
   pointer-events: none;
-}
-.toggle-container {
-  transform: translateX(0);
-  transition: transform 0.3s ease;
+  transition: left 0.3s ease;
 }
 
 .toggle-container.is-voucher {
-  transform: translateX(calc(100% + 10px));
+  left: calc(33.333% + 5px);
 }
 
 .toggle-container.is-member {
-  transform: translateX(calc(200% + 22px));
+  left: calc(66.666% + 5px);
 }
 
 .ver {
@@ -533,7 +533,7 @@ html, body {
   color: #f2f2f2;
   font-family: monospace;
   font-size: .7em;
-  padding: 10px 10px;
+  padding: 15px 10px;
   position: fixed;
   top: 0;
   left: 0;
@@ -556,6 +556,10 @@ html, body {
   gap: var(--gap);
   place-items: center start;
 }
+.LeftDis a {
+  color: #f2f2f2;
+  text-decoration: none;
+}
 
 .RightDis{
   display: grid;
@@ -575,7 +579,7 @@ html, body {
 
 /* Main area: central container, punya padding top sesuai header */
 /* dasar layout (anggap header tetap seperti sebelumnya) */
-.main { position: relative; top: -0%; padding: 100px 16px 40px; transform: scale(.76); z-index: 2;}
+.main { position: relative; top: -0%; padding: 40px 16px 40px; transform: scale(.76);z-index: 2;}
 /* Konteiner gambar + overlay */
 
 
@@ -589,6 +593,7 @@ html, body {
 }
 
 .cong{
+  margin-bottom: 4%;
   color: #f2f2f2;
   align-items: center;
   display: flex;
@@ -603,16 +608,21 @@ html, body {
 
 .con {
   display: flex;
-  justify-self: center;
+  align-self: start;
   position: absolute;
-  top: 90px;
-  width: 65%;
+  width: 80%;
   height: 50px;
   background-color: blue;
-  transform: translateY(65px);
 }
 
 .proto {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 4%;
+}
+
+.proto-login {
   position: relative;
   display: flex;
   justify-content: flex-end;
@@ -646,11 +656,14 @@ html, body {
 
 .dcon {
   display: flex;
-  justify-self: center;
-  width: 75%;
+  align-self: end;
+  width: 80%;
   height: 40px;
   background-color: white;
-  transform: translateY(-80px);
+}
+
+.con, .dcon {
+  position: absolute !important;
 }
 
 .input-con {
@@ -732,7 +745,6 @@ html, body {
 }
 
 .submit:hover {
-  transform: scale(1.1);
   background-color: rgba(0, 0, 0, 0.5);
   color: #f2f2f2;
 }
@@ -741,16 +753,25 @@ html, body {
 .proto-login .overlay { box-shadow: 0 1px 0 rgba(0,0,0,0.08); }
 
 .mainCon {
-  transform: scale(0.8) translateY(62px);
-  display: grid;
-  grid-template-columns: 1fr;
-  place-items: center;
+  min-height: 100dvh;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  padding-top: var(--header-h);
+  padding-bottom: var(--footer-h);
+
+  position: relative;
+  z-index: 2;
 }
 
 .infoContainer {
   width: clamp(200px, 80vw, 450px);
-  height: 550px;
   display: grid;
+  margin-bottom: 20%;
   grid-template-columns: 1fr;
   grid-template-rows: 0px; 
 }
@@ -766,7 +787,6 @@ html, body {
   border-radius: 10px;
   color: #131113;
   border: 2px solid #131113;
-  transform: translateY(-20px);
   background: var(--blurGlass);
 }
 
@@ -781,7 +801,6 @@ html, body {
   justify-content: space-between;
   align-items: center;
   grid-template-columns: auto auto auto;
-  transform: translateY(7px);
   padding: 0 clamp(5px, 2vw, 30px);
   width: 100%;
   height: 60px;
@@ -851,9 +870,7 @@ html, body {
     color: var(--font);
 }
 
-
-* {
-.error{
+.error {
   font-size: 0.9rem;
   color: red;
   font-weight: 600;
@@ -861,7 +878,6 @@ html, body {
 
 .errorCon {
   position: relative;
-  top: -38.5px;
   display: none; /* default: hidden */
   width: 100%;
   height: auto;
@@ -872,7 +888,6 @@ html, body {
   justify-self: center;
   align-items: center;
   padding: 8px 12px;
-  margin-top: 1px;
   background: rgba(255, 0, 0, 0.1);
   color: red;
   transition: all 0.3s ease;
@@ -971,8 +986,10 @@ html, body {
 }
 
 @media screen and (min-width: 480px) {
+  .main {
+    transform: scale(1);
+  }
   .info {
-    transform: translateY(10px);
   }
 
   :root {
@@ -983,9 +1000,7 @@ html, body {
 
   }
   .errorCon {
-    top: -30px;
     min-height: 40px;
-    transform: scale(1.2);
   }
 
   .dorm-icon {
@@ -1013,27 +1028,22 @@ html, body {
 
   #hour::after {
     margin-top: -35.5%;
-    transform: translateX(-90px);
   }
   .con {
-    transform: translateY(30px);
-    width: 90%;
+    width: 80%;
     height: 50px;
   }
 
   .cong {
-    transform: translateY(-80px);
     font-size: 1.8em;
   }
 
   .dcon {
     width: 80%;
     height: 50px;
-    transform: translateY(-50);
   }
 
-  .proto {
-    transform: scale(1.2) translateY(-30px);
+  .proto-login {
   }
 
   .site-header {
@@ -1041,7 +1051,6 @@ html, body {
   }
 
   .login-toggle-Container {
-    transform: scale(1.2);
   }
 }
 
@@ -1054,17 +1063,11 @@ html, body {
 .keyboard-open .main {
   padding-top: 70px !important;
 }
-.keyboard-open .con { transform: translateY(40px) !important; }
-.keyboard-open .proto { transform: scale(.95) translateY(-10px) !important; }
-.keyboard-open .dcon { transform: translateY(-40px) !important; }
-.keyboard-open .login-toggle-Container { transform: scale(.95) translateY(-30px) !important; }
 .keyboard-open .footer { display: none !important; }
-.keyboard-open .greeting {transform: translateY(20);}
 
 /* keep inputs readable when keyboard opens */
 .keyboard-open .proto-login .username,
 .keyboard-open .proto-login .password {
-  transform: translateY(0) !important;
 }
 }
 

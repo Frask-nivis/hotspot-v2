@@ -101,57 +101,62 @@
     <form class="vertical-form" name="login" action="$(link-login-only)" method="post" $(if chap-id) onsubmit="return doLogin()" $(endif)>
     <input type="hidden" name="dst" value="$(link-orig)"/>
     <input type="hidden" name="popup" value="true"/>
-    <div class="con"></div>
     <div class="cong">
       <div id="greet"></div>
       <div id="hour"></div>
     </div>
-    <div class="proto proto-login" id="protoLogin">
-      <div class="dorm-icon"></div>
-      <div class="input-con">
-        <table>
-          <tr>
-            <td>
-              <input class="overlay username" autocomplete="on" name="username" type="hidden" value="$(username)" placeholder="username" aria-label="username" />
-            </td>
-          </tr>
-          <tr>
-            <td id="td1">
-              <input class="overlay password" autocomplete="off" name="password" type="hidden" placeholder="password" aria-label="password" />
-              <div id="eye"></div>         
-            </td>
-          </tr>
-          <tr> 
-            <td id="td2">
-              <input class="overlay submit" id="submit" name="submit" type="submit" value="LOGIN" />
-            </td>
-          </tr> 
-        </table>
-      </div>
-    </div>
-    <div class="dcon"> 
-    </div>
-
-    <div class="errorCon">
-      <p>$(if error)<span class="error">$(error)</span>$(endif)</p>
-    </div>
-
-    <div class="login-toggle-Container" id="login-toggle-Container"> 
-      <div class="toggle-H" id="toggle-H">
-        <h2 class="toggle-h2-3" id="toggle-h2-free" role="button" tabindex="0">Free</h2>
-        <h2 class="toggle-h2-1" id="toggle-h2" role="button" tabindex="0">Voucher</h2>
-        <h2 class="toggle-h2-2" id="toggle-h2-2" role="button" tabindex="0">Member</h2>
-      </div>
-      <div class="toggle-container"> 
-        <div class="login-toggle" id="login-toggle" tabindex="0" aria-label="Login mode toggle">
-          <h2 class="in-toggle-h2" id="in-toggle-h2">free</h2>
+    <div class="proto">
+      <div class="con"></div>
+      <div class="dcon"></div>
+      
+      <div class="proto-login" id="protoLogin">
+        <div class="dorm-icon"></div>
+        <div class="input-con">
+          <table>
+            <tr>
+              <td>
+                <input class="overlay username" autocomplete="on" name="username" type="hidden" value="$(username)" placeholder="username" aria-label="username" />
+              </td>
+            </tr>
+            <tr>
+              <td id="td1">
+                <input class="overlay password" autocomplete="off" name="password" type="hidden" placeholder="password" aria-label="password" />
+                <div id="eye"></div>         
+              </td>
+            </tr>
+            <tr> 
+              <td id="td2">
+                <input class="overlay submit" id="submit" name="submit" type="submit" value="LOGIN" />
+              </td>
+            </tr> 
+          </table>
         </div>
       </div>
     </div>
 
-    <div class="info" id="info">
-      <a href="info.html">infone maseh</a>
-    </div>   
+    <div class="menuCon">
+      <div class="errorCon">
+        <p>$(if error)<span class="error">$(error)</span>$(endif)</p>
+      </div>
+  
+      <div class="login-toggle-Container" id="login-toggle-Container"> 
+        <div class="toggle-H" id="toggle-H">
+          <h2 class="toggle-h2-3" id="toggle-h2-free" role="button" tabindex="0">Free</h2>
+          <h2 class="toggle-h2-1" id="toggle-h2" role="button" tabindex="0">Voucher</h2>
+          <h2 class="toggle-h2-2" id="toggle-h2-2" role="button" tabindex="0">Member</h2>
+        </div>
+        <div class="toggle-container"> 
+          <div class="login-toggle" id="login-toggle" tabindex="0" aria-label="Login mode toggle">
+            <h2 class="in-toggle-h2" id="in-toggle-h2">free</h2>
+          </div>
+        </div>
+      </div>
+  
+      <div class="info" id="info">
+        <a href="info.html">infone maseh</a>
+      </div>   
+    </div>
+
                  
 
 
@@ -250,7 +255,6 @@
       const header = document.querySelector(".site-header");
       const grid = document.querySelector(".displayGrid")
       const footer = document.querySelector(".footer");
-      const con = document.querySelector(".con");
       const proto = document.querySelector(".proto");
       const dcon = document.querySelector(".dcon");
       const tc = document.querySelector(".header-grid") || document.querySelector(".timeCon")
@@ -261,56 +265,27 @@
           function disabled() {
             header.style.position = "absolute"; 
             header.style.height = "10px";    // jauh lebih rendah
-            grid.classList.add("disabled");
             main.style.top = "0";
             if (tc) tc.style.gap = "0px";
             main.style.paddingTop = "100px";
             footer.style.height = "10px"
-            con.style.top = "250px";
-            con.style.transform = 'scale(0.6)';
-            proto.style.transform = "scale(.85)"
-            dcon.style.transform = "translateY(-60px) scale(0.5)" 
-            loginCont.style.transform = "scale(0.9) translateY(-50px)"
-            currentMode.style.transform = "scale(.6)"
-            if (info) info.style.transform = "scale(.8) translateY(-60px)";
-              root.style.setProperty('--marginB', '0px');
+            main.style.transform = "scale(.65)";
+            root.style.setProperty('--marginB', '0px');
             root.style.setProperty('--height', '60px');   
     
             errorCon.style.top = "-49px" 
-            errorCon.style.transform = "scale(0.9)"
-    
-            if (window.innerWidth > 480) { 
-              greet.style.top = "70px"  
-            } else {  
-              greet.style.top = "10px" 
-              greet.style.fontSize = ".87em" 
-            }
           }
           function enabled() {
               header.style.position = "fixed";
               header.style.height = "var(--header-h)";
-              grid.classList.remove('disabled');
               main.style.top = "-10%"; 
               if (tc) tc.style.gap = "5px";  
               main.style.paddingTop = "100px";
               footer.style.height = "65px";
-              con.style.top = "90px";
-              con.style.transform = "translateY(65px) scale(0.7)";
-              proto.style.transform = "scale(1)";
-              dcon.style.transform = "translateY(-80px)"; 
-              loginCont.style.transform = "scale(1) translateY(-25px)";
-              currentMode.style.transform = "scale(1)"
-              errorCon.style.transform = "scale(1)"
+              main.style.transform = "scale(.75)";
               errorCon.style.top = "-35px"
               root.style.setProperty('--marginB', '65px')
               root.style.setProperty('--height', currMarB)
-              info.style.transform = "scale(1) translateY(-20px)"
-              if (window.innerWidth > 480) {
-                greet.style.top = "70px";
-              } else {
-                greet.style.top = "-10px";   
-                greet.style.fontSize = "1em"
-              }
               }
               let isfocus = false
               let isKeyboardOpen = false
@@ -342,7 +317,6 @@
                   enabled()
                 })
               }
-        let lastHeight = window.innerHeight;
 
         window.addEventListener("resize", () => {
           // keyboard tertutup
@@ -487,113 +461,15 @@
         setMemberState();
       }
 
-      let dragging = false;
-      let startX = 0;
-      let startTransformX = 0;
-      let didDrag = false;
-      const dragThreshold = 8;
+      let lastHeight = window.innerHeight;
       let suppressClick = false;
-      let startFromToggle = false;
 
-      function getTransformXPx() {
-        const t = getComputedStyle(toggleWrap).transform; 
-        if (t === 'none') return 0;
-        try {
-          const m = new DOMMatrixReadOnly(t);
-          return m.m41 || 0;
-        } catch {
-          return 0;
-        }  
-      }
-
-      function clamp(val, min, max) {
-        return Math.max(min, Math.min(max, val));
-      }
-
-      function onPointerDown(e) {
-          if (toggleH.contains(e.target)) return;
-          dragging = true;
-          didDrag = false;
-          suppressClick = false;
-          startFromToggle = !!e.target.closest('#login-toggle');
-          startX = e.clientX;
-
-          startTransformX = getTransformXPx();
-          toggleWrap.style.transition = 'none';
-
-          try { loginCont.setPointerCapture(e.pointerId); } catch {}
-      }
-
-      function onPointerMove(e) {
-          if (!dragging) return; 
-
-          const dx = e.clientX - startX;
-          if (Math.abs(dx) < dragThreshold) return;
-          didDrag = true;
-
-          const maxX = loginCont.clientWidth - toggleWrap.clientWidth - 10;
-          const nextX = clamp(startTransformX + dx, 0, maxX);
-
-          toggleWrap.style.transform = `translateX(${nextX}px)`;
-      }
-
-      function applyStateFromPosition(posX) {
-          const maxX = loginCont.clientWidth - toggleWrap.clientWidth;
-          const segment = maxX / 2;
-
-          toggleWrap.style.transition = '0.3s ease';
-
-          if (posX < segment / 2) {
-              setFreeState();
-          } else if (posX >= segment / 2 && posX < (segment + maxX) / 2) {
-              setVoucherState();
-          } else {
-              setMemberState();
-          }
-          toggleWrap.style.transform = ''; 
-      }
-
-function onPointerUp(e) {
-    if (!dragging) return;
-    dragging = false;
-
-    if (didDrag) {
-      
-        const currentX = getTransformXPx();
-        applyStateFromPosition(currentX);
-
-        suppressClick = true;
-        setTimeout(() => { suppressClick = false; }, 200);
-    }
-
-    else if (startFromToggle) {
-
-        // SUDAH Voucher → tetap Voucher
-        if (isvoucher) {
-            toggleWrap.classList.remove('is-right');
-            setLeftState();
-        }
-
-        // SUDAH Member → tetap Member
-        else {
-            toggleWrap.classList.add('is-right');
-            setRightState();
-        }
-
-        suppressClick = true;
-        setTimeout(() => { suppressClick = false; }, 200);
-    }
-
-    try { loginCont.releasePointerCapture(e.pointerId); } catch {}
-}
       // Klik label untuk pindah kiri/kanan tanpa drag
       toggleH1.addEventListener('click', (e) => {
           if (suppressClick) return;
           if (isvoucher) return; // SUDAH VOUCHER → jangan ubah apa pun
 
-          toggleWrap.style.transition = '';
           toggleWrap.classList.remove('is-right');
-          toggleWrap.style.transform = '';
           setLeftState();
       });
 
@@ -601,12 +477,10 @@ function onPointerUp(e) {
       toggleH2.addEventListener('click', (e) => {
         if (suppressClick) { e.preventDefault(); return; }
         if (isvoucher) {
-          toggleWrap.style.transition = '';
-          toggleWrap.style.transform = '';
           toggleWrap.classList.add('is-right');
           setRightState();
-        } else {  
-          return
+        } else {
+          return;
         };
       });
       
