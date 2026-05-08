@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light;
   --bg: #f2f2f2;
   --font: #13111f;
   --accentMain: #1065c0;
@@ -742,6 +743,29 @@ html, body {
   font-weight: 700;
   cursor: pointer;
   transition: all .3s ease-out;
+}
+
+input,
+button,
+.submit,
+.username,
+.password {
+  appearance: none;
+  -webkit-appearance: none;
+
+  background: white !important;
+  color: black !important;
+
+  -webkit-text-fill-color: black !important;
+
+  opacity: 1 !important;
+}
+
+.wifi,
+.calender,
+.clock {
+  filter: none !important;
+  opacity: 1 !important;
 }
 
 .submit:hover {
