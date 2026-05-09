@@ -6,7 +6,44 @@
   <meta http-equiv="pragma" content="no-cache" />
   <meta http-equiv="expires" content="-1" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="supported-color-schemes" content="light" />
+  <meta name="theme-color" content="#f2f2f2">
   <link rel="stylesheet" href="login.css" media="screen">
+  <style>
+    /* Prevent autofill styling on mobile browsers */
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px white inset !important;
+      -webkit-text-fill-color: black !important;
+      color: black !important;
+      background-color: white !important;
+    }
+    
+    /* Ensure form fields maintain their color */
+    input[type="text"],
+    input[type="password"],
+    input[type="submit"],
+    .username,
+    .password,
+    .submit {
+      color: black !important;
+      background-color: white !important;
+      -webkit-text-fill-color: black !important;
+      appearance: none !important;
+      -webkit-appearance: none !important;
+    }
+    
+    /* Protect wifi and calendar icons */
+    .wifi,
+    .calender {
+      filter: none !important;
+      opacity: 1 !important;
+      -webkit-filter: none !important;
+    }
+  </style>
   <link rel="icon" href="abaheer.png">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link href='https://cdn.boxicons.com/3.0.3/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
@@ -78,13 +115,11 @@
         <div class="LeftDis">
           <div class="wifi" id="wifi"></div>
           <p>AbaheerHotspot</p>
-
         </div> 
 
         <div class="RightDis">
           <div id="date"></div>
           <div class="calender"></div> 
-
         </div>
       </div> 
   </header>

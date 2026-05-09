@@ -686,13 +686,16 @@ html, body {
 }
 
 .proto-login .username{
-  width: 135px;
-  height: 35px;
-  background-color: rgba(255,255,255,0.98);
-  border: 2px solid var(--reverseAccent);
-  border-radius: 10px;
-  margin-bottom: 10px;
-  transition: all .3s ease-in-out;
+  width: 135px !important;
+  height: 35px !important;
+  background-color: rgba(255,255,255,0.98) !important;
+  background: rgba(255,255,255,0.98) !important;
+  border: 2px solid var(--reverseAccent) !important;
+  border-radius: 10px !important;
+  margin-bottom: 10px !important;
+  transition: all .3s ease-in-out !important;
+  color: black !important;
+  -webkit-text-fill-color: black !important;
 }
 
 .hidden-pass {
@@ -725,24 +728,30 @@ html, body {
 }
 
 .proto-login .password{
-  width: 135px;
-  height: 35px;
-  background-color: rgba(255,255,255,0.98);
-  border: 2px solid var(--reverseAccent);
-  border-radius: 10px;
-  margin-bottom: 10px;
+  width: 135px !important;
+  height: 35px !important;
+  background-color: rgba(255,255,255,0.98) !important;
+  background: rgba(255,255,255,0.98) !important;
+  border: 2px solid var(--reverseAccent) !important;
+  border-radius: 10px !important;
+  margin-bottom: 10px !important;
+  color: black !important;
+  -webkit-text-fill-color: black !important;
 }
 
 .proto-login .submit{
-  width: 135px;
-  height: 55px;
-  border-radius: 10PX;
-  background-color: rgba(255,255,255,0.98);
-  border: 2px solid var(--reverseAccent);
-  font-size: 1.6em;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all .3s ease-out;
+  width: 135px !important;
+  height: 55px !important;
+  border-radius: 10px !important;
+  background-color: rgba(255,255,255,0.98) !important;
+  background: rgba(255,255,255,0.98) !important;
+  border: 2px solid var(--reverseAccent) !important;
+  font-size: 1.6em !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all .3s ease-out !important;
+  color: black !important;
+  -webkit-text-fill-color: black !important;
 }
 
 input,
@@ -750,15 +759,39 @@ button,
 .submit,
 .username,
 .password {
-  appearance: none;
-  -webkit-appearance: none;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
 
   background: white !important;
+  background-color: white !important;
   color: black !important;
 
   -webkit-text-fill-color: black !important;
-
+  -webkit-autofill: none !important;
+  -webkit-autofill-text: black !important;
+  
   opacity: 1 !important;
+  box-shadow: 0 0 0 1000px white inset !important;
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+}
+
+/* Prevent autofill styling */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+.username:-webkit-autofill,
+.username:-webkit-autofill:hover,
+.username:-webkit-autofill:focus,
+.password:-webkit-autofill,
+.password:-webkit-autofill:hover,
+.password:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  -webkit-text-fill-color: black !important;
+  color: black !important;
+  background-color: white !important;
+  caret-color: black !important;
 }
 
 .wifi,
@@ -766,6 +799,10 @@ button,
 .clock {
   filter: none !important;
   opacity: 1 !important;
+  -webkit-filter: none !important;
+  -moz-filter: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
 }
 
 .submit:hover {
@@ -1009,11 +1046,68 @@ button,
   z-index: 2;
 }
 
+/* ===== ANTI-BYPASS STYLING FOR MOBILE BROWSERS ===== */
+
+/* Override autofill text color and background for username/password fields */
+input[type="text"]:-webkit-autofill,
+input[type="password"]:-webkit-autofill,
+.username:-webkit-autofill,
+.password:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: black !important;
+  color: black !important;
+  background-color: white !important;
+  transition: -webkit-autofill-background-color 5000s ease-in-out 0s !important;
+}
+
+/* Ensure inputs don't get colored by system */
+input[type="text"],
+input[type="password"],
+input[type="submit"],
+textarea,
+select {
+  background-color: white !important;
+  color: black !important;
+  -webkit-text-fill-color: black !important;
+  background: white !important;
+  border-color: var(--reverseAccent) !important;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Extra protection for Chrome mobile autofill */
+input:-webkit-autofill {
+  -webkit-box-shadow: inset 0 0 0 0 white !important;
+  -webkit-text-fill-color: black !important;
+}
+
+/* Caret color for better UX */
+input[type="text"],
+input[type="password"],
+textarea {
+  caret-color: black !important;
+}
+
+/* Mobile Safari specific fixes */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Prevent system colors from affecting the form elements */
+::selection {
+  background-color: var(--accentMain) !important;
+  color: white !important;
+}
+
+::-moz-selection {
+  background-color: var(--accentMain) !important;
+  color: white !important;
+}
+
 @media screen and (min-width: 480px) {
   .main {
     transform: scale(1);
-  }
-  .info {
   }
 
   :root {
@@ -1067,15 +1161,10 @@ button,
     height: 50px;
   }
 
-  .proto-login {
-  }
-
   .site-header {
     font-size: 1em;
   }
 
-  .login-toggle-Container {
-  }
 }
 
 /* --- Styles applied while on-screen keyboard is open (mobile devices) --- */
@@ -1089,11 +1178,6 @@ button,
 }
 .keyboard-open .footer { display: none !important; }
 
-/* keep inputs readable when keyboard opens */
-.keyboard-open .proto-login .username,
-.keyboard-open .proto-login .password {
-}
-}
 
 /* ===== FIX PARALLAX ANIMATION ===== */
 /* Pastikan parallax container tidak terpotong */

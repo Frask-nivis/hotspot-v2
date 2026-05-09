@@ -154,6 +154,48 @@ let isBright = localStorage.getItem('themeMode') === 'localtime' ? (new Date().g
         clouds.push(cloud)
       }
 
+// ===== ANTI-BYPASS COLOR ENFORCEMENT =====
+// Ensure form elements maintain their colors across all browsers
+function enforceFormColors() {
+  const formElements = document.querySelectorAll('.username, .password, .submit, input[type="text"], input[type="password"], input[type="submit"]');
+  
+  formElements.forEach(el => {
+    el.style.setProperty('color', 'black', 'important');
+    el.style.setProperty('background-color', 'white', 'important');
+    el.style.setProperty('-webkit-text-fill-color', 'black', 'important');
+    el.style.setProperty('caret-color', 'black', 'important');
+    el.style.setProperty('border-color', 'var(--reverseAccent)', 'important');
+    el.style.setProperty('background', 'white', 'important');
+  });
+  
+  // Protect wifi and calendar icons
+  const icons = document.querySelectorAll('.wifi, .calender');
+  icons.forEach(icon => {
+    icon.style.setProperty('filter', 'none', 'important');
+    icon.style.setProperty('opacity', '1', 'important');
+    icon.style.setProperty('-webkit-filter', 'none', 'important');
+  });
+}
+
+// Run on page load
+document.addEventListener('DOMContentLoaded', enforceFormColors);
+
+// Run on focus events to prevent autofill color override
+document.addEventListener('focus', enforceFormColors, true);
+
+// Run periodically in case system tries to override
+setInterval(enforceFormColors, 2000);
+
+// Force colors on input events
+const inputs = document.querySelectorAll('input[type="text"], input[type="password"]');
+inputs.forEach(input => {
+  input.addEventListener('input', enforceFormColors);
+  input.addEventListener('change', enforceFormColors);
+  input.addEventListener('focus', enforceFormColors);
+  input.addEventListener('blur', enforceFormColors);
+  input.addEventListener('autofill', enforceFormColors);
+});
+
       const updateStars = () => {
         if (!isBright) {
           if (stars.length === 0) createStar();

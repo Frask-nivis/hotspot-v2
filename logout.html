@@ -4,12 +4,50 @@
     <meta charset="utf-8" />
     <title>Abaheer logout</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light" />
+    <meta name="supported-color-schemes" content="light" />
+    <meta name="theme-color" content="#f2f2f2">
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="expires" content="-1">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="icon" type="image/x-icon" href="abaheer.png">
+    <style>
+      /* Prevent autofill styling on mobile browsers */
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px white inset !important;
+        -webkit-text-fill-color: black !important;
+        color: black !important;
+        background-color: white !important;
+      }
+      
+      /* Ensure form fields maintain their color */
+      input[type="text"],
+      input[type="password"],
+      input[type="submit"],
+      .username,
+      .password,
+      .submit {
+        color: black !important;
+        background-color: white !important;
+        -webkit-text-fill-color: black !important;
+        appearance: none !important;
+        -webkit-appearance: none !important;
+      }
+      
+      /* Protect wifi and calendar icons */
+      .wifi,
+      .calender {
+        filter: none !important;
+        opacity: 1 !important;
+        -webkit-filter: none !important;
+      }
+    </style>
     <script src="script/theme.js" defer></script>
+    <script src="script/update.js" defer></script>
     <script src="script/sunpath-debug.js" defer></script>
     <script>
       function openLogin() {
@@ -28,7 +66,7 @@
         <div class="LeftDis">
           <div class="wifi" id="wifi"></div>
           <h3>AbaheerHotspot</h3>
-          
+        
         </div> 
         
         <div class="RightDis">

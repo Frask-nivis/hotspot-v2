@@ -713,6 +713,77 @@ table.tlogin {
 table.tstatus {
   justify-self: center;
   margin-top: 15px;
+}
+
+/* ===== ANTI-BYPASS STYLING FOR MOBILE BROWSERS ===== */
+
+/* Override autofill text color and background for username/password fields */
+input[type="text"]:-webkit-autofill,
+input[type="password"]:-webkit-autofill,
+.username:-webkit-autofill,
+.password:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: black !important;
+  color: black !important;
+  background-color: white !important;
+  transition: -webkit-autofill-background-color 5000s ease-in-out 0s !important;
+}
+
+/* Ensure inputs don't get colored by system */
+input[type="text"],
+input[type="password"],
+input[type="submit"],
+textarea,
+select {
+  background-color: white !important;
+  color: black !important;
+  -webkit-text-fill-color: black !important;
+  background: white !important;
+  border-color: var(--reverseAccent) !important;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Extra protection for Chrome mobile autofill */
+input:-webkit-autofill {
+  -webkit-box-shadow: inset 0 0 0 0 white !important;
+  -webkit-text-fill-color: black !important;
+}
+
+/* Caret color for better UX */
+input[type="text"],
+input[type="password"],
+textarea {
+  caret-color: black !important;
+}
+
+/* Mobile Safari specific fixes */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Prevent system colors from affecting the form elements */
+::selection {
+  background-color: var(--accentMain) !important;
+  color: white !important;
+}
+
+::-moz-selection {
+  background-color: var(--accentMain) !important;
+  color: white !important;
+}
+
+/* Protect wifi and calendar icons */
+.wifi,
+.calender {
+  filter: none !important;
+  opacity: 1 !important;
+  -webkit-filter: none !important;
+  -moz-filter: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
   margin-bottom: 10px;
   width: 95%;
   height: 100px;

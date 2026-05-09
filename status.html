@@ -1,6 +1,9 @@
 <html>
 <head>
     <title>Abaheer > status</title>
+    <meta name="color-scheme" content="light" />
+    <meta name="supported-color-schemes" content="light" />
+    <meta name="theme-color" content="#f2f2f2">
     $(if refresh-timeout)
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="refresh" content="$(refresh-timeout-secs)">
@@ -10,8 +13,43 @@
     <meta http-equiv="expires" content="-1">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="icon" type="image/x-icon" href="abaheer.png">
+    <style>
+      /* Prevent autofill styling on mobile browsers */
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px white inset !important;
+        -webkit-text-fill-color: black !important;
+        color: black !important;
+        background-color: white !important;
+      }
+      
+      /* Ensure form fields maintain their color */
+      input[type="text"],
+      input[type="password"],
+      input[type="submit"],
+      .username,
+      .password,
+      .submit {
+        color: black !important;
+        background-color: white !important;
+        -webkit-text-fill-color: black !important;
+        appearance: none !important;
+        -webkit-appearance: none !important;
+      }
+      
+      /* Protect wifi and calendar icons */
+      .wifi,
+      .calender {
+        filter: none !important;
+        opacity: 1 !important;
+        -webkit-filter: none !important;
+      }
+    </style>
 
     <script src="script/theme.js" defer></script>
+    <script src="script/update.js" defer></script>
     <script src="script/script.js" defer></script>
     <script src="script/sunpath-debug.js" defer></script>
 
@@ -85,9 +123,9 @@
                         <td align="center" valign="middle"> 
 
                             <form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
-                                <table class="tstatus" align="center">
+                                <table class="tstatus" id="tstatus" align="center">
                                     <tr><td align="right">IP</td><td>:</td><td>$(ip)</td></tr>
-                                    <tr><td align="right">UL | DL</td><td>:</td><td class="internet">$(bytes-in-nice) | $(bytes-out-nice)</td></tr>
+                                    <tr><td align="right">UL | DL</td><td>:</td><td class="internet">⬆ $(bytes-in-nice) | ⬇ $(bytes-out-nice)</td></tr>
                                     <tr><td align="right">Aktif</td><td>:</td><td class="activeTime">$(uptime)</td></tr>
                                     $(if remain-bytes-total)
                                         <tr><td align="right">Sisa Kuota</td><td>:</td><td class="quota">$(remain-bytes-total-nice)</td></tr>
@@ -151,19 +189,6 @@
 
 <script>  
     // Theme handled by script/theme.js
-
-      const internet = document.querySelector('.internet');
-      const activeTime = document.querySelector('.activeTime');
-      const quota = document.querySelector('.quota');
-      const sessionTime = document.querySelector('.sessionTime');
-
-      const dl = "$(bytes-in-nice)";
-      const ul = "$(bytes-out-nice)";
-      function updateStatus(packets) {
-        internet.textContent = packets;
-        // Update other status elements as needed
-      }
-
 </script>
 <div class="paralax-con">
   <div class="paralax-back"></div>

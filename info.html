@@ -2,8 +2,45 @@
 <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light" />
+    <meta name="supported-color-schemes" content="light" />
+    <meta name="theme-color" content="#f2f2f2">
     <title>info</title>
     <link rel="stylesheet" href="login.css">
+    <style>
+      /* Prevent autofill styling on mobile browsers */
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px white inset !important;
+        -webkit-text-fill-color: black !important;
+        color: black !important;
+        background-color: white !important;
+      }
+      
+      /* Ensure form fields maintain their color */
+      input[type="text"],
+      input[type="password"],
+      input[type="submit"],
+      .username,
+      .password,
+      .submit {
+        color: black !important;
+        background-color: white !important;
+        -webkit-text-fill-color: black !important;
+        appearance: none !important;
+        -webkit-appearance: none !important;
+      }
+      
+      /* Protect wifi and calendar icons */
+      .wifi,
+      .calender {
+        filter: none !important;
+        opacity: 1 !important;
+        -webkit-filter: none !important;
+      }
+    </style>
     <script src="script/theme.js" defer></script>
     <script src="script/script.js" defer></script>
     <script src="script/sunpath-debug.js" defer></script>
