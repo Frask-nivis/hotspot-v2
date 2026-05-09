@@ -118,7 +118,7 @@
         Cy = Cy * (height / 400);
       }
 
-      let radiusX = parsePercent(style.getPropertyValue('--sun-radius'), 70);
+      let radiusX = parsePercent(style.getPropertyValue('--sun-radius'), 80);
       let radiusY = radiusX;
 
       // 📱 Mode HP → jadi lonjong
