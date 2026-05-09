@@ -713,6 +713,13 @@ table.tlogin {
 table.tstatus {
   justify-self: center;
   margin-top: 15px;
+  margin-bottom: 10px;
+  width: 95%;
+  height: 100px;
+  border-radius: 15px;
+  background: #f1f1f1;
+  color: black;
+  font-weight: 700;
 }
 
 /* ===== ANTI-BYPASS STYLING FOR MOBILE BROWSERS ===== */
@@ -783,14 +790,6 @@ input::-webkit-inner-spin-button {
   -moz-filter: none !important;
   -webkit-appearance: none !important;
   appearance: none !important;
-}
-  margin-bottom: 10px;
-  width: 95%;
-  height: 100px;
-  border-radius: 15px;
-  background: #f1f1f1;
-  color: black;
-  font-weight: 700;
 }
 
 table.tstatus td {

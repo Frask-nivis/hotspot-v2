@@ -59,7 +59,7 @@
     let themeMode = localStorage.getItem('themeMode') || 'localTime';
     window.__themeMode = themeMode;
 
-    const legacyLocalTime = localStorage.getItem('localTime') === 'true';
+    const legacyLocalTime = true;
     const currState = localStorage.getItem('themeIsBright');
 
     if (!themeMode) {

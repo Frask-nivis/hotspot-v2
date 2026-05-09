@@ -123,7 +123,7 @@
                         <td align="center" valign="middle"> 
 
                             <form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
-                                <table class="tstatus" id="tstatus" align="center">
+                                <table class="tstatus" id="tstatus">
                                     <tr><td align="right">IP</td><td>:</td><td>$(ip)</td></tr>
                                     <tr><td align="right">UL | DL</td><td>:</td><td class="internet">⬆ $(bytes-in-nice) | ⬇ $(bytes-out-nice)</td></tr>
                                     <tr><td align="right">Aktif</td><td>:</td><td class="activeTime">$(uptime)</td></tr>
@@ -143,9 +143,11 @@
                                                     <a href="$(link-advert)" target="hotspot_advert">advertisement</a> required
                                                 </div>
                                             </td>
+                                        </tr>
                                     $(elif refresh-timeout)
                                         <tr>
                                             <td align="right">Refresh</td><td>:</td><td>$(refresh-timeout)</td>
+                                        </tr>
                                     $(endif)
 
                                     <!--<div class?"notice" style="font-size: 14px; padding-top:5px; text-align:center; color:red;">
