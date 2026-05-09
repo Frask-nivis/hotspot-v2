@@ -16,4 +16,4 @@ async function updateData() {
     }
 }
 
-//setInterval(updateData, 1500) // Update every 5 seconds
+setInterval(updateData, 1500) // Update every 5 seconds
