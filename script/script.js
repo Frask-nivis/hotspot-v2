@@ -1,7 +1,7 @@
 const greet = document.getElementById("greet");
 const ver = document.getElementById("ver");
 
-let currVer = "v4.5"
+let currVer = "v4.5.7"
 
 ver.textContent = currVer;
 
@@ -43,7 +43,7 @@ let isBright = localStorage.getItem('themeMode') === 'localtime' ? (new Date().g
       }
 
       const calender = document.getElementById("date");
-      calender.innerHTML = `${day}, ${dd}-${MM}-${yyyy}`;
+      calender.innerHTML = `${day}, ${dd}-${MM}-${yyyy} |`;
       const T = document.getElementById("hour");
       
       function setTime(T) {

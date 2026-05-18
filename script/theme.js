@@ -38,9 +38,7 @@
     function applyTheme(timeOfDay) {
       document.documentElement.classList.remove('pagi','siang','sore','malam','dark');
       document.documentElement.classList.add(timeOfDay);
-      if (timeOfDay === 'malam') {
-        document.documentElement.classList.add('dark')
-      };
+
 
       // refresh icon/menu state (safe because MODE_ICONS defined above)
       try { if (typeof refreshModeUI === 'function') refreshModeUI(); } catch(e) { console.error(e); }
@@ -56,7 +54,7 @@
     }
 
     // Read saved state
-    let themeMode = localStorage.getItem('themeMode') || 'localTime';
+    let themeMode = 'localtime';
     window.__themeMode = themeMode;
 
     const legacyLocalTime = true;
@@ -123,7 +121,7 @@
 
       // 📱 Mode HP → jadi lonjong
       if (width < 600) {
-        radiusY = radiusX * 0.6; // lebih gepeng ke bawah
+        radiusY = radiusX * .95; // lebih gepeng ke bawah
       }
 
       return {
