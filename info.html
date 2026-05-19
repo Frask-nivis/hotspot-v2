@@ -53,7 +53,7 @@
           <a href="login.html">| AbaheerHotspot</a>
         </div> 
         
-        <div class="RightDis">
+        <div class="RightDis">  
           <div id="date"></div>     
           <div class="calender"></div>
         </div>
@@ -67,13 +67,15 @@
   <div class="cloudCon"></div>
 
   <div class="mainCon">
-    <div id="greet"></div>    
-    <h2 style="color: var(--font); margin: 10px 0; font-size: 3em;">Price List</h2>  
+    <div class="cong">
+      <h2 style="color: var(--font); margin: 10px 0; font-size: 3em;">Price List</h2>  
+      <div id="hour"></div>
+    </div>
     <div class="infoContainer">    
       <div class="infoOption">
           <div class="opsi1"><h3>Voucher</h3></div>
           <div class="opsi2"><h3>Member</h3></div>
-          <div class="opsi3">News</div>    
+          <div class="opsi3"><h3>News</h3></div>    
       </div>
       <div class="infoContent"></div> 
   </div>
@@ -92,21 +94,23 @@
     // ===== PRICE LIST FUNCTIONS (asli dari info.html) =====
     const voucher = document.querySelector(".opsi1");
     const member = document.querySelector(".opsi2");
+    const news = document.querySelector(".opsi3");
+  
     let list = "VpriceList.csv";
-    let isvoucher = true
+    let mode = "voucher";
+
+    const grid = document.querySelector('.infoContent')
 
       function setList(listed) {     
         const data = fetch(listed)
           .then(res => res.text())
           .then(text => {
             const rows = text.trim().split('\n');
-            const grid = document.querySelector('.infoContent')
             grid.innerHTML = '';
             rows.forEach((row, rowIndex) => {
               const cols = row.split(',');
               cols.forEach(col => {
                 const cell = document.createElement('div');
-
                 cell.className = 'cel';
                 cell.textContent = col;  
                 grid.appendChild(cell)
@@ -119,34 +123,63 @@
         }
       }
 
-    if (isvoucher) {
+    if (mode === "voucher") {
       list = "VpriceList.csv";
       setList(list)
-    } else {
+    } else if (mode === "member") {
       list = "MpriceList.csv";
       setList(list)
     }
 
+    function setToggle(touched) {
+      const options = [voucher, member, news];
+      options.forEach(option => {
+        if (option === touched) {
+          option.style.backgroundColor = "var(--accentMain)";
+          option.style.color = "#ffffff";
+        } else {
+          option.style.backgroundColor = "var(--untouched)";
+          option.style.color = "#000000";
+        }
+      });
+    }
     voucher.addEventListener('click', () =>{
-      if (isvoucher) return;
-      isvoucher = true
+      if (grid.classList.contains('news')) {
+        grid.classList.remove('news');
+      }
+      if (mode === "voucher") return;
+      mode = "voucher";
       list = "VpriceList.csv";
-      voucher.style.backgroundColor = "var(--accentMain)";
-      member.style.backgroundColor = "var(--untouched)";
-      member.style.color = "#000000"
-      voucher.style.color = "#ffffff"
+      setToggle(voucher)
       setList(list)
     })
 
     member.addEventListener('click', () => {
-      if (!isvoucher) return;
-      isvoucher = false
+      if (grid.classList.contains('news')) {
+        grid.classList.remove('news');
+      }
+      if (mode === "member") return;
+      mode = "member";  
       list = "MpriceList.csv"
-      voucher.style.backgroundColor = "var(--untouched)";
-      member.style.backgroundColor = "var(--accentMain)";
-      member.style.color = "#ffffff"
-      voucher.style.color = "#000000"
+      setToggle(member)
       setList(list)
+    })
+
+    news.addEventListener('click', () => {
+      if (mode === "news") return;
+      mode = "news";
+      setToggle(news)
+      grid.innerHTML = '';
+      const newsData = [
+        "silahkan membeli packet di office"
+      ];
+      grid.classList.toggle('news');
+      newsData.forEach(item => {
+        const cell = document.createElement('div');
+        cell.className = 'cel';
+        cell.textContent = item;
+        grid.appendChild(cell);
+      });
     })
   </script>
 </body>
